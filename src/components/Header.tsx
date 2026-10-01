@@ -69,9 +69,9 @@ export const Header: React.FC<HeaderProps> = ({
               : 'bg-[#0c0c0c] border-white/10 text-[#D8D8D8]'
           }`}
         >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-between">
+          <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-1.5 sm:py-2 flex items-center justify-between gap-2">
             {/* Left links: Trade Program, News & Events */}
-            <div className="flex items-center space-x-5 sm:space-x-6">
+            <div className="hidden sm:flex items-center space-x-5 sm:space-x-6 shrink-0">
               <button
                 onClick={() => handleNav('trade')}
                 className="hover:text-white transition-colors cursor-pointer"
@@ -89,10 +89,10 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
 
             {/* Right links: Catalog, Product Care, 3D Showroom, +1 (800) 403-0403 */}
-            <div className="flex items-center space-x-4 sm:space-x-6">
+            <div className="flex items-center gap-2 sm:gap-4 lg:gap-6 ml-auto min-w-0">
               <button
                 onClick={() => handleNav('catalog')}
-                className={`hover:text-white transition-colors cursor-pointer ${
+                className={`hidden sm:inline-block hover:text-white transition-colors cursor-pointer ${
                   currentPage === 'catalog' ? 'text-[#9B522E] font-semibold' : ''
                 }`}
               >
@@ -203,7 +203,7 @@ export const Header: React.FC<HeaderProps> = ({
           }`}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-            <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? 'min-h-[58px] sm:min-h-[66px]' : 'min-h-[76px] sm:min-h-[92px] lg:min-h-[104px]'}`}>
+            <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? 'min-h-[58px] sm:min-h-[66px]' : 'min-h-[68px] sm:min-h-[92px] lg:min-h-[104px]'}`}>
               
               {/* LEFT SECTION: [Menu & Search Icon] + Furniture + Our Story + How to Buy */}
               <div className="flex items-center space-x-3 sm:space-x-5 lg:space-x-7 z-10">
@@ -290,7 +290,7 @@ export const Header: React.FC<HeaderProps> = ({
                   <img
                     src="/logo-b-open.png"
                     alt="B+Open Logo"
-                    className={`w-auto object-contain transition-all duration-300 group-hover:scale-105 drop-shadow-lg ${
+                    className={`w-auto object-contain transition-all duration-300 group-hover:scale-105 drop-shadow-lg max-[639px]:max-w-[132px] max-[639px]:h-11 ${
                       isScrolled
                         ? 'h-11 sm:h-13 lg:h-14 max-w-[200px]'
                         : 'h-15 sm:h-18 lg:h-20 max-w-[260px]'

@@ -351,7 +351,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           {/* Horizontal Scrolling Card Track */}
           <div
             ref={collectionsScrollRef}
-            className="flex items-stretch gap-4 sm:gap-6 overflow-x-auto scroll-smooth px-5 sm:px-14 pb-4 pt-1 no-scrollbar"
+            className="flex items-stretch gap-4 sm:gap-6 overflow-x-auto scroll-smooth px-4 sm:px-14 pb-4 pt-1 no-scrollbar snap-x snap-mandatory"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {COLLECTIONS_LIST.filter((col) => !(edits.hiddenHomeCollectionIds || []).includes(col.id)).map((col) => (
@@ -359,7 +359,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 key={col.id}
                 id={`home-collection-${col.id}`}
                 onClick={() => onNavigate('collections', { collection: col.targetCollection })}
-                className="relative w-[250px] sm:w-[280px] lg:w-[295px] shrink-0 flex flex-col bg-[#F8F6F2] border border-[#DED9CD] rounded-xs overflow-hidden group cursor-pointer hover:shadow-xl transition-all duration-300"
+                className="relative w-[calc(100vw-3rem)] max-w-[300px] sm:w-[280px] sm:max-w-none lg:w-[295px] shrink-0 snap-start flex flex-col bg-[#F8F6F2] border border-[#DED9CD] rounded-xs overflow-hidden group cursor-pointer hover:shadow-xl transition-all duration-300"
               >
                 {isAdminAuthenticated && isEditMode && (
                   <button
@@ -570,7 +570,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           {/* Left Arrow Button */}
           <button
             onClick={() => scrollContainer(categoriesScrollRef, 'left')}
-            className="absolute left-2 sm:left-4 top-[40%] -translate-y-1/2 z-20 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white/95 hover:bg-white text-[#1C1A17] border border-[#DED9CD] shadow-md hover:shadow-xl flex items-center justify-center transition-all cursor-pointer opacity-90 hover:opacity-100"
+            className="hidden sm:flex absolute left-2 sm:left-4 top-[40%] -translate-y-1/2 z-20 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white/95 hover:bg-white text-[#1C1A17] border border-[#DED9CD] shadow-md hover:shadow-xl items-center justify-center transition-all cursor-pointer opacity-90 hover:opacity-100"
             aria-label="Previous categories"
           >
             <ChevronLeft className="w-6 h-6 stroke-[2]" />
@@ -579,7 +579,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           {/* Right Arrow Button */}
           <button
             onClick={() => scrollContainer(categoriesScrollRef, 'right')}
-            className="absolute right-2 sm:right-4 top-[40%] -translate-y-1/2 z-20 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white/95 hover:bg-white text-[#1C1A17] border border-[#DED9CD] shadow-md hover:shadow-xl flex items-center justify-center transition-all cursor-pointer opacity-90 hover:opacity-100"
+            className="hidden sm:flex absolute right-2 sm:right-4 top-[40%] -translate-y-1/2 z-20 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white/95 hover:bg-white text-[#1C1A17] border border-[#DED9CD] shadow-md hover:shadow-xl items-center justify-center transition-all cursor-pointer opacity-90 hover:opacity-100"
             aria-label="Next categories"
           >
             <ChevronRight className="w-6 h-6 stroke-[2]" />
@@ -588,14 +588,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           {/* Horizontal Scrolling Category Track */}
           <div
             ref={categoriesScrollRef}
-            className="flex items-stretch gap-4 sm:gap-6 overflow-x-auto scroll-smooth px-5 sm:px-14 pb-4 pt-1 no-scrollbar"
+            className="flex items-stretch gap-4 sm:gap-6 overflow-x-auto scroll-smooth px-4 sm:px-14 pb-4 pt-1 no-scrollbar snap-x snap-mandatory"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {CATEGORIES_LIST.map((cat) => (
               <div
                 key={cat.id}
                 onClick={cat.route}
-                className="w-[240px] sm:w-[270px] lg:w-[285px] shrink-0 flex flex-col bg-[#F8F6F2] border border-[#DED9CD] rounded-xs overflow-hidden group cursor-pointer hover:shadow-xl transition-all duration-300"
+                className="w-[calc(100vw-3rem)] max-w-[300px] sm:w-[270px] sm:max-w-none lg:w-[285px] shrink-0 snap-start flex flex-col bg-[#F8F6F2] border border-[#DED9CD] rounded-xs overflow-hidden group cursor-pointer hover:shadow-xl transition-all duration-300"
               >
                 {/* Square Image Container */}
                 <div className="relative aspect-square overflow-hidden bg-[#EAE4D9]">

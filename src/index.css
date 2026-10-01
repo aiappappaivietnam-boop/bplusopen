@@ -25,10 +25,28 @@ html, body {
   font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-size: 16px;
   line-height: 1.6;
+  width: 100%;
+  min-width: 0;
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
+}
+
+#root {
+  width: 100%;
+  min-width: 0;
+  overflow-x: clip;
+}
+
+img, video, canvas, svg {
+  max-width: 100%;
+}
+
+/* Keep long product and collection names readable instead of widening the page. */
+h1, h2, h3, h4, h5, h6, p {
+  overflow-wrap: break-word;
 }
 
 *, ::before, ::after {
@@ -69,4 +87,17 @@ input, select, textarea {
   height: 100%;
   width: 100%;
   user-select: none;
+}
+
+@media (max-width: 639px) {
+  /* The desktop header is intentionally spacious, but the mobile layout should
+     never create a horizontal scroll area around its fixed navigation. */
+  #main-header {
+    max-width: 100vw;
+    overflow-x: clip;
+  }
+
+  .catalog-pdf-page canvas {
+    max-width: none;
+  }
 }

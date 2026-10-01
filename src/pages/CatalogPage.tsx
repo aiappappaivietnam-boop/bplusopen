@@ -167,7 +167,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({ onNavigate, onOpenCata
 
         {/* Header Bar above Flipbook */}
         <div className="w-full max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 mb-5 z-10">
-          <div className="flex items-center gap-3 text-left">
+          <div className="flex items-center gap-3 text-left w-full sm:w-auto min-w-0">
             <div className="w-9 h-9 rounded-full bg-[#C4A482]/20 border border-[#C4A482]/40 flex items-center justify-center text-[#C4A482]">
               <BookOpen className="w-4 h-4" />
             </div>
@@ -175,14 +175,14 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({ onNavigate, onOpenCata
               <div className="text-[11px] uppercase tracking-[0.22em] text-[#C4A482] font-semibold">
                 {isVi ? 'Tạp Chí & Catalogue Kỹ Thuật Số' : 'Interactive Digital Lookbook'}
               </div>
-              <h1 className="font-serif text-lg sm:text-xl font-medium tracking-[0.04em] text-white">
+              <h1 className="font-serif text-base sm:text-xl font-medium tracking-[0.04em] text-white leading-tight">
                 {isVi ? featuredCatalog.titleVi : featuredCatalog.title}
               </h1>
             </div>
           </div>
 
           {/* Quick Action Buttons */}
-          <div className="flex items-center gap-3">
+          <div className="flex w-full sm:w-auto flex-wrap items-center justify-center sm:justify-end gap-2 sm:gap-3">
             <a
               href="#catalog-list"
               onClick={(event) => {
@@ -191,7 +191,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({ onNavigate, onOpenCata
               }}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold uppercase tracking-wider bg-white/10 hover:bg-white/20 text-white rounded-xs border border-white/15 transition-colors cursor-pointer"
+              className="inline-flex items-center justify-center gap-1.5 px-3 py-2 text-[11px] sm:text-xs font-semibold uppercase tracking-wider bg-white/10 hover:bg-white/20 text-white rounded-xs border border-white/15 transition-colors cursor-pointer min-h-[42px]"
             >
               <Download className="w-3.5 h-3.5" />
               <span>{isVi ? 'Xem danh sách catalog' : 'Browse catalogs'}</span>
@@ -201,7 +201,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({ onNavigate, onOpenCata
                 const el = document.querySelector('.catalog-flipbook') as HTMLElement | null;
                 if (el?.requestFullscreen) el.requestFullscreen();
               }}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold uppercase tracking-wider bg-[#ae5c4a] hover:bg-[#974b3a] text-white rounded-xs transition-colors cursor-pointer"
+              className="inline-flex items-center justify-center gap-1.5 px-3 py-2 text-[11px] sm:text-xs font-semibold uppercase tracking-wider bg-[#ae5c4a] hover:bg-[#974b3a] text-white rounded-xs transition-colors cursor-pointer min-h-[42px]"
             >
               <Maximize2 className="w-3.5 h-3.5" />
               <span>{isVi ? 'Toàn Màn Hình' : 'Full Screen'}</span>
@@ -233,16 +233,16 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({ onNavigate, onOpenCata
               </a>
             </div>
           ) : pdfDocument ? (
-            <div className="relative flex min-h-[420px] items-center justify-center overflow-hidden bg-[#24211E] px-8 py-8 sm:px-14">
+            <div className="relative flex min-h-[420px] items-center justify-center overflow-hidden bg-[#24211E] px-2 py-5 sm:px-14 sm:py-8">
               <HTMLFlipBook
                 ref={flipBookRef}
-                width={420}
-                height={594}
+                width={320}
+                height={452}
                 startPage={0}
                 size="stretch"
-                minWidth={280}
+                minWidth={240}
                 maxWidth={550}
-                minHeight={396}
+                minHeight={338}
                 maxHeight={778}
                 showCover
                 drawShadow
