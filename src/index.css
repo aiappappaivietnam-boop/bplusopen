@@ -60,3 +60,13 @@ input, select, textarea {
   min-height: 0 !important;
   max-height: none !important;
 }
+/* The catalog is rendered as a book so the horizontal page-turn has room to breathe. */
+.catalog-flipbook {
+  max-width: min(100%, 860px);
+}
+
+.catalog-pdf-page {
+  height: 100%;
+  width: 100%;
+  user-select: none;
+}

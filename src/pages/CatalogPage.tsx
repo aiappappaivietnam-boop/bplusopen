@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { PageId } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 import { InlineEditableImage } from '../components/InlineEditableImage';
+import HTMLFlipBook from 'react-pageflip';
+import { GlobalWorkerOptions, getDocument, type PDFDocumentProxy } from 'pdfjs-dist';
+import pdfWorker from 'pdfjs-dist/build/pdf.worker.mjs?url';
 import { 
   Download, 
   Maximize2, 
@@ -66,6 +69,51 @@ const catalogItems: CatalogItem[] = [
 
 const featuredCatalog = catalogItems[0];
 
+GlobalWorkerOptions.workerSrc = pdfWorker;
+
+const PDF_PREVIEW_SCALE = 1.25;
+
+interface PdfPageProps {
+  page: number;
+  document: PDFDocumentProxy;
+  shouldRender: boolean;
+}
+
+const PdfPage = React.forwardRef<HTMLDivElement, PdfPageProps>(({ page, document, shouldRender }, ref) => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    if (!shouldRender) return;
+
+    let cancelled = false;
+    let renderTask: { cancel: () => void; promise: Promise<unknown> } | undefined;
+
+    document.getPage(page).then((pdfPage) => {
+      if (cancelled || !canvasRef.current) return;
+      const viewport = pdfPage.getViewport({ scale: PDF_PREVIEW_SCALE });
+      const canvas = canvasRef.current;
+      const context = canvas.getContext('2d');
+      if (!context) return;
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      renderTask = pdfPage.render({ canvas, canvasContext: context, viewport });
+      renderTask.promise.catch(() => undefined);
+    });
+
+    return () => {
+      cancelled = true;
+      renderTask?.cancel();
+    };
+  }, [document, page, shouldRender]);
+
+  return (
+    <div ref={ref} className="catalog-pdf-page bg-white shadow-inner overflow-hidden">
+      <canvas ref={canvasRef} className="block h-full w-full object-contain" />
+    </div>
+  );
+});
+PdfPage.displayName = 'PdfPage';
+
 interface CatalogPageProps {
   onNavigate: (page: PageId, extra?: { category?: string; collection?: string; tab?: 'retailers' | 'design-showrooms' | 'contract-hospitality' }) => void;
   onOpenCatalogModal?: () => void;
@@ -74,7 +122,29 @@ interface CatalogPageProps {
 export const CatalogPage: React.FC<CatalogPageProps> = ({ onNavigate, onOpenCatalogModal }) => {
   const { language } = useLanguage();
   const isVi = language === 'vi';
-  const [iframeLoaded, setIframeLoaded] = useState(false);
+  const [pdfDocument, setPdfDocument] = useState<PDFDocumentProxy | null>(null);
+  const [pdfError, setPdfError] = useState(false);
+  const [currentPdfPage, setCurrentPdfPage] = useState(0);
+  const flipBookRef = useRef<{ pageFlip: () => { flipNext: () => void; flipPrev: () => void } }>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    setPdfError(false);
+    getDocument({ url: featuredCatalog.href }).promise
+      .then((document) => {
+        if (!cancelled) setPdfDocument(document);
+      })
+      .catch(() => {
+        if (!cancelled) setPdfError(true);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const turnNext = () => flipBookRef.current?.pageFlip().flipNext();
+  const turnPrevious = () => flipBookRef.current?.pageFlip().flipPrev();
 
   return (
     <div className="min-h-screen bg-[#141414] text-[#FAF8F5]">
@@ -128,10 +198,8 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({ onNavigate, onOpenCata
             </a>
             <button
               onClick={() => {
-                const el = document.getElementById('flipsnack-iframe');
-                if (el && el.requestFullscreen) {
-                  el.requestFullscreen();
-                }
+                const el = document.querySelector('.catalog-flipbook') as HTMLElement | null;
+                if (el?.requestFullscreen) el.requestFullscreen();
               }}
               className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold uppercase tracking-wider bg-[#ae5c4a] hover:bg-[#974b3a] text-white rounded-xs transition-colors cursor-pointer"
             >
@@ -141,9 +209,9 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({ onNavigate, onOpenCata
           </div>
         </div>
 
-        {/* Flipbook Container (4:3 ratio matching Flipsnack embed on jensenoutdoor.com/catalog/) */}
-        <div className="relative w-full max-w-6xl mx-auto z-10 shadow-2xl rounded-xs overflow-hidden border border-white/10 bg-black/60">
-          {!iframeLoaded && (
+        {/* Catalog book with a real horizontal page-turn effect */}
+        <div className="relative w-full max-w-6xl mx-auto z-10 shadow-2xl rounded-xs overflow-hidden border border-white/10 bg-[#0E0E0E]">
+          {!pdfDocument && !pdfError && (
             <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#1F1D1A] text-[#FAF8F5]/80 p-8 text-center z-0">
               <div className="w-10 h-10 border-2 border-[#C4A482] border-t-transparent rounded-full animate-spin mb-4" />
               <p className="font-serif text-base tracking-wide">
@@ -156,18 +224,60 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({ onNavigate, onOpenCata
               </p>
             </div>
           )}
-          <iframe
-            id="flipsnack-iframe"
-            src={featuredCatalog.href}
-            seamless
-            scrolling="no"
-            frameBorder="0"
-            allowFullScreen
-            allow="autoplay; clipboard-read; clipboard-write"
-            onLoad={() => setIframeLoaded(true)}
-            className="w-full aspect-[4/3] sm:min-h-[640px] md:min-h-[760px] lg:min-h-[820px] relative z-10 bg-transparent"
-            title={isVi ? featuredCatalog.titleVi : featuredCatalog.title}
-          />
+          {pdfError ? (
+            <div className="flex min-h-[420px] flex-col items-center justify-center gap-4 p-8 text-center text-white/80">
+              <p>{isVi ? 'Không thể tải catalog trực tuyến.' : 'The catalog could not be loaded online.'}</p>
+              <a href={featuredCatalog.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border border-white/30 px-4 py-2 text-xs font-semibold uppercase tracking-wider hover:bg-white/10">
+                <Download className="h-3.5 w-3.5" />
+                {isVi ? 'Mở file PDF' : 'Open PDF'}
+              </a>
+            </div>
+          ) : pdfDocument ? (
+            <div className="relative flex min-h-[420px] items-center justify-center overflow-hidden bg-[#24211E] px-8 py-8 sm:px-14">
+              <HTMLFlipBook
+                ref={flipBookRef}
+                width={420}
+                height={594}
+                startPage={0}
+                size="stretch"
+                minWidth={280}
+                maxWidth={550}
+                minHeight={396}
+                maxHeight={778}
+                showCover
+                drawShadow
+                maxShadowOpacity={0.7}
+                flippingTime={900}
+                usePortrait
+                startZIndex={0}
+                autoSize
+                mobileScrollSupport
+                useMouseEvents
+                swipeDistance={30}
+                clickEventForward
+                showPageCorners
+                disableFlipByClick={false}
+                onFlip={(event) => setCurrentPdfPage(Number(event.data))}
+                className="catalog-flipbook"
+                style={{ margin: '0 auto' }}
+              >
+                {Array.from({ length: pdfDocument.numPages }, (_, index) => (
+                  <PdfPage
+                    key={index + 1}
+                    page={index + 1}
+                    document={pdfDocument}
+                    shouldRender={Math.abs(index - currentPdfPage) <= 3}
+                  />
+                ))}
+              </HTMLFlipBook>
+              <button type="button" onClick={turnPrevious} aria-label={isVi ? 'Trang trước' : 'Previous page'} className="absolute left-3 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-black/45 text-white transition-colors hover:bg-black/75 sm:left-5">
+                <span className="text-2xl leading-none">‹</span>
+              </button>
+              <button type="button" onClick={turnNext} aria-label={isVi ? 'Trang tiếp theo' : 'Next page'} className="absolute right-3 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-black/45 text-white transition-colors hover:bg-black/75 sm:right-5">
+                <span className="text-2xl leading-none">›</span>
+              </button>
+            </div>
+          ) : null}
         </div>
       </section>
 
