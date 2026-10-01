@@ -448,9 +448,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                             onClick={() => setSelectedRalId(color.id)}
                             title={`${color.code} · ${isVi ? color.nameVi : color.name}`}
                             aria-label={`${color.code} ${isVi ? color.nameVi : color.name}`}
-                            className={`group flex min-w-0 flex-col items-center gap-1 rounded-xs p-1 transition-colors cursor-pointer ${
-                              isSelected ? 'bg-[#FAF7F2] ring-1 ring-[#5C3822]' : 'hover:bg-[#FAF7F2]'
-                            }`}
+                            className="group flex min-w-0 flex-col items-center gap-1 rounded-full p-1 transition-colors cursor-pointer"
                           >
                             <span
                               className={`relative h-7 w-7 rounded-full border border-black/20 shadow-inner transition-transform group-hover:scale-105 sm:h-8 sm:w-8 ${
