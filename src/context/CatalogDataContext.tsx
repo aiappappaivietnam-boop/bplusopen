@@ -8,6 +8,7 @@ import React, {
 import { COLLECTIONS, PRODUCTS } from '../data/furnitureData';
 import { Collection, Product } from '../types';
 import { REMOTE_CATALOG_EDITS } from '../data/remoteCatalogEdits';
+import { isVisibleCollectionId } from '../data/collectionVisibility';
 
 const EDITS_STORAGE_KEY = 'b-open-catalog-edits-v1';
 const ADMIN_SESSION_KEY = 'b-open-admin-session-v1';
@@ -106,14 +107,36 @@ const mergeCatalogEdits = (...sources: Array<Partial<CatalogEdits>>): CatalogEdi
 const BASE_COLLECTIONS = clone(COLLECTIONS);
 const BASE_PRODUCTS = clone(PRODUCTS);
 
+// LUMINO was previously removed from the browser snapshot while the catalog
+// was being edited. Its local catalog profile and images are now restored as
+// part of the published four-collection catalog.
+const RESTORED_LUMINO_PRODUCT_IDS = new Set(
+  BASE_PRODUCTS.filter((product) => product.collection === 'lumino').map((product) => product.id),
+);
+
+const normalizePublishedCatalog = (edits: CatalogEdits): CatalogEdits => ({
+  ...edits,
+  // Do not let an older browser snapshot hide the restored LUMINO collection.
+  hiddenHomeCollectionIds: (edits.hiddenHomeCollectionIds || []).filter((id) => isVisibleCollectionId(id) && id !== 'lumino'),
+  deletedProductIds: (edits.deletedProductIds || []).filter((id) => !RESTORED_LUMINO_PRODUCT_IDS.has(id)),
+  // Any legacy/base collection outside the current published set stays out of
+  // the catalog even if it exists in an older local edit snapshot.
+  deletedCollectionIds: [
+    ...(edits.deletedCollectionIds || []).filter((id) => !isVisibleCollectionId(id)),
+    // Any legacy/base collection outside the current published set stays out of
+    // the catalog even if it exists in an older local edit snapshot.
+    ...BASE_COLLECTIONS.filter((collection) => !isVisibleCollectionId(collection.id)).map((collection) => collection.id),
+  ],
+});
+
 const readStoredEdits = (): CatalogEdits => {
-  if (typeof window === 'undefined') return mergeCatalogEdits(REMOTE_CATALOG_EDITS as unknown as Partial<CatalogEdits>);
+  if (typeof window === 'undefined') return normalizePublishedCatalog(mergeCatalogEdits(REMOTE_CATALOG_EDITS as unknown as Partial<CatalogEdits>));
 
   try {
     const raw = window.localStorage.getItem(EDITS_STORAGE_KEY);
-    if (!raw) return mergeCatalogEdits(REMOTE_CATALOG_EDITS as unknown as Partial<CatalogEdits>);
+    if (!raw) return normalizePublishedCatalog(mergeCatalogEdits(REMOTE_CATALOG_EDITS as unknown as Partial<CatalogEdits>));
     const parsed = JSON.parse(raw) as Partial<CatalogEdits>;
-    return mergeCatalogEdits(REMOTE_CATALOG_EDITS as unknown as Partial<CatalogEdits>, {
+    return normalizePublishedCatalog(mergeCatalogEdits(REMOTE_CATALOG_EDITS as unknown as Partial<CatalogEdits>, {
       collections: parsed.collections && typeof parsed.collections === 'object' ? parsed.collections : {},
       products: parsed.products && typeof parsed.products === 'object' ? parsed.products : {},
       addedProducts: Array.isArray(parsed.addedProducts)
@@ -145,9 +168,9 @@ const readStoredEdits = (): CatalogEdits => {
             (block?.type === 'text' || block?.type === 'image') &&
             typeof block?.value === 'string')
         : [],
-    });
+    }));
   } catch {
-    return mergeCatalogEdits(REMOTE_CATALOG_EDITS as unknown as Partial<CatalogEdits>);
+    return normalizePublishedCatalog(mergeCatalogEdits(REMOTE_CATALOG_EDITS as unknown as Partial<CatalogEdits>));
   }
 };
 
@@ -162,7 +185,8 @@ const applyEditsToCatalog = (edits: CatalogEdits) => {
   });
 
   const deletedCollections = new Set(edits.deletedCollectionIds || []);
-  COLLECTIONS.splice(0, COLLECTIONS.length, ...COLLECTIONS.filter((collection) => !deletedCollections.has(collection.id)));
+  COLLECTIONS.splice(0, COLLECTIONS.length, ...COLLECTIONS.filter((collection) =>
+    isVisibleCollectionId(collection.id) && !deletedCollections.has(collection.id)));
 
   Object.entries(edits.products).forEach(([id, patch]) => {
     const product = PRODUCTS.find((item) => item.id === id);
@@ -183,7 +207,8 @@ const buildEffectiveCatalog = (edits: CatalogEdits) => {
   });
 
   const deletedCollections = new Set(edits.deletedCollectionIds || []);
-  const visibleCollections = collections.filter((collection) => !deletedCollections.has(collection.id));
+  const visibleCollections = collections.filter((collection) =>
+    isVisibleCollectionId(collection.id) && !deletedCollections.has(collection.id));
 
   Object.entries(edits.products).forEach(([id, patch]) => {
     const product = products.find((item) => item.id === id);
@@ -250,7 +275,7 @@ export const CatalogDataProvider: React.FC<{ children: React.ReactNode }> = ({ c
   }, []);
 
   const saveEdits = useCallback((nextEdits: CatalogEdits) => {
-    const normalized = clone(nextEdits);
+    const normalized = normalizePublishedCatalog(clone(nextEdits));
     applyEditsToCatalog(normalized);
     try {
       window.localStorage.setItem(EDITS_STORAGE_KEY, JSON.stringify(normalized));
@@ -441,7 +466,7 @@ export const CatalogDataProvider: React.FC<{ children: React.ReactNode }> = ({ c
   }, [isAdminAuthenticated, isEditMode]);
 
   const resetEdits = useCallback(() => {
-    const empty = mergeCatalogEdits(REMOTE_CATALOG_EDITS as unknown as Partial<CatalogEdits>);
+    const empty = normalizePublishedCatalog(mergeCatalogEdits(REMOTE_CATALOG_EDITS as unknown as Partial<CatalogEdits>));
     applyEditsToCatalog(empty);
     try {
       window.localStorage.removeItem(EDITS_STORAGE_KEY);

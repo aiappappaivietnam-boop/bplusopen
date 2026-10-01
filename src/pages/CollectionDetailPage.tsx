@@ -124,7 +124,7 @@ const COLLECTION_GALLERIES: Record<string, GalleryPhoto[]> = {
       categoryVi: 'Sofa Thư Giãn'
     },
     {
-      url: 'https://images.unsplash.com/photo-1540518614846-7ede433c4550?auto=format&fit=crop&w=1600&q=80',
+      url: '/lumino-profile/scene-1.webp',
       title: 'Sunken Firepit Terrace',
       titleVi: 'Khu Sưởi Ấm Ngoài Trời Sân Vườn',
       caption: 'Lumino lounge chairs nestled around fire feature with heavy timber permanence.',
@@ -133,7 +133,7 @@ const COLLECTION_GALLERIES: Record<string, GalleryPhoto[]> = {
       categoryVi: 'Không Gian Sân Vườn'
     },
     {
-      url: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1600&q=80',
+      url: '/lumino-profile/sun-lounge-1950.webp',
       title: 'Hardwood Poolside Chaise Loungers',
       titleVi: 'Cặp Giường Nằm Tắm Nắng Lumino Hồ Bơi',
       caption: 'Multi-position recliners with integrated sliding cocktail trays and discrete wooden wheels.',
@@ -142,7 +142,7 @@ const COLLECTION_GALLERIES: Record<string, GalleryPhoto[]> = {
       categoryVi: 'Hồ Bơi Nghỉ Dưỡng'
     },
     {
-      url: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1600&q=80',
+      url: '/lumino-profile/spec-31.webp',
       title: 'Architectural Timber Shadowlines',
       titleVi: 'Đường Viền Bóng Đổ Kiến Trúc Nan Gỗ',
       caption: 'Broad 2" solid Ipe timber framework and precision flush joints.',
@@ -151,7 +151,7 @@ const COLLECTION_GALLERIES: Record<string, GalleryPhoto[]> = {
       categoryVi: 'Chất Liệu Chi Tiết'
     },
     {
-      url: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80',
+      url: '/lumino-profile/scene-6.webp',
       title: 'Twilight Coastal Veranda',
       titleVi: 'Hiên Biệt Thự Ven Biển Buổi Chiều Tà',
       caption: 'Engineered to withstand direct sea salt spray, high winds, and intense UV exposure.',

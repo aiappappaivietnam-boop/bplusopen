@@ -28,25 +28,12 @@ interface NavigationDrawerProps {
   onOpenSearch?: () => void;
 }
 
-// 17 Collections featured in the Jensen Outdoor drawer carousel
+// The drawer mirrors the four collections currently published in B+OPEN.
 export const DRAWER_CAROUSEL_COLLECTIONS = [
-  { id: 'coral', name: 'Coral', image: 'https://www.jensenoutdoor.com/wp-content/uploads/2021/01/SQ_Coral-180x180.jpg' },
-  { id: 'forte', name: 'Forte', image: 'https://www.jensenoutdoor.com/wp-content/uploads/2021/01/SQ_Forte-180x180.jpg' },
-  { id: 'foundations', name: 'Foundations', image: 'https://www.jensenoutdoor.com/wp-content/uploads/2026/03/Foundations-180x180.jpg' },
-  { id: 'harmony', name: 'Harmony', image: 'https://www.jensenoutdoor.com/wp-content/uploads/2021/01/SQ_Harmony-180x180.jpg' },
-  { id: 'classic-ipe', name: 'Heritage', image: 'https://www.jensenoutdoor.com/wp-content/uploads/2021/01/SQ_Classic-Ipe-180x180.jpg' },
-  { id: 'innova', name: 'Innova', image: 'https://www.jensenoutdoor.com/wp-content/uploads/2026/03/Innova-180x180.jpg' },
-  { id: 'jett', name: 'Jett', image: 'https://www.jensenoutdoor.com/wp-content/uploads/2021/01/SQ_Jett-180x180.jpg' },
-  { id: 'laguna', name: 'Laguna', image: 'https://www.jensenoutdoor.com/wp-content/uploads/2021/01/SQ_Laguna-180x180.jpg' },
-  { id: 'mix', name: 'Mix', image: 'https://www.jensenoutdoor.com/wp-content/uploads/2022/01/mix-hpsq-1-180x180.jpg' },
-  { id: 'nest', name: 'Nest', image: 'https://www.jensenoutdoor.com/wp-content/uploads/2021/01/SQ_Nest-180x180.jpg' },
-  { id: 'opal', name: 'Opal', image: 'https://www.jensenoutdoor.com/wp-content/uploads/2021/01/SQ_Opal-180x180.jpg' },
-  { id: 'richmond', name: 'Richmond', image: 'https://www.jensenoutdoor.com/wp-content/uploads/2021/01/SQ_Richmond-180x180.jpg' },
-  { id: 'sky', name: 'Sky', image: 'https://www.jensenoutdoor.com/wp-content/uploads/2022/01/sky-hpsq-1-180x180.jpg' },
-  { id: 'sorrento', name: 'Sorrento', image: 'https://www.jensenoutdoor.com/wp-content/uploads/2026/03/Sorrento-180x180.jpg' },
-  { id: 'tempo', name: 'Tempo', image: 'https://www.jensenoutdoor.com/wp-content/uploads/2026/03/Tempo-180x180.jpg' },
-  { id: 'topaz', name: 'Topaz', image: 'https://www.jensenoutdoor.com/wp-content/uploads/2021/01/SQ_Topaz-180x180.jpg' },
-  { id: 'unicon', name: 'Unicon', image: 'https://www.jensenoutdoor.com/wp-content/uploads/2026/03/Unicon-180x180.jpg' },
+  { id: 'luma', name: 'LUMA', image: '/luma/scene-3.webp' },
+  { id: 'lumino', name: 'LUMINO', image: '/lumino-profile/scene-2.webp' },
+  { id: 'bloom', name: 'BLOOM', image: '/poly-bloom/scene-2.webp' },
+  { id: 'serenity', name: 'SERENITY', image: '/serenity/catalog-02.jpg' },
 ];
 
 const getInitialStack = (screen?: MenuScreen | string): MenuScreen[] => {

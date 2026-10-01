@@ -93,7 +93,7 @@ export const FurniturePage: React.FC<FurniturePageProps> = ({
       nameVi: 'BỘ SƯU TẬP LUMINO',
       tagline: 'Architectural lines meet radiant deep-seated comfort',
       taglineVi: 'Đường nét kiến trúc thanh quang và đệm khối thư thái',
-      image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85',
+      image: '/lumino-profile/scene-2.webp',
       mappedCollection: 'lumino'
     },
     {
@@ -102,7 +102,7 @@ export const FurniturePage: React.FC<FurniturePageProps> = ({
       nameVi: 'BỘ SƯU TẬP BLOOM',
       tagline: 'Artisanal barrel curves & woven botanical fiber',
       taglineVi: 'Dáng vòm hữu cơ kết hợp sợi đan thủ công tinh mỹ',
-      image: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1200&q=85',
+      image: '/poly-bloom/scene-2.webp',
       mappedCollection: 'bloom'
     },
     {
@@ -111,7 +111,7 @@ export const FurniturePage: React.FC<FurniturePageProps> = ({
       nameVi: 'BỘ SƯU TẬP SERENITY',
       tagline: 'Scandinavian peaceful clarity with floating slatted rhythm',
       taglineVi: 'Sự tĩnh tại Bắc Âu thuần khiết với nhịp điệu nan gỗ',
-      image: 'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=1200&q=85',
+      image: '/serenity/catalog-02.jpg',
       mappedCollection: 'serenity'
     },
   ];

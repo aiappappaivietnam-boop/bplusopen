@@ -28,36 +28,8 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   const { products, collections } = useCatalogData();
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Top collections carousel items matching screenshot
+  // Search shortcuts for the four currently published collections.
   const menuCollections = [
-    {
-      id: 'heritage',
-      name: 'HERITAGE',
-      nameVi: 'HERITAGE',
-      image: 'https://images.unsplash.com/photo-1540518614846-7ede433c4550?auto=format&fit=crop&w=500&q=80',
-      mapped: 'serenity'
-    },
-    {
-      id: 'innova',
-      name: 'INNOVA',
-      nameVi: 'INNOVA',
-      image: 'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?auto=format&fit=crop&w=500&q=80',
-      mapped: 'lumino'
-    },
-    {
-      id: 'jett',
-      name: 'JETT',
-      nameVi: 'JETT',
-      image: 'https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=500&q=80',
-      mapped: 'bloom'
-    },
-    {
-      id: 'laguna',
-      name: 'LAGUNA',
-      nameVi: 'LAGUNA',
-      image: 'https://images.unsplash.com/photo-1546484475-7f7bd55792da?auto=format&fit=crop&w=500&q=80',
-      mapped: 'luma'
-    },
     {
       id: 'luma',
       name: 'LUMA',
@@ -69,21 +41,21 @@ export const SearchModal: React.FC<SearchModalProps> = ({
       id: 'lumino',
       name: 'LUMINO',
       nameVi: 'LUMINO',
-      image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=500&q=80',
+      image: '/lumino-profile/scene-2.webp',
       mapped: 'lumino'
     },
     {
       id: 'bloom',
       name: 'BLOOM',
       nameVi: 'BLOOM',
-      image: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=500&q=80',
+      image: '/poly-bloom/scene-2.webp',
       mapped: 'bloom'
     },
     {
       id: 'serenity',
       name: 'SERENITY',
       nameVi: 'SERENITY',
-      image: 'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=500&q=80',
+      image: '/serenity/catalog-02.jpg',
       mapped: 'serenity'
     },
   ];
