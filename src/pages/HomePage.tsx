@@ -508,7 +508,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
   return (
     <div className="space-y-0 bg-[#F8F6F2] text-[#1C1A17] selection:bg-[#9B522E] selection:text-white">
-      {/* 1. HERO SLIDER SECTION (8 Seasonal slides matching authentic Smart Slider 3) */}
+      {/* 1. HERO SLIDER SECTION (4 featured slides) */}
       <Hero onNavigate={onNavigate} />
 
       {/* 2. SECTION: DISCOVER OUR COLLECTIONS */}
