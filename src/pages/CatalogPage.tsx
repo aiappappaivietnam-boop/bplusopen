@@ -64,6 +64,8 @@ const catalogItems: CatalogItem[] = [
   },
 ];
 
+const featuredCatalog = catalogItems[0];
+
 interface CatalogPageProps {
   onNavigate: (page: PageId, extra?: { category?: string; collection?: string; tab?: 'retailers' | 'design-showrooms' | 'contract-hospitality' }) => void;
   onOpenCatalogModal?: () => void;
@@ -104,7 +106,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({ onNavigate, onOpenCata
                 {isVi ? 'Tạp Chí & Catalogue Kỹ Thuật Số' : 'Interactive Digital Lookbook'}
               </div>
               <h1 className="font-serif text-lg sm:text-xl font-medium tracking-[0.04em] text-white">
-                B+Open 2026 Collection
+                {isVi ? featuredCatalog.titleVi : featuredCatalog.title}
               </h1>
             </div>
           </div>
@@ -145,7 +147,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({ onNavigate, onOpenCata
             <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#1F1D1A] text-[#FAF8F5]/80 p-8 text-center z-0">
               <div className="w-10 h-10 border-2 border-[#C4A482] border-t-transparent rounded-full animate-spin mb-4" />
               <p className="font-serif text-base tracking-wide">
-                {isVi ? 'Đang tải ấn phẩm Catalogue...' : 'Loading B+Open Digital Catalog...'}
+                {isVi ? 'Đang tải catalog LUMA mới...' : 'Loading the new LUMA catalog...'}
               </p>
               <p className="text-xs text-white/50 mt-1 max-w-md">
                 {isVi 
@@ -156,7 +158,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({ onNavigate, onOpenCata
           )}
           <iframe
             id="flipsnack-iframe"
-            src="https://player.flipsnack.com?hash=OTY1RjhGNjZBRUQrdDlhYmxpNXVuZg=="
+            src={featuredCatalog.href}
             seamless
             scrolling="no"
             frameBorder="0"
@@ -164,7 +166,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({ onNavigate, onOpenCata
             allow="autoplay; clipboard-read; clipboard-write"
             onLoad={() => setIframeLoaded(true)}
             className="w-full aspect-[4/3] sm:min-h-[640px] md:min-h-[760px] lg:min-h-[820px] relative z-10 bg-transparent"
-            title="B+Open 2026 Collection Catalog"
+            title={isVi ? featuredCatalog.titleVi : featuredCatalog.title}
           />
         </div>
       </section>
