@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Collection, Product, PageId } from '../types';
-import { COLLECTIONS, PRODUCTS, FABRIC_SWATCHES } from '../data/furnitureData';
+import { FABRIC_SWATCHES } from '../data/furnitureData';
 import { useLanguage } from '../context/LanguageContext';
 import { formatDimensionsSummary, cleanMm } from '../utils/dimensionUtils';
 import { InlineEditableText } from '../components/InlineEditableText';
+import { InlineEditableContent } from '../components/InlineEditableContent';
 import { InlineEditableImage } from '../components/InlineEditableImage';
+import { DeleteProductButton } from '../components/DeleteProductButton';
+import { useCatalogData } from '../context/CatalogDataContext';
 import {
   ArrowLeft,
   ArrowRight,
@@ -294,11 +297,12 @@ export const CollectionDetailPage: React.FC<CollectionDetailPageProps> = ({
 }) => {
   const { language } = useLanguage();
   const isVi = language === 'vi';
+  const { products, collections } = useCatalogData();
 
   // Find active collection, default to 'lumino' if not found
   const collection: Collection =
-    COLLECTIONS.find((c) => c.id.toLowerCase() === collectionId.toLowerCase()) ||
-    COLLECTIONS[0];
+    collections.find((c) => c.id.toLowerCase() === collectionId.toLowerCase()) ||
+    collections[0];
 
   const displayName = isVi && collection.nameVi ? collection.nameVi : collection.name;
   const displayTagline = isVi && collection.taglineVi ? collection.taglineVi : collection.tagline;
@@ -311,7 +315,7 @@ export const CollectionDetailPage: React.FC<CollectionDetailPageProps> = ({
   const isCatalogLumino = collection.id.toLowerCase() === 'lumino';
 
   // Products belonging to this collection
-  const collectionProducts = PRODUCTS.filter(
+  const collectionProducts = products.filter(
     (p) => p.collection.toLowerCase() === collection.id.toLowerCase()
   );
 
@@ -349,7 +353,7 @@ export const CollectionDetailPage: React.FC<CollectionDetailPageProps> = ({
   useEffect(() => {
     setActiveGalleryIndex(0);
     setLightboxIndex(null);
-  }, [collection.id]);
+  }, [collection.id, collections, products]);
 
   // Keyboard navigation for Lightbox
   useEffect(() => {
@@ -408,7 +412,7 @@ export const CollectionDetailPage: React.FC<CollectionDetailPageProps> = ({
   });
 
   // Other collections for bottom carousel
-  const otherCollections = COLLECTIONS.filter((c) => c.id !== collection.id);
+  const otherCollections = collections.filter((c) => c.id !== collection.id);
 
   const handleCollectionSwitch = (newId: string) => {
     if (onSelectCollection) {
@@ -442,7 +446,7 @@ export const CollectionDetailPage: React.FC<CollectionDetailPageProps> = ({
 
           {/* Quick Collection Selector Tabs */}
           <div className="flex items-center gap-1.5 shrink-0 overflow-x-auto">
-            {COLLECTIONS.map((c) => {
+            {collections.map((c) => {
               const cName = isVi && c.nameVi ? c.nameVi.replace('Bộ Sưu Tập ', '') : c.name.replace(' Collection', '');
               const isActive = c.id === collection.id;
               return (
@@ -713,7 +717,7 @@ export const CollectionDetailPage: React.FC<CollectionDetailPageProps> = ({
           {galleryViewMode === 'carousel' && (
             <div className="space-y-4">
               {/* Main Feature Image Stage */}
-              <div className="relative aspect-[4/3] sm:aspect-[16/9] lg:aspect-[21/9] bg-[#1C1A17] rounded-xs overflow-hidden border border-[#EAE3DA] shadow-md group">
+              <div className="collection-gallery-4x3 relative aspect-[4/3] bg-[#1C1A17] rounded-xs overflow-hidden border border-[#EAE3DA] shadow-md group">
                 <InlineEditableImage
                   record="collection"
                   recordId={collection.id}
@@ -782,7 +786,7 @@ export const CollectionDetailPage: React.FC<CollectionDetailPageProps> = ({
                     <button
                       key={idx}
                       onClick={() => setActiveGalleryIndex(idx)}
-                      className={`relative aspect-[16/10] sm:aspect-[16/9] rounded-xs overflow-hidden border-2 transition-all cursor-pointer group ${
+                      className={`collection-gallery-4x3 relative aspect-[4/3] rounded-xs overflow-hidden border-2 transition-all cursor-pointer group ${
                         isActive
                           ? 'border-[#5C3822] ring-2 ring-[#5C3822]/40 shadow-sm scale-102'
                           : 'border-[#EAE3DA] opacity-65 hover:opacity-100 hover:border-[#8C5535]'
@@ -819,7 +823,7 @@ export const CollectionDetailPage: React.FC<CollectionDetailPageProps> = ({
                   onClick={() => setLightboxIndex(idx)}
                   className="group bg-white border border-[#EAE3DA] rounded-xs overflow-hidden shadow-xs hover:shadow-lg transition-all duration-300 cursor-pointer flex flex-col justify-between hover:border-[#C4A482]"
                 >
-                  <div className="relative aspect-[16/10] overflow-hidden bg-[#1C1A17]">
+                  <div className="collection-gallery-4x3 relative aspect-[4/3] overflow-hidden bg-[#1C1A17]">
                     <InlineEditableImage
                       record="collection"
                       recordId={collection.id}
@@ -889,8 +893,14 @@ export const CollectionDetailPage: React.FC<CollectionDetailPageProps> = ({
 
           {/* Main Photo Display */}
           <div className="relative flex-1 flex items-center justify-center p-2 sm:p-4" onClick={(e) => e.stopPropagation()}>
-            <img
-              src={galleryPhotos[lightboxIndex].url}
+            <InlineEditableImage
+              record="collection"
+              recordId={collection.id}
+              field="lifestyleImages"
+              arrayIndex={lightboxIndex}
+              arrayField="lifestyleImages"
+              arrayValues={collection.lifestyleImages || []}
+              value={galleryPhotos[lightboxIndex].url}
               alt={isVi ? galleryPhotos[lightboxIndex].titleVi : galleryPhotos[lightboxIndex].title}
               className="max-w-full max-h-[78vh] object-contain rounded-xs shadow-2xl"
             />
@@ -1037,6 +1047,7 @@ export const CollectionDetailPage: React.FC<CollectionDetailPageProps> = ({
                       }`}
                       onClick={() => onOpenProductModal(product)}
                     >
+                      <DeleteProductButton product={product} className="absolute bottom-2 right-2" />
                       <InlineEditableImage
                         record="product"
                         recordId={product.id}
@@ -1333,9 +1344,12 @@ export const CollectionDetailPage: React.FC<CollectionDetailPageProps> = ({
                     key={ens.id}
                     className="bg-white border border-[#EAE3DA] rounded-xs overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between"
                   >
-                    <div className="relative aspect-[16/10] overflow-hidden bg-[#EAE4D9]">
-                      <img
-                        src={ens.image}
+                    <div className="relative aspect-[4/3] overflow-hidden bg-[#EAE4D9]">
+                      <InlineEditableImage
+                        record="collection"
+                        recordId={collection.id}
+                        field="heroImage"
+                        value={ens.image}
                         alt={ensName}
                         className="w-full h-full object-cover"
                       />
@@ -1364,7 +1378,7 @@ export const CollectionDetailPage: React.FC<CollectionDetailPageProps> = ({
                         <button
                           onClick={() => {
                             // Save all products in this ensemble
-                            const toSave = PRODUCTS.filter((p) => ens.includedProductIds.includes(p.id));
+                            const toSave = products.filter((p) => ens.includedProductIds.includes(p.id));
                             toSave.forEach((p) => onToggleSave(p));
                           }}
                           className="flex-1 py-2.5 bg-[#5C3822] hover:bg-[#2A1D15] text-white text-xs font-semibold uppercase tracking-wider rounded-xs transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-xs"
@@ -1434,7 +1448,7 @@ export const CollectionDetailPage: React.FC<CollectionDetailPageProps> = ({
                     }`}
                   >
                     <div
-                      className="w-full aspect-[16/9] rounded-xs border border-black/10 shadow-inner mb-2.5 relative"
+                      className="w-full aspect-[4/3] rounded-xs border border-black/10 shadow-inner mb-2.5 relative"
                       style={{ backgroundColor: swatch.colorHex }}
                     >
                       {isSelected && (
@@ -1486,9 +1500,12 @@ export const CollectionDetailPage: React.FC<CollectionDetailPageProps> = ({
                   onClick={() => handleCollectionSwitch(col.id)}
                   className="group bg-white border border-[#EAE3DA] rounded-xs overflow-hidden shadow-xs hover:shadow-lg transition-all duration-300 cursor-pointer flex flex-col justify-between"
                 >
-                  <div className="relative aspect-[16/10] overflow-hidden bg-[#EAE4D9]">
-                    <img
-                      src={col.heroImage}
+                  <div className="relative aspect-[4/3] overflow-hidden bg-[#EAE4D9]">
+                    <InlineEditableImage
+                      record="collection"
+                      recordId={col.id}
+                      field="heroImage"
+                      value={col.heroImage}
                       alt={colName}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                     />

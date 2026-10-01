@@ -1,5 +1,5 @@
-import React, { ChangeEvent, useEffect, useMemo, useState } from 'react';
-import { Check, ImagePlus, Link2, RotateCcw, X } from 'lucide-react';
+import React, { ChangeEvent, useEffect, useMemo, useRef, useState } from 'react';
+import { Check, ImagePlus, Link2, RotateCcw, Trash2, X } from 'lucide-react';
 import { useCatalogData } from '../context/CatalogDataContext';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -14,6 +14,8 @@ export const GlobalImageEditOverlay: React.FC = () => {
     isEditMode,
     saveImageEdit,
     removeImageEdit,
+    hideImage,
+    restoreImage,
   } = useCatalogData();
 
   const [hoveredImage, setHoveredImage] = useState<HTMLImageElement | null>(null);
@@ -22,10 +24,12 @@ export const GlobalImageEditOverlay: React.FC = () => {
   const [draft, setDraft] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [error, setError] = useState('');
+  const previousOverrides = useRef<Record<string, string>>(edits.images || {});
 
   const imageEdits = edits.images || {};
   const selectedOriginal = selectedSource;
   const selectedOverride = selectedOriginal ? imageEdits[selectedOriginal] : undefined;
+  const hiddenImages = edits.hiddenImages || [];
 
   const refreshHoveredRect = () => {
     if (!hoveredImage || !document.body.contains(hoveredImage)) {
@@ -56,19 +60,35 @@ export const GlobalImageEditOverlay: React.FC = () => {
         if (!isEditableImage(image)) return;
         const original = image.dataset.adminOriginalSrc || image.getAttribute('src') || '';
         if (!original) return;
-        image.dataset.adminOriginalSrc = original;
-        const replacement = imageEdits[original];
-        if (replacement && image.getAttribute('src') !== replacement) {
+        const current = image.getAttribute('src') || '';
+        if (current !== original && current !== imageEdits[original] && current !== previousOverrides.current[original]) {
+          image.dataset.adminOriginalSrc = current;
+        } else {
+          image.dataset.adminOriginalSrc = original;
+        }
+        const source = image.dataset.adminOriginalSrc;
+        const replacement = imageEdits[source] || source;
+        if (current !== replacement) {
           image.setAttribute('src', replacement);
         }
+        if (hiddenImages.includes(source)) {
+          image.dataset.adminHiddenImage = 'true';
+          image.style.visibility = isAdminAuthenticated && isEditMode ? 'visible' : 'hidden';
+          if (isAdminAuthenticated && isEditMode) image.style.opacity = '0.28';
+        } else if (image.dataset.adminHiddenImage) {
+          delete image.dataset.adminHiddenImage;
+          image.style.visibility = '';
+          image.style.opacity = '';
+        }
       });
+      previousOverrides.current = imageEdits;
     };
 
     applyImageOverrides();
     const observer = new MutationObserver(applyImageOverrides);
     observer.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['src'] });
     return () => observer.disconnect();
-  }, [imageEdits]);
+  }, [imageEdits, edits.hiddenImages, isAdminAuthenticated, isEditMode]);
 
   useEffect(() => {
     if (!isAdminAuthenticated || !isEditMode) {
@@ -159,6 +179,12 @@ export const GlobalImageEditOverlay: React.FC = () => {
     setDraft(selectedOriginal);
     closeEditor();
   };
+  const deleteImage = () => {
+    if (!selectedOriginal) return;
+    if (!window.confirm(isVi ? 'Xóa hình này khỏi trang? Có thể khôi phục trong Edit Mode.' : 'Remove this image from the page? You can restore it in Edit Mode.')) return;
+    hideImage(selectedOriginal);
+    closeEditor();
+  };
 
   const buttonStyle = useMemo(() => {
     if (!hoveredRect || hoveredRect.width < 20 || hoveredRect.height < 20) return undefined;
@@ -235,6 +261,9 @@ export const GlobalImageEditOverlay: React.FC = () => {
             </div>
 
             <div className="flex flex-wrap justify-end gap-2">
+              {selectedOriginal && hiddenImages.includes(selectedOriginal)
+                ? <button type="button" onClick={() => { restoreImage(selectedOriginal); closeEditor(); }} className="mr-auto inline-flex items-center gap-1 rounded-xs border border-[#287A3D] px-3 py-2 text-xs font-semibold text-[#287A3D]"><RotateCcw className="h-3.5 w-3.5" />{isVi ? 'Khôi phục hình' : 'Restore image'}</button>
+                : <button type="button" onClick={deleteImage} className="mr-auto inline-flex items-center gap-1 rounded-xs border border-red-300 px-3 py-2 text-xs font-semibold text-red-700"><Trash2 className="h-3.5 w-3.5" />{isVi ? 'Xóa hình' : 'Delete image'}</button>}
               <button type="button" onClick={restore} className="inline-flex items-center gap-1.5 rounded-xs border border-[#DED9CD] bg-white px-3 py-2 text-xs font-semibold text-[#6B5E52] hover:border-[#9B522E] hover:text-[#9B522E]">
                 <RotateCcw className="h-3.5 w-3.5" />
                 {isVi ? 'Khôi phục gốc' : 'Restore original'}

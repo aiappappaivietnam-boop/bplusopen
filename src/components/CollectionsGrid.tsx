@@ -1,7 +1,9 @@
 import React from 'react';
-import { COLLECTIONS } from '../data/furnitureData';
 import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { useCatalogData } from '../context/CatalogDataContext';
+import { InlineEditableText } from './InlineEditableText';
+import { InlineEditableImage } from './InlineEditableImage';
 
 interface CollectionsGridProps {
   onSelectCollection: (collectionId: string) => void;
@@ -10,6 +12,7 @@ interface CollectionsGridProps {
 export const CollectionsGrid: React.FC<CollectionsGridProps> = ({ onSelectCollection }) => {
   const { language, t } = useLanguage();
   const isVi = language === 'vi';
+  const { collections } = useCatalogData();
 
   return (
     <section id="collections" className="py-20 sm:py-28 bg-[#F8F6F2]">
@@ -41,7 +44,7 @@ export const CollectionsGrid: React.FC<CollectionsGridProps> = ({ onSelectCollec
 
         {/* Collections Editorial Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {COLLECTIONS.map((col) => {
+          {collections.map((col) => {
             const displayName = isVi && col.nameVi ? col.nameVi : col.name;
             const displayDesc = isVi && col.descriptionVi ? col.descriptionVi : col.description;
             const displaySpecs = isVi && col.highlightSpecsVi ? col.highlightSpecsVi : col.highlightSpecs;
@@ -54,8 +57,11 @@ export const CollectionsGrid: React.FC<CollectionsGridProps> = ({ onSelectCollec
               >
                 {/* Collection Image */}
                 <div className="relative aspect-[4/3] overflow-hidden bg-[#EAE4D9]">
-                  <img
-                    src={col.heroImage}
+                  <InlineEditableImage
+                    record="collection"
+                    recordId={col.id}
+                    field="heroImage"
+                    value={col.heroImage}
                     alt={displayName}
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
@@ -74,10 +80,25 @@ export const CollectionsGrid: React.FC<CollectionsGridProps> = ({ onSelectCollec
                       {isVi ? `Thiết kế bởi ${col.designer}` : `Designed by ${col.designer}`}
                     </div>
                     <h3 className="font-serif text-2xl text-[#1C1A17] font-normal group-hover:text-[#9B522E] transition-colors mb-2">
-                      {displayName}
+                      <InlineEditableText
+                        record="collection"
+                        recordId={col.id}
+                        field={isVi ? 'nameVi' : 'name'}
+                        value={displayName}
+                        as="span"
+                        label={isVi ? 'Tên collection tiếng Việt' : 'Collection name'}
+                      />
                     </h3>
                     <p className="text-xs text-[#6B5E52] leading-relaxed mb-4 line-clamp-3">
-                      {displayDesc}
+                      <InlineEditableText
+                        record="collection"
+                        recordId={col.id}
+                        field={isVi ? 'descriptionVi' : 'description'}
+                        value={displayDesc}
+                        as="span"
+                        multiline
+                        label={isVi ? 'Mô tả collection tiếng Việt' : 'Collection description'}
+                      />
                     </p>
                   </div>
 

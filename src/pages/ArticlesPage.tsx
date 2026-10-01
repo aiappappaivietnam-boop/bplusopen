@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { PageId } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 import { ARTICLES_DATA, ArticleItem } from '../data/articlesData';
+import { InlineEditableContent } from '../components/InlineEditableContent';
 import { 
   Calendar, 
   ArrowRight, 

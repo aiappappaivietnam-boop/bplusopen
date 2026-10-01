@@ -8,6 +8,7 @@ import {
   VolumeX,
   BookOpen,
   ArrowRight,
+  Trash2,
 } from 'lucide-react';
 import { Hero } from '../components/Hero';
 import { PageId } from '../types';
@@ -18,7 +19,7 @@ import { VirtualShowroomModal } from '../components/VirtualShowroomModal';
 import { CatalogDownloadModal } from '../components/CatalogDownloadModal';
 import { InlineEditableText } from '../components/InlineEditableText';
 import { InlineEditableImage } from '../components/InlineEditableImage';
-import { COLLECTIONS as CATALOG_COLLECTIONS } from '../data/furnitureData';
+import { useCatalogData } from '../context/CatalogDataContext';
 
 interface HomePageProps {
   onNavigate: (page: PageId, extra?: { category?: string; collection?: string; productId?: string; tab?: string }) => void;
@@ -50,6 +51,7 @@ interface CategoryCardData {
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
   const { language } = useLanguage();
   const isVi = language === 'vi';
+  const { collections, edits, isAdminAuthenticated, isEditMode, hideHomeCollection } = useCatalogData();
 
   // Modals state
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
@@ -552,14 +554,35 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             className="flex items-stretch gap-4 sm:gap-6 overflow-x-auto scroll-smooth px-5 sm:px-14 pb-4 pt-1 no-scrollbar"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
-            {COLLECTIONS_LIST.map((col) => (
+            {COLLECTIONS_LIST.filter((col) => !(edits.hiddenHomeCollectionIds || []).includes(col.id)).map((col) => (
               <div
                 key={col.id}
+                id={`home-collection-${col.id}`}
                 onClick={() => onNavigate('collections', { collection: col.targetCollection })}
-                className="w-[250px] sm:w-[280px] lg:w-[295px] shrink-0 flex flex-col bg-[#F8F6F2] border border-[#DED9CD] rounded-xs overflow-hidden group cursor-pointer hover:shadow-xl transition-all duration-300"
+                className="relative w-[250px] sm:w-[280px] lg:w-[295px] shrink-0 flex flex-col bg-[#F8F6F2] border border-[#DED9CD] rounded-xs overflow-hidden group cursor-pointer hover:shadow-xl transition-all duration-300"
               >
+                {isAdminAuthenticated && isEditMode && (
+                  <button
+                    type="button"
+                    data-admin-ui
+                    aria-label={isVi ? `Xóa collection ${col.name}` : `Delete collection ${col.name}`}
+                    className="absolute right-3 top-3 z-40 inline-flex items-center gap-1.5 rounded-xs bg-red-700 px-3 py-2 text-xs font-bold text-white shadow-lg hover:bg-red-800"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      event.stopPropagation();
+                      if (window.confirm(isVi
+                        ? `Xóa thẻ "${col.name}" khỏi trang chủ? Có thể khôi phục trong CMS.`
+                        : `Remove "${col.name}" from the home page? You can restore it in the CMS.`)) {
+                        hideHomeCollection(col.id);
+                      }
+                    }}
+                  >
+                    <Trash2 className="h-4 w-4" />
+                    {isVi ? 'Xóa' : 'Delete'}
+                  </button>
+                )}
                 {(() => {
-                  const catalogCollection = CATALOG_COLLECTIONS.find((item) => item.id === col.targetCollection);
+                  const catalogCollection = collections.find((item) => item.id === col.targetCollection);
                   const cardName = catalogCollection
                     ? (isVi && catalogCollection.nameVi ? catalogCollection.nameVi : catalogCollection.name)
                     : (isVi ? col.nameVi : col.name);

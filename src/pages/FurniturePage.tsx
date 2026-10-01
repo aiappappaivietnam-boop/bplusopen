@@ -2,6 +2,9 @@ import React, { useRef, useEffect } from 'react';
 import { Product, PageId } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useCatalogData } from '../context/CatalogDataContext';
+import { InlineEditableContent } from '../components/InlineEditableContent';
+import { InlineEditableImage } from '../components/InlineEditableImage';
 
 interface FurniturePageProps {
   selectedCategory: string;
@@ -26,6 +29,7 @@ export const FurniturePage: React.FC<FurniturePageProps> = ({
 }) => {
   const { language } = useLanguage();
   const isVi = language === 'vi';
+  const { collections } = useCatalogData();
   const collectionsTrackRef = useRef<HTMLDivElement>(null);
   const categoriesTrackRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -113,6 +117,19 @@ export const FurniturePage: React.FC<FurniturePageProps> = ({
   ];
 
   // 2. CATEGORIES matching the exact screenshot (6 items)
+  const effectiveCollectionsList = collectionsList.map((item) => {
+    const catalogCollection = collections.find((collection) => collection.id === item.mappedCollection);
+    if (!catalogCollection) return item;
+    return {
+      ...item,
+      name: catalogCollection.name.replace(/ Collection$/i, ''),
+      nameVi: catalogCollection.nameVi?.replace(/^Bộ Sưu Tập /i, '') || item.nameVi,
+      tagline: catalogCollection.tagline,
+      taglineVi: catalogCollection.taglineVi || item.taglineVi,
+      image: catalogCollection.heroImage,
+    };
+  });
+
   const categoriesList = [
     {
       id: 'pillows',
@@ -261,7 +278,7 @@ export const FurniturePage: React.FC<FurniturePageProps> = ({
       <section className="py-8 sm:py-12 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-3 sm:mb-4">
           <h2 className="text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase text-[#1C1A17] pl-1">
-            COLLECTIONS
+            <InlineEditableContent contentKey="furniture.section.collections" value="COLLECTIONS" />
           </h2>
         </div>
 
@@ -281,19 +298,30 @@ export const FurniturePage: React.FC<FurniturePageProps> = ({
             ref={collectionsTrackRef}
             className="flex gap-3 sm:gap-4 overflow-x-auto scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] py-1 px-1"
           >
-            {collectionsList.map((col) => (
+            {effectiveCollectionsList.map((col) => (
               <div
                 key={col.id}
                 onClick={() => handleSelectCollectionCard(col)}
                 className="w-[calc(100%-1.5rem)] sm:w-[calc(50%-10px)] md:w-[calc(33.333%-12px)] lg:w-[calc(25%-12px)] shrink-0 aspect-[16/11] relative overflow-hidden bg-[#EAE4D9] cursor-pointer group/card transition-all duration-300 hover:shadow-xl"
                 title={isVi ? `Xem chi tiết bộ sưu tập ${col.name}` : `Explore ${col.name} Collection`}
               >
-                <img
-                  src={col.image}
-                  alt={col.name}
-                  className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover/card:scale-108"
-                  loading="lazy"
-                />
+                {collections.some((collection) => collection.id === col.mappedCollection) ? (
+                  <InlineEditableImage
+                    record="collection"
+                    recordId={col.mappedCollection}
+                    field="heroImage"
+                    value={col.image}
+                    alt={col.name}
+                    className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover/card:scale-108"
+                  />
+                ) : (
+                  <img
+                    src={col.image}
+                    alt={col.name}
+                    className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover/card:scale-108"
+                    loading="lazy"
+                  />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col items-center justify-end pb-4 sm:pb-5 px-3 transition-colors group-hover/card:from-black/90">
                   <span className="text-white font-sans text-sm sm:text-base font-bold tracking-[0.18em] uppercase text-center drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">
                     {col.name}
@@ -321,7 +349,7 @@ export const FurniturePage: React.FC<FurniturePageProps> = ({
       <section className="py-6 sm:py-10 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-3 sm:mb-4">
           <h2 className="text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase text-[#1C1A17] pl-1">
-            CATEGORIES
+            <InlineEditableContent contentKey="furniture.section.categories" value="CATEGORIES" />
           </h2>
         </div>
 
@@ -377,10 +405,19 @@ export const FurniturePage: React.FC<FurniturePageProps> = ({
       <section className="py-12 sm:py-16 max-w-5xl mx-auto px-4 sm:px-6 border-t border-black/10">
         <div className="text-center max-w-2xl mx-auto mb-10">
           <h2 className="font-sans text-xl sm:text-2xl font-light tracking-[0.06em] text-[#1C1A17] uppercase leading-snug">
-            DIVE FURTHER INTO OUR ABUNDANCE OF DESIGNS TO SUIT YOUR TASTE AND SPACE.
+            <InlineEditableContent
+              contentKey="furniture.section.dive.title"
+              value="DIVE FURTHER INTO OUR ABUNDANCE OF DESIGNS TO SUIT YOUR TASTE AND SPACE."
+              as="span"
+            />
           </h2>
           <p className="text-xs sm:text-sm text-[#666666] font-normal mt-2.5">
-            Discover additional selections and special accents to enhance your outdoor enjoyment.
+            <InlineEditableContent
+              contentKey="furniture.section.dive.description"
+              value="Discover additional selections and special accents to enhance your outdoor enjoyment."
+              as="span"
+              multiline
+            />
           </p>
         </div>
 

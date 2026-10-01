@@ -4,6 +4,7 @@ import { FABRIC_SWATCHES } from '../data/furnitureData';
 import { X, Check, Bookmark, Download, MapPin, TreePine, Ruler } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { InlineEditableImage } from './InlineEditableImage';
+import { InlineEditableText } from './InlineEditableText';
 
 interface ProductModalProps {
   product: Product | null;
@@ -49,10 +50,10 @@ export const ProductModal: React.FC<ProductModalProps> = ({
         <div className="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-[#DED9CD] bg-[#F8F6F2]">
           <div className="flex items-center gap-3">
             <span className="text-[11px] sm:text-[10px] uppercase tracking-widest font-bold bg-[#9B522E] text-white px-3 py-1 rounded-xs">
-              {product.collection}
+              <InlineEditableText record="product" recordId={product.id} field="collection" value={product.collection} as="span" label="Collection ID" />
             </span>
             <span className="text-[13px] sm:text-xs text-[#5C5046] font-semibold tracking-wider uppercase">
-              SKU: {product.sku}
+              SKU: <InlineEditableText record="product" recordId={product.id} field="sku" value={product.sku} as="span" label="SKU" />
             </span>
           </div>
 
@@ -226,10 +227,10 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                 {product.collection} {isVi ? 'Bộ sưu tập' : 'Ensemble'}
               </div>
               <h2 className="font-serif text-2xl sm:text-3xl font-light text-[#1C1A17] leading-tight mb-2">
-                {displayName}
+                <InlineEditableText record="product" recordId={product.id} field={isVi ? 'nameVi' : 'name'} value={displayName} as="span" label={isVi ? 'Tên sản phẩm tiếng Việt' : 'Product name'} />
               </h2>
               <p className="text-[14px] sm:text-[15px] text-[#554C42] leading-relaxed">
-                {displayDesc}
+                <InlineEditableText record="product" recordId={product.id} field={isVi ? 'descriptionVi' : 'description'} value={displayDesc} as="span" multiline label={isVi ? 'Mô tả sản phẩm tiếng Việt' : 'Product description'} />
               </p>
             </div>
 

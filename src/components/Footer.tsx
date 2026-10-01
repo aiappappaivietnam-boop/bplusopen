@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { TreePine, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import { COLLECTIONS } from '../data/furnitureData';
 import { PageId } from '../types';
+import { useCatalogData } from '../context/CatalogDataContext';
 
 interface FooterProps {
   onOpenCatalogModal: () => void;
@@ -19,6 +19,7 @@ export const Footer: React.FC<FooterProps> = ({
   const [newsletterSuccess, setNewsletterSuccess] = useState(false);
   const { language } = useLanguage();
   const isVi = language === 'vi';
+  const { collections } = useCatalogData();
 
   const handleNewsletter = (e: React.FormEvent) => {
     e.preventDefault();
@@ -176,7 +177,7 @@ export const Footer: React.FC<FooterProps> = ({
               {isVi ? 'Bộ Sưu Tập' : 'Collections'}
             </div>
             <ul className="space-y-1 text-[14px] text-[#C4B7AA]">
-              {COLLECTIONS.map((c) => {
+              {collections.map((c) => {
                 const displayName = isVi && c.nameVi ? c.nameVi : c.name;
                 return (
                   <li key={c.id}>

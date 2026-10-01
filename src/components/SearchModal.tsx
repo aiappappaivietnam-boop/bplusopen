@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Product, PageId } from '../types';
-import { PRODUCTS, COLLECTIONS } from '../data/furnitureData';
 import { Search, X, ChevronRight, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { useCatalogData } from '../context/CatalogDataContext';
 
 interface SearchModalProps {
   isOpen: boolean;
@@ -25,6 +25,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   const [activeCollectionId, setActiveCollectionId] = useState('luma');
   const { language } = useLanguage();
   const isVi = language === 'vi';
+  const { products, collections } = useCatalogData();
   const inputRef = useRef<HTMLInputElement>(null);
 
   // Top collections carousel items matching screenshot
@@ -121,7 +122,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   const q = query.trim().toLowerCase();
 
   const filteredProducts = q
-    ? PRODUCTS.filter(
+    ? products.filter(
         (p) =>
           p.name.toLowerCase().includes(q) ||
           (p.nameVi && p.nameVi.toLowerCase().includes(q)) ||
@@ -133,7 +134,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
     : [];
 
   const matchedCollections = q
-    ? COLLECTIONS.filter(
+    ? collections.filter(
         (c) =>
           c.name.toLowerCase().includes(q) ||
           (c.nameVi && c.nameVi.toLowerCase().includes(q)) ||

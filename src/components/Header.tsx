@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Bookmark, Menu, X, ChevronDown, ChevronRight, MapPin, Globe, ShieldCheck } from 'lucide-react';
-import { COLLECTIONS } from '../data/furnitureData';
 import { PageId } from '../types';
 import { useLanguage } from '../context/LanguageContext';
+import { useCatalogData } from '../context/CatalogDataContext';
 
 interface HeaderProps {
   currentPage: PageId;
@@ -11,7 +11,7 @@ interface HeaderProps {
   onOpenSpecDrawer: () => void;
   onOpenTradeModal: () => void;
   onOpenCatalogModal: () => void;
-  onOpenMenuDrawer?: (screen?: 'furniture' | 'dining' | 'lounging' | 'care' | 'story' | 'collections' | 'accessories') => void;
+  onOpenMenuDrawer?: (screen?: 'root' | 'furniture' | 'dining' | 'lounging' | 'care' | 'story' | 'collections' | 'accessories') => void;
   isAdminAuthenticated: boolean;
   isAdminEditMode: boolean;
   onOpenAdminLogin: () => void;
@@ -36,6 +36,7 @@ export const Header: React.FC<HeaderProps> = ({
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { language, setLanguage, toggleLanguage, t } = useLanguage();
+  const { collections } = useCatalogData();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -449,7 +450,7 @@ export const Header: React.FC<HeaderProps> = ({
                 </button>
               </div>
               <div className="grid grid-cols-2 gap-2 text-[15px]">
-                {COLLECTIONS.map((col) => (
+                {collections.map((col) => (
                   <button
                     key={col.id}
                     onClick={() => handleNav('collections', { collection: col.id })}

@@ -3,6 +3,8 @@ import { PageId } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 import { JensenLeafLogo } from '../components/JensenLeafLogo';
 import { ChevronLeft, ChevronRight, ArrowLeft } from 'lucide-react';
+import { InlineEditableContent } from '../components/InlineEditableContent';
+import { InlineEditableImage } from '../components/InlineEditableImage';
 
 interface SustainabilityPageProps {
   onNavigate: (page: PageId, extra?: { category?: string; collection?: string }) => void;
@@ -94,11 +96,7 @@ export const SustainabilityPage: React.FC<SustainabilityPageProps> = ({ onNaviga
       <section className="relative w-full overflow-hidden bg-[#1B271F]">
         <div className="relative w-full h-[360px] sm:h-[480px] md:h-[580px] lg:h-[680px]">
           {/* Official Jensen Outdoor Chiquitania rainforest canopy photograph */}
-          <img
-            src="https://www.jensenoutdoor.com/wp-content/uploads/2021/02/FI-Unicon.jpg"
-            alt="Bolivian Chiquitania Rainforest Canopy at Dawn - B+Open"
-            className="w-full h-full object-cover object-center filter saturate-[1.05] contrast-105"
-          />
+          <InlineEditableImage record="collection" recordId="sustainability" field="heroImage" value="https://www.jensenoutdoor.com/wp-content/uploads/2021/02/FI-Unicon.jpg" alt="Bolivian Chiquitania Rainforest Canopy at Dawn - B+Open" className="w-full h-full object-cover object-center filter saturate-[1.05] contrast-105" />
           {/* Vignette & overlay for legibility */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/35 to-black/45" />
 

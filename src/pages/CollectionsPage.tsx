@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { PageHeader } from '../components/PageHeader';
-import { COLLECTIONS, PRODUCTS } from '../data/furnitureData';
 import { Product, PageId } from '../types';
 import { ArrowRight, Bookmark, Check, Eye, Layers, Compass, Sparkles } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { formatDimensionsSummary } from '../utils/dimensionUtils';
 import { InlineEditableImage } from '../components/InlineEditableImage';
+import { InlineEditableText } from '../components/InlineEditableText';
+import { DeleteProductButton } from '../components/DeleteProductButton';
+import { useCatalogData } from '../context/CatalogDataContext';
 
 interface CollectionsPageProps {
   initialCollection?: string;
@@ -24,13 +26,14 @@ export const CollectionsPage: React.FC<CollectionsPageProps> = ({
 }) => {
   const { language } = useLanguage();
   const isVi = language === 'vi';
+  const { collections, products } = useCatalogData();
   const [activeColId, setActiveColId] = useState<string>(
     initialCollection !== 'all' ? initialCollection : 'all'
   );
 
   const displayedCollections = activeColId === 'all'
-    ? COLLECTIONS
-    : COLLECTIONS.filter((c) => c.id === activeColId);
+    ? collections
+    : collections.filter((c) => c.id === activeColId);
 
   return (
     <div className="space-y-0 animate-in fade-in duration-300">
@@ -61,7 +64,7 @@ export const CollectionsPage: React.FC<CollectionsPageProps> = ({
             >
               {isVi ? 'Tất Cả Bộ Sưu Tập (4)' : 'All Collections (4)'}
             </button>
-            {COLLECTIONS.map((c) => {
+            {collections.map((c) => {
               const displayName = isVi && c.nameVi ? c.nameVi : c.name;
               return (
                 <button
@@ -93,7 +96,7 @@ export const CollectionsPage: React.FC<CollectionsPageProps> = ({
           const displayTagline = isVi && col.taglineVi ? col.taglineVi : col.tagline;
           const displayDesc = isVi && col.descriptionVi ? col.descriptionVi : col.description;
           const displaySpecs = isVi && col.highlightSpecsVi ? col.highlightSpecsVi : col.highlightSpecs;
-          const colProducts = PRODUCTS.filter((p) => p.collection.toLowerCase() === col.id.toLowerCase());
+          const colProducts = products.filter((p) => p.collection.toLowerCase() === col.id.toLowerCase());
 
           return (
             <section key={col.id} id={`collection-${col.id}`} className="py-16 sm:py-24 bg-[#FAF8F5]">
@@ -103,10 +106,13 @@ export const CollectionsPage: React.FC<CollectionsPageProps> = ({
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mb-12">
                   <div className={`lg:col-span-7 ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
                     <div className="relative rounded-xs overflow-hidden border border-[#EAE3DA] shadow-lg group">
-                      <img
-                        src={col.heroImage}
+                      <InlineEditableImage
+                        record="collection"
+                        recordId={col.id}
+                        field="heroImage"
+                        value={col.heroImage}
                         alt={displayName}
-                        className="w-full h-[380px] sm:h-[460px] object-cover object-center group-hover:scale-102 transition-transform duration-700"
+                      className="w-full aspect-[4/3] object-cover object-center group-hover:scale-102 transition-transform duration-700"
                       />
                       <div className="absolute top-4 left-4 bg-[#1C1A17]/85 backdrop-blur-xs text-white text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-xs">
                         {col.itemCount} {isVi ? 'Thiết kế di sản' : 'Heirloom Pieces'}
@@ -117,18 +123,18 @@ export const CollectionsPage: React.FC<CollectionsPageProps> = ({
                   <div className={`lg:col-span-5 space-y-6 ${index % 2 === 1 ? 'lg:order-1' : ''}`}>
                     <div>
                       <span className="text-xs uppercase tracking-[0.25em] font-semibold text-[#8C5535] block mb-1">
-                        {col.primaryMaterial}
+                        <InlineEditableText record="collection" recordId={col.id} field={isVi ? 'primaryMaterialVi' : 'primaryMaterial'} value={isVi ? col.primaryMaterialVi || col.primaryMaterial : col.primaryMaterial} as="span" label={isVi ? 'Vật liệu chính tiếng Việt' : 'Primary material'} />
                       </span>
                       <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-light text-[#1C1A17] tracking-tight">
-                        {displayName}
+                        <InlineEditableText record="collection" recordId={col.id} field={isVi ? 'nameVi' : 'name'} value={displayName} as="span" label={isVi ? 'Tên collection tiếng Việt' : 'Collection name'} />
                       </h2>
                       <p className="text-sm sm:text-base text-[#5C3822] font-serif italic mt-1">
-                        {displayTagline}
+                        <InlineEditableText record="collection" recordId={col.id} field={isVi ? 'taglineVi' : 'tagline'} value={displayTagline} as="span" multiline label={isVi ? 'Tagline collection tiếng Việt' : 'Collection tagline'} />
                       </p>
                     </div>
 
                     <p className="text-sm text-[#6B5E52] leading-relaxed">
-                      {displayDesc}
+                      <InlineEditableText record="collection" recordId={col.id} field={isVi ? 'descriptionVi' : 'description'} value={displayDesc} as="span" multiline label={isVi ? 'Mô tả collection tiếng Việt' : 'Collection description'} />
                     </p>
 
                     <div className="pt-2 border-t border-[#EAE3DA]">
@@ -188,6 +194,7 @@ export const CollectionsPage: React.FC<CollectionsPageProps> = ({
                           className="group bg-white border border-[#EAE3DA] rounded-xs overflow-hidden flex flex-col justify-between hover:shadow-md transition-shadow"
                         >
                           <div className="relative aspect-[4/3] bg-[#F7F4EF] overflow-hidden">
+                            <DeleteProductButton product={product} className="absolute bottom-2 right-2" />
                             <InlineEditableImage
                               record="product"
                               recordId={product.id}
@@ -214,10 +221,10 @@ export const CollectionsPage: React.FC<CollectionsPageProps> = ({
                           <div className="p-4 flex-1 flex flex-col justify-between space-y-3">
                             <div>
                               <div className="text-[10px] text-[#8C5535] font-semibold uppercase tracking-wider">
-                                {product.sku}
+                                <InlineEditableText record="product" recordId={product.id} field="sku" value={product.sku} as="span" label="SKU" />
                               </div>
                               <h4 className="font-serif text-base text-[#1C1A17] group-hover:text-[#5C3822] transition-colors line-clamp-1 mt-0.5">
-                                {prodName}
+                                <InlineEditableText record="product" recordId={product.id} field={isVi ? 'nameVi' : 'name'} value={prodName} as="span" label={isVi ? 'Tên sản phẩm tiếng Việt' : 'Product name'} />
                               </h4>
                               <p className="text-[11px] text-[#7A6B5F] mt-1 font-mono">
                                 {formatDimensionsSummary(product.dimensions)}

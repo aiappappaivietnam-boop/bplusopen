@@ -3,6 +3,7 @@ import { PageId } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 import { JensenLeafLogo } from '../components/JensenLeafLogo';
 import { ChevronLeft, ChevronRight, ArrowLeft, X, CheckCircle2, Shield, Flame, Sparkles, Droplets } from 'lucide-react';
+import { InlineEditableContent } from '../components/InlineEditableContent';
 
 interface MaterialsPageProps {
   onNavigate: (page: PageId, extra?: { category?: string; collection?: string }) => void;

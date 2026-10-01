@@ -1,9 +1,9 @@
 import React, { useState, useMemo } from 'react';
 import { Product } from '../types';
-import { PRODUCTS, COLLECTIONS } from '../data/furnitureData';
 import { ProductCard } from './ProductCard';
 import { Search, RotateCcw, Filter } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { useCatalogData } from '../context/CatalogDataContext';
 
 interface CatalogSectionProps {
   selectedCategory: string;
@@ -29,6 +29,7 @@ export const CatalogSection: React.FC<CatalogSectionProps> = ({
   const [sortBy, setSortBy] = useState<'featured' | 'name' | 'material'>('featured');
   const { language, t } = useLanguage();
   const isVi = language === 'vi';
+  const { collections, products } = useCatalogData();
 
   const categories = [
     { id: 'all', name: t('catalog.allPieces') },
@@ -49,7 +50,7 @@ export const CatalogSection: React.FC<CatalogSectionProps> = ({
 
   // Filter and sort products
   const filteredProducts = useMemo(() => {
-    return PRODUCTS.filter((p) => {
+    return products.filter((p) => {
       // Category filter supporting DINING and LOUNGING
       if (selectedCategory !== 'all') {
         if (selectedCategory === 'dining' && p.category !== 'dining') {
@@ -225,7 +226,7 @@ export const CatalogSection: React.FC<CatalogSectionProps> = ({
                 >
                   {t('catalog.allCollections')}
                 </button>
-                {COLLECTIONS.map((c) => {
+                {collections.map((c) => {
                   const colName = isVi && c.nameVi ? c.nameVi.replace('Bộ Sưu Tập ', '') : c.name.replace(' Collection', '');
                   return (
                     <button

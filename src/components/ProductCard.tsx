@@ -2,8 +2,10 @@ import React from 'react';
 import { Product } from '../types';
 import { Eye, Bookmark, Check, TreePine } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { DeleteProductButton } from './DeleteProductButton';
 import { formatCompactDimensions } from '../utils/dimensionUtils';
 import { InlineEditableImage } from './InlineEditableImage';
+import { InlineEditableText } from './InlineEditableText';
 
 interface ProductCardProps {
   product: Product;
@@ -43,11 +45,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           }}
           className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
         />
+        <DeleteProductButton product={product} className="absolute bottom-3 right-3" />
 
         {/* Badges */}
         <div className="absolute top-3 left-3 flex flex-col gap-1.5">
           <span className="text-[11px] font-bold uppercase tracking-wider bg-[#221F1C]/90 backdrop-blur-xs text-white px-2.5 py-1 rounded-xs shadow-sm">
-            {product.collection}
+            <InlineEditableText record="product" recordId={product.id} field="collection" value={product.collection} as="span" label="Collection ID" />
           </span>
           {product.cadAvailable && (
             <span className="text-[10px] font-bold uppercase tracking-wider bg-[#798E9D]/95 backdrop-blur-xs text-white px-2 py-0.5 rounded-xs shadow-sm">
@@ -89,19 +92,19 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       <div className="p-5 flex-1 flex flex-col justify-between">
         <div>
           <div className="flex items-center justify-between text-[12px] sm:text-[12.5px] text-[#7A6B5F] font-semibold uppercase tracking-wider mb-1.5">
-            <span className="line-clamp-1">{displayMaterial}</span>
-            <span className="text-[#99887A]">SKU: {product.sku}</span>
+            <span className="line-clamp-1"><InlineEditableText record="product" recordId={product.id} field={isVi ? 'materialVi' : 'material'} value={displayMaterial} as="span" label={isVi ? 'Vật liệu tiếng Việt' : 'Material'} /></span>
+            <span className="text-[#99887A]">SKU: <InlineEditableText record="product" recordId={product.id} field="sku" value={product.sku} as="span" label="SKU" /></span>
           </div>
 
           <h3 
             onClick={() => onOpenModal(product)}
             className="font-serif text-[18px] sm:text-xl text-[#1C1A17] font-semibold leading-snug hover:text-[#9B522E] transition-colors cursor-pointer mb-2"
           >
-            {displayName}
+            <InlineEditableText record="product" recordId={product.id} field={isVi ? 'nameVi' : 'name'} value={displayName} as="span" label={isVi ? 'Tên sản phẩm tiếng Việt' : 'Product name'} />
           </h3>
 
           <p className="text-[13.5px] sm:text-[14px] text-[#554C42] line-clamp-2 leading-relaxed mb-3">
-            {displayDescription}
+            <InlineEditableText record="product" recordId={product.id} field={isVi ? 'descriptionVi' : 'description'} value={displayDescription} as="span" multiline label={isVi ? 'Mô tả sản phẩm tiếng Việt' : 'Product description'} />
           </p>
         </div>
 

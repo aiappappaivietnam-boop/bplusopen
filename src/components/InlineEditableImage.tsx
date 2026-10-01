@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { Check, ImagePlus, Link2, X } from 'lucide-react';
+import { Check, ImagePlus, Link2, RotateCcw, Trash2, X } from 'lucide-react';
 import { CatalogEdits, useCatalogData } from '../context/CatalogDataContext';
 import { Collection, Product } from '../types';
 import { useLanguage } from '../context/LanguageContext';
@@ -54,7 +54,7 @@ export const InlineEditableImage: React.FC<InlineEditableImageProps> = ({
 }) => {
   const { language } = useLanguage();
   const isVi = language === 'vi';
-  const { edits, isAdminAuthenticated, isEditMode, saveEdits } = useCatalogData();
+  const { edits, isAdminAuthenticated, isEditMode, saveEdits, hideImage, restoreImage } = useCatalogData();
   const [isOpen, setIsOpen] = useState(false);
   const [draft, setDraft] = useState(value);
 
@@ -111,13 +111,22 @@ export const InlineEditableImage: React.FC<InlineEditableImageProps> = ({
     reader.readAsDataURL(file);
   };
 
+  const isHidden = (edits.hiddenImages || []).includes(value);
+
   if (!isAdminAuthenticated || !isEditMode) {
-    return <img src={value} alt={alt} className={className} onError={onError} />;
+    return isHidden ? null : <img src={value} alt={alt} className={className} onError={onError} />;
   }
 
   return (
     <div data-admin-image-editor className="relative h-full w-full" onClick={(event) => event.stopPropagation()}>
-      <img src={draft} alt={alt} className={className} onError={onError} />
+      {isHidden
+        ? <div className="flex h-full min-h-24 w-full items-center justify-center border border-dashed border-[#C7A58F] bg-[#FAF7F2] px-4 text-center text-xs font-semibold text-[#6B5E52]">{isVi ? 'Hình đã xóa — bấm khôi phục' : 'Image removed — restore below'}</div>
+        : <img src={draft} alt={alt} className={className} onError={onError} />}
+      {isHidden && (
+        <button type="button" data-admin-ui onClick={() => restoreImage(value)} className="absolute bottom-3 left-3 z-30 inline-flex items-center gap-1 rounded-xs bg-[#287A3D] px-3 py-2 text-xs font-semibold text-white">
+          <RotateCcw className="h-3.5 w-3.5" />{isVi ? 'Khôi phục hình' : 'Restore image'}
+        </button>
+      )}
       <span
         role="button"
         tabIndex={0}
@@ -191,6 +200,20 @@ export const InlineEditableImage: React.FC<InlineEditableImageProps> = ({
               </div>
 
               <div className="flex flex-wrap justify-end gap-2">
+                {!isHidden && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (window.confirm(isVi ? 'Xóa hình này khỏi trang?' : 'Remove this image from the page?')) {
+                        hideImage(value);
+                        setIsOpen(false);
+                      }
+                    }}
+                    className="mr-auto inline-flex items-center gap-1 rounded-xs border border-red-300 px-3 py-2 text-[10px] font-bold text-red-700"
+                  >
+                    <Trash2 className="h-3.5 w-3.5" />{isVi ? 'Xóa hình' : 'Delete image'}
+                  </button>
+                )}
                 <button
                   type="button"
                   onClick={() => {

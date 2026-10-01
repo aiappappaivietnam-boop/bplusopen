@@ -3,7 +3,7 @@ import { CatalogEdits, useCatalogData } from '../context/CatalogDataContext';
 import { Collection, Product } from '../types';
 
 type EditableRecord = 'collection' | 'product';
-type EditableTag = 'span' | 'p' | 'h1' | 'h2' | 'h3' | 'div';
+type EditableTag = 'span' | 'p' | 'h1' | 'h2' | 'h3' | 'h4' | 'div';
 
 interface InlineEditableTextProps {
   record: EditableRecord;
@@ -22,31 +22,16 @@ const mergeEdit = (
   recordId: string,
   field: string,
   value: string,
-): CatalogEdits => {
-  if (record === 'collection') {
-    return {
-      ...edits,
-      collections: {
-        ...edits.collections,
-        [recordId]: {
-          ...edits.collections[recordId],
-          [field]: value,
-        },
-      },
-    };
-  }
-
-  return {
-    ...edits,
-    products: {
-      ...edits.products,
-      [recordId]: {
-        ...edits.products[recordId],
-        [field]: value,
-      },
+): CatalogEdits => ({
+  ...edits,
+  [record === 'collection' ? 'collections' : 'products']: {
+    ...edits[record === 'collection' ? 'collections' : 'products'],
+    [recordId]: {
+      ...edits[record === 'collection' ? 'collections' : 'products'][recordId],
+      [field]: value,
     },
-  };
-};
+  },
+});
 
 export const InlineEditableText: React.FC<InlineEditableTextProps> = ({
   record,
@@ -61,15 +46,20 @@ export const InlineEditableText: React.FC<InlineEditableTextProps> = ({
   const { edits, isAdminAuthenticated, isEditMode, saveEdits } = useCatalogData();
   const elementRef = useRef<HTMLElement>(null);
   const [draft, setDraft] = useState(value);
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
-    setDraft(value);
-  }, [value]);
+    if (!isEditing) setDraft(value);
+  }, [value, isEditing]);
 
   const commit = () => {
     const nextValue = (elementRef.current?.innerText || draft).trim();
+    setIsEditing(false);
     if (nextValue && nextValue !== value) {
       saveEdits(mergeEdit(edits, record, recordId, String(field), nextValue));
+    } else if (!nextValue && elementRef.current) {
+      elementRef.current.innerText = value;
+      setDraft(value);
     }
   };
 
@@ -86,12 +76,19 @@ export const InlineEditableText: React.FC<InlineEditableTextProps> = ({
       role: 'textbox',
       'aria-label': label || `${String(field)} editor`,
       spellCheck: true,
+      onFocus: () => setIsEditing(true),
       onInput: (event: React.FormEvent<HTMLElement>) => setDraft(event.currentTarget.innerText),
       onClick: (event: React.MouseEvent<HTMLElement>) => event.stopPropagation(),
       onBlur: commit,
       onKeyDown: (event: React.KeyboardEvent<HTMLElement>) => {
         if (!multiline && event.key === 'Enter') {
           event.preventDefault();
+          event.currentTarget.blur();
+        }
+        if (event.key === 'Escape') {
+          event.preventDefault();
+          if (elementRef.current) elementRef.current.innerText = value;
+          setDraft(value);
           event.currentTarget.blur();
         }
       },

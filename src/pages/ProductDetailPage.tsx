@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import { Product, PageId } from '../types';
-import { PRODUCTS, COLLECTIONS, FABRIC_SWATCHES } from '../data/furnitureData';
+import { Product, PageId, FabricSwatch } from '../types';
+import { FABRIC_SWATCHES } from '../data/furnitureData';
 import { useLanguage } from '../context/LanguageContext';
 import { formatDimensionsSummary, cleanMm } from '../utils/dimensionUtils';
 import { InlineEditableText } from '../components/InlineEditableText';
 import { InlineEditableImage } from '../components/InlineEditableImage';
+import { useCatalogData } from '../context/CatalogDataContext';
 import {
   ChevronRight,
   ChevronDown,
@@ -46,28 +47,29 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
 }) => {
   const { language } = useLanguage();
   const isVi = language === 'vi';
+  const { products, collections } = useCatalogData();
 
   // Find the active product or fallback to the first product
   const product = useMemo(() => {
-    return PRODUCTS.find((p) => p.id === productId) || PRODUCTS[0];
-  }, [productId]);
+    return products.find((p) => p.id === productId) || products[0];
+  }, [productId, products]);
   const isLumaProduct = product.collection.toLowerCase() === 'luma';
 
   // Find the associated collection
   const collection = useMemo(() => {
-    return COLLECTIONS.find((c) => c.id === product.collection) || COLLECTIONS[0];
-  }, [product.collection]);
+    return collections.find((c) => c.id === product.collection) || collections[0];
+  }, [product.collection, collections]);
 
   // Companion pieces in the same collection
   const companionProducts = useMemo(() => {
-    return PRODUCTS.filter((p) => p.collection === product.collection && p.id !== product.id);
-  }, [product.collection, product.id]);
+    return products.filter((p) => p.collection === product.collection && p.id !== product.id);
+  }, [product.collection, product.id, products]);
 
   // Finishes: Chocolate Ipe vs Weathered Silver
   const [selectedFinish, setSelectedFinish] = useState<'chocolate' | 'silver'>('chocolate');
 
   // Selected Fabric Swatch
-  const [selectedFabric, setSelectedFabric] = useState(FABRIC_SWATCHES[0]);
+  const [selectedFabric, setSelectedFabric] = useState<FabricSwatch>(FABRIC_SWATCHES[0]);
   const [showAllFabrics, setShowAllFabrics] = useState(false);
 
   // Active Main Image (switching through thumbnails)
@@ -143,17 +145,17 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
 
   // Extended fabric swatches to showcase comprehensive palette (Screenshot 1)
   const extendedFabrics = useMemo(() => {
-    const extraSwatches = [
-      { id: 'canvas-natural', name: 'Canvas Natural', nameVi: 'Vải Bạt Tự Nhiên', colorHex: '#E5DFD3' },
-      { id: 'cast-ash', name: 'Cast Ash', nameVi: 'Xám Tro Cast Ash', colorHex: '#C6C5C0' },
-      { id: 'canvas-heather', name: 'Charcoal Heather', nameVi: 'Xám Than Heather', colorHex: '#3D3F42' },
-      { id: 'cast-sand', name: 'Sandstone Dune', nameVi: 'Cát Sa Mạc Dune', colorHex: '#D8C7B0' },
-      { id: 'forest-olive', name: 'Forest Olive', nameVi: 'Xanh Rêu Ô Liu', colorHex: '#525B49' },
-      { id: 'coastal-mist', name: 'Coastal Mist', nameVi: 'Sương Khói Ven Biển', colorHex: '#B4BCB9' },
-      { id: 'terra-rust', name: 'Sienna Rust', nameVi: 'Đỏ Đất Sienna', colorHex: '#8C4D3B' },
-      { id: 'indigo-deep', name: 'Deep Indigo', nameVi: 'Xanh Chàm Đậm', colorHex: '#1E2838' },
-      { id: 'espresso-brown', name: 'Bark Espresso', nameVi: 'Nâu Vỏ Cây Espresso', colorHex: '#423630' },
-      { id: 'pearl-cream', name: 'Pearl Cream', nameVi: 'Trắng Sữa Ngọc Trai', colorHex: '#F2EDE4' }
+    const extraSwatches: FabricSwatch[] = [
+      { id: 'canvas-natural', name: 'Canvas Natural', nameVi: 'Vải Bạt Tự Nhiên', colorHex: '#E5DFD3', code: 'CUSTOM-CANVAS-NATURAL', texture: 'Outdoor performance weave', materialType: 'Outdoor performance fabric' },
+      { id: 'cast-ash', name: 'Cast Ash', nameVi: 'Xám Tro Cast Ash', colorHex: '#C6C5C0', code: 'CUSTOM-CAST-ASH', texture: 'Outdoor performance weave', materialType: 'Outdoor performance fabric' },
+      { id: 'canvas-heather', name: 'Charcoal Heather', nameVi: 'Xám Than Heather', colorHex: '#3D3F42', code: 'CUSTOM-CANVAS-HEATHER', texture: 'Outdoor performance weave', materialType: 'Outdoor performance fabric' },
+      { id: 'cast-sand', name: 'Sandstone Dune', nameVi: 'Cát Sa Mạc Dune', colorHex: '#D8C7B0', code: 'CUSTOM-CAST-SAND', texture: 'Outdoor performance weave', materialType: 'Outdoor performance fabric' },
+      { id: 'forest-olive', name: 'Forest Olive', nameVi: 'Xanh Rêu Ô Liu', colorHex: '#525B49', code: 'CUSTOM-FOREST-OLIVE', texture: 'Outdoor performance weave', materialType: 'Outdoor performance fabric' },
+      { id: 'coastal-mist', name: 'Coastal Mist', nameVi: 'Sương Khói Ven Biển', colorHex: '#B4BCB9', code: 'CUSTOM-COASTAL-MIST', texture: 'Outdoor performance weave', materialType: 'Outdoor performance fabric' },
+      { id: 'terra-rust', name: 'Sienna Rust', nameVi: 'Đỏ Đất Sienna', colorHex: '#8C4D3B', code: 'CUSTOM-TERRA-RUST', texture: 'Outdoor performance weave', materialType: 'Outdoor performance fabric' },
+      { id: 'indigo-deep', name: 'Deep Indigo', nameVi: 'Xanh Chàm Đậm', colorHex: '#1E2838', code: 'CUSTOM-INDIGO-DEEP', texture: 'Outdoor performance weave', materialType: 'Outdoor performance fabric' },
+      { id: 'espresso-brown', name: 'Bark Espresso', nameVi: 'Nâu Vỏ Cây Espresso', colorHex: '#423630', code: 'CUSTOM-ESPRESSO-BROWN', texture: 'Outdoor performance weave', materialType: 'Outdoor performance fabric' },
+      { id: 'pearl-cream', name: 'Pearl Cream', nameVi: 'Trắng Sữa Ngọc Trai', colorHex: '#F2EDE4', code: 'CUSTOM-PEARL-CREAM', texture: 'Outdoor performance weave', materialType: 'Outdoor performance fabric' }
     ];
     return [...FABRIC_SWATCHES, ...extraSwatches];
   }, []);
@@ -345,7 +347,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
             {/* Collection Eyebrow & Product Title */}
             <div>
               <div className="text-xs font-bold uppercase tracking-widest text-[#8C5535] mb-1">
-                {product.designer || collection.designer || (isVi ? 'B+OPEN HERITAGE GUILD' : 'JOHN CALDWELL')}
+                <InlineEditableText record="product" recordId={product.id} field="designer" value={product.designer || collection.designer || (isVi ? 'B+OPEN HERITAGE GUILD' : 'JOHN CALDWELL')} as="span" label="Product designer" />
               </div>
               <h1 className="font-serif text-3xl sm:text-4xl text-[#1C1A17] font-medium tracking-tight">
                 <InlineEditableText
@@ -598,7 +600,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                     </div>
                     <div className="flex justify-between py-1 border-b border-[#EAE3DA]/60">
                       <span className="text-[#7A6B5F]">{isVi ? 'Mã SKU:' : 'SKU:'}</span>
-                      <span className="font-mono text-[#1C1A17]">{product.sku}</span>
+                      <InlineEditableText record="product" recordId={product.id} field="sku" value={product.sku} as="span" className="font-mono text-[#1C1A17]" label="SKU" />
                     </div>
                     <div className="flex justify-between py-1 border-b border-[#EAE3DA]/60">
                       <span className="text-[#7A6B5F]">{isVi ? 'Chứng nhận:' : 'Certification:'}</span>

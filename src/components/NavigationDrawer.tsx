@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronLeft, ChevronRight, X, Search } from 'lucide-react';
 import { PageId } from '../types';
-import { COLLECTIONS } from '../data/furnitureData';
+import { useCatalogData } from '../context/CatalogDataContext';
 
 export type MenuScreen =
   | 'root'
@@ -70,6 +70,7 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
   language = 'en',
   onOpenSearch,
 }) => {
+  const { collections } = useCatalogData();
   const [screenStack, setScreenStack] = useState<MenuScreen[]>(() => getInitialStack(initialScreen));
   const [searchVal, setSearchVal] = useState('');
   const [logoError, setLogoError] = useState(false);
@@ -835,7 +836,7 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
                     {language === 'vi' ? 'Tất Cả Bộ Sưu Tập' : 'All Collections'}
                   </span>
                 </button>
-                {COLLECTIONS.map((c) => (
+                {collections.map((c) => (
                   <button
                     key={c.id}
                     onClick={() => handleLinkClick(() => onNavigate('collection-detail', { collection: c.id }))}

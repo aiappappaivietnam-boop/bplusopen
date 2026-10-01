@@ -3,6 +3,8 @@ import { PageId } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 import { JensenLeafLogo } from '../components/JensenLeafLogo';
 import { ChevronLeft, ChevronRight, ArrowLeft } from 'lucide-react';
+import { InlineEditableContent } from '../components/InlineEditableContent';
+import { InlineEditableImage } from '../components/InlineEditableImage';
 
 interface DesignPageProps {
   onNavigate: (page: PageId, extra?: { category?: string; collection?: string }) => void;
@@ -85,11 +87,7 @@ export const DesignPage: React.FC<DesignPageProps> = ({ onNavigate }) => {
       <section className="relative w-full overflow-hidden bg-[#24211E]">
         <div className="relative w-full h-[360px] sm:h-[480px] md:h-[580px] lg:h-[680px]">
           {/* Official Jensen Outdoor award-winning furniture design photograph */}
-          <img
-            src="https://www.jensenoutdoor.com/wp-content/uploads/2021/02/FI-Jett.jpg"
-            alt="Award-Winning Modern Outdoor Furniture Design - B+Open"
-            className="w-full h-full object-cover object-center filter saturate-[1.05] contrast-105"
-          />
+          <InlineEditableImage record="collection" recordId="design" field="heroImage" value="https://www.jensenoutdoor.com/wp-content/uploads/2021/02/FI-Jett.jpg" alt="Award-Winning Modern Outdoor Furniture Design - B+Open" className="w-full h-full object-cover object-center filter saturate-[1.05] contrast-105" />
           {/* Subtle dark vignette overlay for typography legibility */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/50" />
 

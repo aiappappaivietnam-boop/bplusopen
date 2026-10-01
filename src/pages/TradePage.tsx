@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { PageId } from '../types';
+import { InlineEditableContent } from '../components/InlineEditableContent';
 import { 
   CheckCircle2, 
   Download, 

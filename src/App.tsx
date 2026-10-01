@@ -31,6 +31,8 @@ import { AdminPage } from './pages/AdminPage';
 import { AdminLoginModal } from './components/AdminLoginModal';
 import { AdminEditBar } from './components/AdminEditBar';
 import { GlobalImageEditOverlay } from './components/GlobalImageEditOverlay';
+import { GlobalTextEditOverlay } from './components/GlobalTextEditOverlay';
+import { CustomContentBlocks } from './components/CustomContentBlocks';
 import { useCatalogData } from './context/CatalogDataContext';
 
 export default function App() {
@@ -121,6 +123,17 @@ export default function App() {
     setEditMode,
   } = useCatalogData();
   const { language } = useLanguage();
+
+  // A deleted product cannot remain open in its detail page or quick-view modal.
+  useEffect(() => {
+    if (activeProductModal && !catalogProducts.some((product) => product.id === activeProductModal.id)) {
+      setActiveProductModal(null);
+    }
+    if (currentPage === 'product-detail' && !catalogProducts.some((product) => product.id === selectedProductId)) {
+      setCurrentPage('furniture');
+      window.location.hash = 'furniture';
+    }
+  }, [activeProductModal, catalogProducts, currentPage, selectedProductId]);
 
   // Handle URL hash changes (browser back/forward navigation)
   useEffect(() => {
@@ -377,7 +390,7 @@ export default function App() {
         onOpenSpecDrawer={() => setIsSpecDrawerOpen(true)}
         onOpenTradeModal={() => handleNavigate('trade')}
         onOpenCatalogModal={() => setIsCatalogModalOpen(true)}
-        onOpenMenuDrawer={(screen = 'root') => {
+        onOpenMenuDrawer={(screen: MenuScreen = 'root') => {
           setMenuDrawerInitialScreen(screen);
           setIsMenuDrawerOpen(true);
         }}
@@ -534,6 +547,7 @@ export default function App() {
             onOpenLogin={() => setIsAdminLoginOpen(true)}
           />
         )}
+        {currentPage !== 'admin' && <CustomContentBlocks pageKey={currentPage === 'collection-detail' ? `collection/${selectedCollection}` : currentPage === 'product-detail' ? `product/${selectedProductId}` : currentPage} />}
       </main>
 
       {/* Comprehensive Brand Footer */}
@@ -595,6 +609,7 @@ export default function App() {
 
       <AdminEditBar onOpenAdmin={() => handleNavigate('admin')} />
       <GlobalImageEditOverlay />
+      <GlobalTextEditOverlay />
 
       <AdminLoginModal
         isOpen={isAdminLoginOpen}
@@ -604,4 +619,3 @@ export default function App() {
     </div>
   );
 }
-

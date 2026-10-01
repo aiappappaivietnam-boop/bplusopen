@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState, type ChangeEvent } from 'react';
 import {
   Check,
   CheckCircle2,
@@ -9,10 +9,12 @@ import {
   LogOut,
   Package,
   Pencil,
+  Plus,
   RotateCcw,
   Save,
   ShieldCheck,
   SlidersHorizontal,
+  Trash2,
 } from 'lucide-react';
 import { Collection, PageId, Product } from '../types';
 import { useLanguage } from '../context/LanguageContext';
@@ -34,6 +36,38 @@ const textToList = (value: string) =>
     .split('\n')
     .map((item) => item.trim())
     .filter(Boolean);
+
+type NewProductDraft = {
+  name: string;
+  nameVi: string;
+  sku: string;
+  collection: string;
+  category: Product['category'];
+  material: Product['material'];
+  description: string;
+  descriptionVi: string;
+  imageUrl: string;
+  lifestyleImageUrl: string;
+  width: string;
+  depth: string;
+  height: string;
+};
+
+const newProductDraft = (collection = ''): NewProductDraft => ({
+  name: '',
+  nameVi: '',
+  sku: '',
+  collection,
+  category: 'dining',
+  material: 'Powder-coated aluminum',
+  description: '',
+  descriptionVi: '',
+  imageUrl: '',
+  lifestyleImageUrl: '',
+  width: '',
+  depth: '',
+  height: '',
+});
 
 const inputClass =
   'w-full rounded-xs border border-[#DED9CD] bg-white px-3 py-2.5 text-sm text-[#1C1A17] outline-none transition-colors focus:border-[#9B522E] focus:ring-2 focus:ring-[#9B522E]/15 disabled:cursor-not-allowed disabled:bg-[#F2EDE5] disabled:text-[#8C7A6B]';
@@ -84,7 +118,11 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigate, onOpenLogin })
     setEditMode,
     logout,
     saveEdits,
+    addProduct,
     resetEdits,
+    deleteProduct,
+    restoreProduct,
+    restoreHomeCollection,
   } = useCatalogData();
 
   const [activeTab, setActiveTab] = useState<EditorTab>('collections');
@@ -93,6 +131,81 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigate, onOpenLogin })
   const [productFilter, setProductFilter] = useState('all');
   const [draftEdits, setDraftEdits] = useState<CatalogEdits>(() => cloneEdits(edits));
   const [saveMessage, setSaveMessage] = useState('');
+  const [isAddingProduct, setIsAddingProduct] = useState(false);
+  const [newProduct, setNewProduct] = useState<NewProductDraft>(() => newProductDraft(collections[0]?.id));
+  const [createError, setCreateError] = useState('');
+
+  const setNewProductField = <K extends keyof NewProductDraft>(field: K, value: NewProductDraft[K]) => {
+    setNewProduct((previous) => ({ ...previous, [field]: value }));
+    setCreateError('');
+  };
+
+  const handleNewImageFile = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    if (!file.type.startsWith('image/') || file.size > 3 * 1024 * 1024) {
+      setCreateError(isVi ? 'Chọn ảnh dưới 3 MB.' : 'Choose an image under 3 MB.');
+      event.target.value = '';
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (typeof reader.result === 'string') setNewProductField('imageUrl', reader.result);
+    };
+    reader.onerror = () => setCreateError(isVi ? 'Không đọc được hình ảnh.' : 'Could not read the image.');
+    reader.readAsDataURL(file);
+  };
+
+  const handleCreateProduct = () => {
+    if (!isAdminAuthenticated || !isEditMode) return;
+    const name = newProduct.name.trim();
+    const sku = newProduct.sku.trim();
+    const collection = collections.find((item) => item.id === newProduct.collection);
+    if (!name || !sku || !collection || !newProduct.imageUrl.trim()) {
+      setCreateError(isVi ? 'Vui lòng nhập tên, SKU, bộ sưu tập và hình ảnh.' : 'Enter a name, SKU, collection and image.');
+      return;
+    }
+    if (products.some((item) => item.sku.toLowerCase() === sku.toLowerCase()) ||
+        (edits.addedProducts || []).some((item) => item.sku.toLowerCase() === sku.toLowerCase())) {
+      setCreateError(isVi ? 'SKU đã tồn tại.' : 'This SKU already exists.');
+      return;
+    }
+    const id = `custom-${crypto.randomUUID()}`;
+    const product: Product = {
+      id,
+      name,
+      nameVi: newProduct.nameVi.trim() || name,
+      sku,
+      collection: collection.id,
+      category: newProduct.category,
+      material: newProduct.material,
+      materialVi: newProduct.material,
+      description: newProduct.description.trim() || name,
+      descriptionVi: newProduct.descriptionVi.trim() || newProduct.description.trim() || name,
+      imageUrl: newProduct.imageUrl.trim(),
+      lifestyleImageUrl: newProduct.lifestyleImageUrl.trim() || newProduct.imageUrl.trim(),
+      secondaryImages: [],
+      features: [],
+      featuresVi: [],
+      dimensions: {
+        width: newProduct.width.trim(),
+        depth: newProduct.depth.trim(),
+        height: newProduct.height.trim(),
+      },
+      cadAvailable: false,
+      inStock: true,
+    };
+    if (!addProduct(product)) {
+      setCreateError(isVi ? 'Không lưu được sản phẩm. Kiểm tra dung lượng trình duyệt.' : 'Could not save the product. Check browser storage.');
+      return;
+    }
+    setProductFilter(collection.id);
+    setSelectedProductId(id);
+    setNewProduct(newProductDraft(collection.id));
+    setIsAddingProduct(false);
+    setCreateError('');
+    setSaveMessage(isVi ? `Đã thêm sản phẩm "${name}".` : `Added "${name}".`);
+  };
 
   useEffect(() => {
     setDraftEdits(cloneEdits(edits));
@@ -178,6 +291,9 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigate, onOpenLogin })
         [selectedProductId]: {
           ...previous.products[selectedProductId],
           dimensions: {
+            width: previous.products[selectedProductId]?.dimensions?.width || selectedProduct?.dimensions.width || '',
+            depth: previous.products[selectedProductId]?.dimensions?.depth || selectedProduct?.dimensions.depth || '',
+            height: previous.products[selectedProductId]?.dimensions?.height || selectedProduct?.dimensions.height || '',
             ...(previous.products[selectedProductId]?.dimensions || {}),
             [field]: value,
           },
@@ -203,6 +319,18 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigate, onOpenLogin })
     resetEdits();
     setSaveMessage(isVi ? 'Đã khôi phục dữ liệu gốc.' : 'Original catalog data restored.');
     window.setTimeout(() => setSaveMessage(''), 3500);
+  };
+
+  const handleDeleteProduct = () => {
+    if (!isEditMode || !selectedProduct) return;
+    const confirmed = window.confirm(
+      isVi
+        ? `Xóa "${selectedProduct.name}" khỏi website? Bạn có thể khôi phục sản phẩm bên dưới.`
+        : `Remove "${selectedProduct.name}" from the website? You can restore it below.`,
+    );
+    if (!confirmed) return;
+    deleteProduct(selectedProduct.id);
+    setSaveMessage(isVi ? 'Đã xóa sản phẩm.' : 'Product removed.');
   };
 
   if (!isAdminAuthenticated) {
@@ -309,7 +437,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigate, onOpenLogin })
             },
             {
               label: isVi ? 'Đã chỉnh sửa' : 'Edited records',
-              value: Object.keys(edits.collections).length + Object.keys(edits.products).length + Object.keys(edits.images || {}).length,
+              value: Object.keys(edits.collections).length + Object.keys(edits.products).length + Object.keys(edits.images || {}).length + (edits.deletedProductIds || []).length + (edits.hiddenHomeCollectionIds || []).length,
               icon: Pencil,
             },
             {
@@ -395,6 +523,29 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigate, onOpenLogin })
 
         {activeTab === 'collections' && (
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-[280px_minmax(0,1fr)]">
+            {(edits.hiddenHomeCollectionIds || []).length > 0 && (
+              <section className="rounded-xs border border-[#DED9CD] bg-white p-5 shadow-xs lg:col-span-2">
+                <h3 className="mb-2 text-sm font-semibold text-[#1C1A17]">
+                  {isVi ? 'Collection đã xóa khỏi trang chủ' : 'Collections removed from the home page'}
+                </h3>
+                <p className="mb-3 text-xs text-[#7A6B5F]">
+                  {isVi ? 'Thẻ được ẩn trên trang chủ; sản phẩm không bị xóa.' : 'The home-page card is hidden; its products are not deleted.'}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {edits.hiddenHomeCollectionIds.map((id) => (
+                    <button
+                      key={id}
+                      type="button"
+                      onClick={() => restoreHomeCollection(id)}
+                      className="inline-flex items-center gap-2 rounded-xs border border-[#DED9CD] px-3 py-2 text-xs font-semibold text-[#1C1A17] hover:border-[#9B522E]"
+                    >
+                      <RotateCcw className="h-3.5 w-3.5" />
+                      {isVi ? `Khôi phục ${id.toUpperCase()}` : `Restore ${id.toUpperCase()}`}
+                    </button>
+                  ))}
+                </div>
+              </section>
+            )}
             <aside className="rounded-xs border border-[#DED9CD] bg-white p-3 shadow-xs">
               <div className="mb-3 flex items-center justify-between px-2">
                 <span className="text-[11px] font-bold uppercase tracking-wider text-[#6B5E52]">
@@ -478,6 +629,75 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigate, onOpenLogin })
 
         {activeTab === 'products' && (
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-[280px_minmax(0,1fr)]">
+            {isEditMode && (
+              <section className="rounded-xs border border-[#DED9CD] bg-white p-4 shadow-xs lg:col-span-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsAddingProduct((previous) => !previous);
+                    setCreateError('');
+                  }}
+                  aria-expanded={isAddingProduct}
+                  className="inline-flex items-center gap-2 rounded-xs bg-[#9B522E] px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-white hover:bg-[#7F4024]"
+                >
+                  <Plus className="h-4 w-4" />
+                  {isVi ? 'Thêm sản phẩm mới' : 'Add new product'}
+                </button>
+                {isAddingProduct && (
+                  <div className="mt-5 space-y-5 border-t border-[#EAE3DA] pt-5">
+                    <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                      <AdminField label={isVi ? 'Tên sản phẩm (EN) *' : 'Product name (EN) *'} value={newProduct.name} disabled={false} onChange={(value) => setNewProductField('name', value)} />
+                      <AdminField label={isVi ? 'Tên sản phẩm (VI)' : 'Product name (VI)'} value={newProduct.nameVi} disabled={false} onChange={(value) => setNewProductField('nameVi', value)} />
+                      <AdminField label="SKU *" value={newProduct.sku} disabled={false} onChange={(value) => setNewProductField('sku', value)} />
+                      <label>
+                        <span className={labelClass}>{isVi ? 'Bộ sưu tập *' : 'Collection *'}</span>
+                        <select className={inputClass} value={newProduct.collection} onChange={(event) => setNewProductField('collection', event.target.value)}>
+                          <option value="">{isVi ? 'Chọn bộ sưu tập' : 'Choose collection'}</option>
+                          {collections.map((collection) => <option key={collection.id} value={collection.id}>{collection.name}</option>)}
+                        </select>
+                      </label>
+                      <label>
+                        <span className={labelClass}>{isVi ? 'Danh mục' : 'Category'}</span>
+                        <select className={inputClass} value={newProduct.category} onChange={(event) => setNewProductField('category', event.target.value as Product['category'])}>
+                          {(['dining', 'deep-seating', 'chaises', 'tables', 'accessories'] as const).map((category) =>
+                            <option key={category} value={category}>{category}</option>)}
+                        </select>
+                      </label>
+                      <label>
+                        <span className={labelClass}>{isVi ? 'Chất liệu' : 'Material'}</span>
+                        <select className={inputClass} value={newProduct.material} onChange={(event) => setNewProductField('material', event.target.value as Product['material'])}>
+                          {(['100% FSC Ipe', 'Ipe & Woven Viro', 'Ipe & Aluminum', 'Powder-coated aluminum & woven cord', 'Powder-coated steel & teak', 'Molded FRP composite', 'Powder-coated aluminum'] as const).map((material) =>
+                            <option key={material} value={material}>{material}</option>)}
+                        </select>
+                      </label>
+                      <AdminField label={isVi ? 'Mô tả (EN)' : 'Description (EN)'} value={newProduct.description} disabled={false} multiline onChange={(value) => setNewProductField('description', value)} />
+                      <AdminField label={isVi ? 'Mô tả (VI)' : 'Description (VI)'} value={newProduct.descriptionVi} disabled={false} multiline onChange={(value) => setNewProductField('descriptionVi', value)} />
+                      <AdminField label={isVi ? 'Đường dẫn hình chính *' : 'Main image URL *'} value={newProduct.imageUrl.startsWith('data:') ? '' : newProduct.imageUrl} disabled={false} onChange={(value) => setNewProductField('imageUrl', value)} />
+                      <AdminField label={isVi ? 'Đường dẫn hình phối cảnh' : 'Lifestyle image URL'} value={newProduct.lifestyleImageUrl} disabled={false} onChange={(value) => setNewProductField('lifestyleImageUrl', value)} />
+                      <AdminField label={isVi ? 'Chiều rộng (mm)' : 'Width (mm)'} value={newProduct.width} disabled={false} onChange={(value) => setNewProductField('width', value)} />
+                      <AdminField label={isVi ? 'Chiều sâu (mm)' : 'Depth (mm)'} value={newProduct.depth} disabled={false} onChange={(value) => setNewProductField('depth', value)} />
+                      <AdminField label={isVi ? 'Chiều cao (mm)' : 'Height (mm)'} value={newProduct.height} disabled={false} onChange={(value) => setNewProductField('height', value)} />
+                    </div>
+                    <div className="flex flex-wrap items-center gap-4">
+                      <label className="cursor-pointer rounded-xs border border-[#C7A58F] px-4 py-2.5 text-xs font-semibold text-[#5C3822] hover:bg-[#FAF7F2]">
+                        {isVi ? 'Chọn hình từ máy (dưới 3 MB)' : 'Choose image from device (under 3 MB)'}
+                        <input type="file" accept="image/*" className="hidden" onChange={handleNewImageFile} />
+                      </label>
+                      {newProduct.imageUrl && <img src={newProduct.imageUrl} alt="" className="h-24 w-32 rounded-xs border border-[#DED9CD] object-contain" />}
+                    </div>
+                    {createError && <p role="alert" className="text-sm text-red-700">{createError}</p>}
+                    <div className="flex gap-2">
+                      <button type="button" onClick={handleCreateProduct} className="rounded-xs bg-[#287A3D] px-5 py-2.5 text-xs font-bold uppercase text-white hover:bg-[#1F6331]">
+                        {isVi ? 'Lưu sản phẩm mới' : 'Save new product'}
+                      </button>
+                      <button type="button" onClick={() => setIsAddingProduct(false)} className="rounded-xs border border-[#DED9CD] px-4 py-2.5 text-xs font-semibold">
+                        {isVi ? 'Hủy' : 'Cancel'}
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </section>
+            )}
             <aside className="rounded-xs border border-[#DED9CD] bg-white p-3 shadow-xs">
               <label className="mb-4 block px-2">
                 <span className={labelClass}>{isVi ? 'Lọc theo collection' : 'Filter by collection'}</span>
@@ -586,6 +806,40 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigate, onOpenLogin })
                     />
                     CAD available
                   </label>
+                </div>
+                {isEditMode && (
+                  <div className="border-t border-[#EAE3DA] pt-5">
+                    <button
+                      type="button"
+                      onClick={handleDeleteProduct}
+                      className="inline-flex items-center gap-2 rounded-xs border border-red-300 px-4 py-2.5 text-xs font-semibold text-red-700 hover:bg-red-50"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                      {isVi ? 'Xóa sản phẩm này' : 'Delete this product'}
+                    </button>
+                  </div>
+                )}
+              </section>
+            )}
+            {(edits.deletedProductIds || []).length > 0 && (
+              <section className="rounded-xs border border-[#DED9CD] bg-white p-5 shadow-xs lg:col-span-2">
+                <h3 className="mb-3 text-sm font-semibold text-[#1C1A17]">
+                  {isVi ? 'Sản phẩm đã xóa — có thể khôi phục' : 'Deleted products — available to restore'}
+                </h3>
+                <div className="space-y-2">
+                  {edits.deletedProductIds.map((id) => (
+                    <div key={id} className="flex items-center justify-between gap-3 border-t border-[#EAE3DA] pt-2 text-sm">
+                      <span className="truncate">{id}</span>
+                      <button
+                        type="button"
+                        onClick={() => restoreProduct(id)}
+                        className="inline-flex shrink-0 items-center gap-1 rounded-xs border border-[#DED9CD] px-3 py-2 text-xs font-semibold hover:border-[#9B522E]"
+                      >
+                        <RotateCcw className="h-3.5 w-3.5" />
+                        {isVi ? 'Khôi phục' : 'Restore'}
+                      </button>
+                    </div>
+                  ))}
                 </div>
               </section>
             )}

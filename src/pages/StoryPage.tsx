@@ -3,6 +3,8 @@ import { PageId } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 import { JensenLeafLogo } from '../components/JensenLeafLogo';
 import { Volume2, VolumeX } from 'lucide-react';
+import { InlineEditableContent } from '../components/InlineEditableContent';
+import { InlineEditableImage } from '../components/InlineEditableImage';
 
 interface StoryPageProps {
   onNavigate: (page: PageId, extra?: { category?: string; collection?: string }) => void;
@@ -80,11 +82,7 @@ export const StoryPage: React.FC<StoryPageProps> = ({ onNavigate }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 items-stretch">
               {/* Left Column: Forest with Centered Logo */}
               <div className="relative min-h-[340px] sm:min-h-[420px] overflow-hidden group">
-                <img
-                  src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=80"
-                  alt="Bolivian Chiquitania Rainforest River Canopy"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
+                <InlineEditableImage record="collection" recordId="story" field="heroImage" value="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=80" alt="Bolivian Chiquitania Rainforest River Canopy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/15 transition-colors" />
                 
                 {/* Centered White B+Open Logo */}
