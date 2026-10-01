@@ -291,7 +291,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       subtitle: 'Care products, parts, and more ⇁',
       subtitleVi: 'Sản phẩm chăm sóc gỗ, phụ kiện ⇁',
       label: 'CARE PRODUCTS',
-      image: 'https://www.jensenoutdoor.com/wp-content/uploads/2022/02/care-hpsq-1.jpg',
+      image: '/uploads/resource-care.png',
       route: () => onNavigate('care'),
     },
     {
@@ -734,7 +734,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             >
               <div className="relative aspect-[4/3] overflow-hidden bg-[#EAE4D9]">
                 <img
-                  src="https://www.jensenoutdoor.com/wp-content/uploads/2022/02/retailer-hpsq-1.jpg"
+                  src="/uploads/resource-retailer.png"
                   alt="Find a Retailer"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
@@ -766,7 +766,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             >
               <div className="relative aspect-[4/3] overflow-hidden bg-[#EAE4D9]">
                 <img
-                  src="https://www.jensenoutdoor.com/wp-content/uploads/2022/02/3dshowroom-hpsq-1.jpg"
+                  src="/uploads/resource-showroom-3d.png"
                   alt="3D Showroom"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
@@ -798,7 +798,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             >
               <div className="relative aspect-[4/3] overflow-hidden bg-[#EAE4D9]">
                 <img
-                  src="https://www.jensenoutdoor.com/wp-content/uploads/2022/02/care-hpsq-1.jpg"
+                  src="/uploads/resource-care.png"
                   alt="Help Center"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
