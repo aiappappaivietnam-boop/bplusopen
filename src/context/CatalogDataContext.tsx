@@ -7,6 +7,7 @@ import React, {
 } from 'react';
 import { COLLECTIONS, PRODUCTS } from '../data/furnitureData';
 import { Collection, Product } from '../types';
+import { REMOTE_CATALOG_EDITS } from '../data/remoteCatalogEdits';
 
 const EDITS_STORAGE_KEY = 'b-open-catalog-edits-v1';
 const ADMIN_SESSION_KEY = 'b-open-admin-session-v1';
@@ -26,6 +27,7 @@ export type CatalogEdits = {
   hiddenImages: string[];
   content: Record<string, string>;
   deletedProductIds: string[];
+  deletedCollectionIds: string[];
   hiddenHomeCollectionIds: string[];
   customBlocks: CustomContentBlock[];
 };
@@ -69,23 +71,49 @@ const EMPTY_EDITS: CatalogEdits = {
   hiddenImages: [],
   content: {},
   deletedProductIds: [],
+  deletedCollectionIds: [],
   hiddenHomeCollectionIds: [],
   customBlocks: [],
 };
 
 const clone = <T,>(value: T): T => JSON.parse(JSON.stringify(value)) as T;
 
+const mergeCatalogEdits = (...sources: Array<Partial<CatalogEdits>>): CatalogEdits => {
+  const merged = clone(EMPTY_EDITS);
+  sources.forEach((source) => {
+    merged.collections = { ...merged.collections, ...(source.collections || {}) };
+    merged.products = { ...merged.products, ...(source.products || {}) };
+    merged.addedProducts = [
+      ...merged.addedProducts.filter((product) => !(source.addedProducts || []).some((next) => next.id === product.id)),
+      ...(source.addedProducts || []),
+    ];
+    merged.images = { ...merged.images, ...(source.images || {}) };
+    merged.hiddenImages = [...new Set([...merged.hiddenImages, ...(source.hiddenImages || [])])];
+    merged.content = { ...merged.content, ...(source.content || {}) };
+    merged.deletedProductIds = [...new Set([...merged.deletedProductIds, ...(source.deletedProductIds || [])])];
+    merged.deletedCollectionIds = [...new Set([...merged.deletedCollectionIds, ...(source.deletedCollectionIds || [])])];
+    merged.hiddenHomeCollectionIds = [
+      ...new Set([...merged.hiddenHomeCollectionIds, ...(source.hiddenHomeCollectionIds || [])]),
+    ];
+    merged.customBlocks = [
+      ...merged.customBlocks.filter((block) => !(source.customBlocks || []).some((next) => next.id === block.id)),
+      ...(source.customBlocks || []),
+    ];
+  });
+  return merged;
+};
+
 const BASE_COLLECTIONS = clone(COLLECTIONS);
 const BASE_PRODUCTS = clone(PRODUCTS);
 
 const readStoredEdits = (): CatalogEdits => {
-  if (typeof window === 'undefined') return clone(EMPTY_EDITS);
+  if (typeof window === 'undefined') return mergeCatalogEdits(REMOTE_CATALOG_EDITS as unknown as Partial<CatalogEdits>);
 
   try {
     const raw = window.localStorage.getItem(EDITS_STORAGE_KEY);
-    if (!raw) return clone(EMPTY_EDITS);
+    if (!raw) return mergeCatalogEdits(REMOTE_CATALOG_EDITS as unknown as Partial<CatalogEdits>);
     const parsed = JSON.parse(raw) as Partial<CatalogEdits>;
-    return {
+    return mergeCatalogEdits(REMOTE_CATALOG_EDITS as unknown as Partial<CatalogEdits>, {
       collections: parsed.collections && typeof parsed.collections === 'object' ? parsed.collections : {},
       products: parsed.products && typeof parsed.products === 'object' ? parsed.products : {},
       addedProducts: Array.isArray(parsed.addedProducts)
@@ -104,6 +132,9 @@ const readStoredEdits = (): CatalogEdits => {
       deletedProductIds: Array.isArray(parsed.deletedProductIds)
         ? parsed.deletedProductIds.filter((id): id is string => typeof id === 'string')
         : [],
+      deletedCollectionIds: Array.isArray(parsed.deletedCollectionIds)
+        ? parsed.deletedCollectionIds.filter((id): id is string => typeof id === 'string')
+        : [],
       hiddenHomeCollectionIds: Array.isArray(parsed.hiddenHomeCollectionIds)
         ? parsed.hiddenHomeCollectionIds.filter((id): id is string => typeof id === 'string')
         : [],
@@ -114,9 +145,9 @@ const readStoredEdits = (): CatalogEdits => {
             (block?.type === 'text' || block?.type === 'image') &&
             typeof block?.value === 'string')
         : [],
-    };
+    });
   } catch {
-    return clone(EMPTY_EDITS);
+    return mergeCatalogEdits(REMOTE_CATALOG_EDITS as unknown as Partial<CatalogEdits>);
   }
 };
 
@@ -130,12 +161,16 @@ const applyEditsToCatalog = (edits: CatalogEdits) => {
     if (collection) Object.assign(collection, clone(patch));
   });
 
+  const deletedCollections = new Set(edits.deletedCollectionIds || []);
+  COLLECTIONS.splice(0, COLLECTIONS.length, ...COLLECTIONS.filter((collection) => !deletedCollections.has(collection.id)));
+
   Object.entries(edits.products).forEach(([id, patch]) => {
     const product = PRODUCTS.find((item) => item.id === id);
     if (product) Object.assign(product, clone(patch));
   });
   const deleted = new Set(edits.deletedProductIds || []);
-  PRODUCTS.splice(0, PRODUCTS.length, ...PRODUCTS.filter((product) => !deleted.has(product.id)));
+  const activeCollectionIds = new Set(COLLECTIONS.map((collection) => collection.id));
+  PRODUCTS.splice(0, PRODUCTS.length, ...PRODUCTS.filter((product) => !deleted.has(product.id) && activeCollectionIds.has(product.collection)));
 };
 
 const buildEffectiveCatalog = (edits: CatalogEdits) => {
@@ -147,13 +182,20 @@ const buildEffectiveCatalog = (edits: CatalogEdits) => {
     if (collection) Object.assign(collection, clone(patch));
   });
 
+  const deletedCollections = new Set(edits.deletedCollectionIds || []);
+  const visibleCollections = collections.filter((collection) => !deletedCollections.has(collection.id));
+
   Object.entries(edits.products).forEach(([id, patch]) => {
     const product = products.find((item) => item.id === id);
     if (product) Object.assign(product, clone(patch));
   });
 
   const deleted = new Set(edits.deletedProductIds || []);
-  return { collections, products: products.filter((product) => !deleted.has(product.id)) };
+  const visibleCollectionIds = new Set(visibleCollections.map((collection) => collection.id));
+  return {
+    collections: visibleCollections,
+    products: products.filter((product) => !deleted.has(product.id) && visibleCollectionIds.has(product.collection)),
+  };
 };
 
 const readAdminSession = () => {
@@ -399,7 +441,7 @@ export const CatalogDataProvider: React.FC<{ children: React.ReactNode }> = ({ c
   }, [isAdminAuthenticated, isEditMode]);
 
   const resetEdits = useCallback(() => {
-    const empty = clone(EMPTY_EDITS);
+    const empty = mergeCatalogEdits(REMOTE_CATALOG_EDITS as unknown as Partial<CatalogEdits>);
     applyEditsToCatalog(empty);
     try {
       window.localStorage.removeItem(EDITS_STORAGE_KEY);
