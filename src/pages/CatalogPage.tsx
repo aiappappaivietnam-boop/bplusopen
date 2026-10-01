@@ -4,15 +4,65 @@ import { useLanguage } from '../context/LanguageContext';
 import { InlineEditableImage } from '../components/InlineEditableImage';
 import { 
   Download, 
-  ExternalLink, 
   Maximize2, 
   BookOpen, 
-  FileText, 
-  Layers, 
-  Sparkles, 
-  ArrowRight,
-  ChevronRight
+  FileText,
+  ArrowUpRight
 } from 'lucide-react';
+
+interface CatalogItem {
+  id: string;
+  title: string;
+  titleVi: string;
+  collection: string;
+  collectionVi: string;
+  pages: number;
+  href: string;
+  thumbnail: string;
+}
+
+const catalogItems: CatalogItem[] = [
+  {
+    id: 'luma-2026',
+    title: 'LUMA Collection 2026',
+    titleVi: 'Catalog LUMA Collection 2026',
+    collection: 'LUMA / Outdoor Collection',
+    collectionVi: 'LUMA / Bộ sưu tập ngoài trời',
+    pages: 53,
+    href: '/luma/catalog-luma-2026.pdf',
+    thumbnail: '/luma/scene-3.webp',
+  },
+  {
+    id: 'lumino-profile',
+    title: 'LUMINO Collection Profile',
+    titleVi: 'Profile LUMINO Collection',
+    collection: 'LUMINO / Product Profile',
+    collectionVi: 'LUMINO / Hồ sơ sản phẩm',
+    pages: 67,
+    href: '/lumino-profile/profile-lumino-collection.pdf',
+    thumbnail: '/lumino-profile/scene-3.webp',
+  },
+  {
+    id: 'bloom-collection',
+    title: 'BLOOM Collection',
+    titleVi: 'Catalog BLOOM Collection',
+    collection: 'BLOOM / Outdoor Collection',
+    collectionVi: 'BLOOM / Bộ sưu tập ngoài trời',
+    pages: 21,
+    href: '/poly-bloom/catalog-poly-bloom.pdf',
+    thumbnail: '/poly-bloom/scene-1.webp',
+  },
+  {
+    id: 'serenity-collection',
+    title: 'SERENITY Collection',
+    titleVi: 'Catalog SERENITY Collection',
+    collection: 'SERENITY / Outdoor Collection',
+    collectionVi: 'SERENITY / Bộ sưu tập ngoài trời',
+    pages: 41,
+    href: '/serenity/serenity-catalog.pdf',
+    thumbnail: '/serenity/catalog-02.jpg',
+  },
+];
 
 interface CatalogPageProps {
   onNavigate: (page: PageId, extra?: { category?: string; collection?: string; tab?: 'retailers' | 'design-showrooms' | 'contract-hospitality' }) => void;
@@ -62,13 +112,17 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({ onNavigate, onOpenCata
           {/* Quick Action Buttons */}
           <div className="flex items-center gap-3">
             <a
-              href="https://www.jensenoutdoor.com/wp-content/uploads/2026/01/2026-FINAL-Jensen-Outdoor-Product-Knowledge-Guide.pdf"
+              href="#catalog-list"
+              onClick={(event) => {
+                event.preventDefault();
+                document.getElementById('catalog-list')?.scrollIntoView({ behavior: 'smooth' });
+              }}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold uppercase tracking-wider bg-white/10 hover:bg-white/20 text-white rounded-xs border border-white/15 transition-colors cursor-pointer"
             >
               <Download className="w-3.5 h-3.5" />
-              <span>{isVi ? 'Tải PDF' : 'Download PDF'}</span>
+              <span>{isVi ? 'Xem danh sách catalog' : 'Browse catalogs'}</span>
             </a>
             <button
               onClick={() => {
@@ -115,7 +169,67 @@ export const CatalogPage: React.FC<CatalogPageProps> = ({ onNavigate, onOpenCata
         </div>
       </section>
 
-      {/* 2. CATALOG RESOURCES SECTION (Matches jensenoutdoor.com/catalog/) */}
+      {/* 2. CATALOG LIST: all published collection PDFs in one place */}
+      {catalogItems.length > 1 && (
+        <section id="catalog-list" className="bg-[#F2EEE8] text-[#1C1A17] px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+          <div className="max-w-6xl mx-auto">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-10">
+              <div>
+                <div className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-[#9B522E] font-bold mb-3">
+                  <FileText className="w-4 h-4" />
+                  <span>{isVi ? 'Thư viện ấn phẩm' : 'Publication library'}</span>
+                </div>
+                <h2 className="font-serif text-3xl sm:text-4xl text-[#1C1A17]">
+                  {isVi ? 'Danh sách Catalog' : 'Catalog collection'}
+                </h2>
+              </div>
+              <p className="max-w-md text-sm leading-relaxed text-[#1C1A17]/65">
+                {isVi
+                  ? 'Chọn một catalog để xem trực tuyến hoặc tải xuống thông tin chi tiết của từng bộ sưu tập.'
+                  : 'Choose a catalog to view online or download the full collection details.'}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              {catalogItems.map((catalog) => (
+                <article key={catalog.id} className="group bg-white border border-[#DED9CD] shadow-sm hover:shadow-xl transition-shadow duration-300">
+                  <a href={catalog.href} target="_blank" rel="noopener noreferrer" className="block overflow-hidden" aria-label={isVi ? `Mở ${catalog.titleVi}` : `Open ${catalog.title}`}>
+                    <img
+                      src={catalog.thumbnail}
+                      alt={isVi ? catalog.titleVi : catalog.title}
+                      className="w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                  </a>
+                  <div className="p-5">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#9B522E] mb-2">
+                      {isVi ? catalog.collectionVi : catalog.collection}
+                    </p>
+                    <h3 className="font-serif text-xl leading-tight text-[#1C1A17] min-h-[3.25rem]">
+                      {isVi ? catalog.titleVi : catalog.title}
+                    </h3>
+                    <p className="text-xs text-[#1C1A17]/55 mt-3">
+                      {isVi ? `${catalog.pages} trang · PDF` : `${catalog.pages} pages · PDF`}
+                    </p>
+                    <div className="flex items-center gap-4 mt-5 pt-4 border-t border-[#1C1A17]/10">
+                      <a href={catalog.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#1C1A17] hover:text-[#9B522E] transition-colors">
+                        {isVi ? 'Mở catalog' : 'Open catalog'}
+                        <ArrowUpRight className="w-3.5 h-3.5" />
+                      </a>
+                      <a href={catalog.href} download className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#9B522E] hover:text-[#73371F] transition-colors">
+                        <Download className="w-3.5 h-3.5" />
+                        {isVi ? 'Tải xuống' : 'Download'}
+                      </a>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 3. CATALOG RESOURCES SECTION (Matches jensenoutdoor.com/catalog/) */}
       <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto text-center bg-[#FAF8F5] text-[#1C1A17] rounded-t-xl sm:rounded-t-2xl shadow-xl mt-4">
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-medium uppercase tracking-[0.06em] text-[#1C1A17] mb-4">
           {isVi 
