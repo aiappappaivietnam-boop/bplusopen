@@ -6,6 +6,7 @@ import { formatDimensionsSummary, cleanMm } from '../utils/dimensionUtils';
 import { InlineEditableText } from '../components/InlineEditableText';
 import { InlineEditableImage } from '../components/InlineEditableImage';
 import { useCatalogData } from '../context/CatalogDataContext';
+import { LUMA_RAL_COLORS } from '../data/ralColors';
 import {
   ChevronRight,
   ChevronDown,
@@ -67,6 +68,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
 
   // Finishes: Chocolate Ipe vs Weathered Silver
   const [selectedFinish, setSelectedFinish] = useState<'chocolate' | 'silver'>('chocolate');
+  const [selectedRalId, setSelectedRalId] = useState(LUMA_RAL_COLORS[0].id);
 
   // Selected Fabric Swatch
   const [selectedFabric, setSelectedFabric] = useState<FabricSwatch>(FABRIC_SWATCHES[0]);
@@ -168,6 +170,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
   const configuredTotal = baseFramePrice + cushionPrice;
 
   const isSaved = savedProductIds.has(product.id);
+  const selectedRalColor = LUMA_RAL_COLORS.find((color) => color.id === selectedRalId) || LUMA_RAL_COLORS[0];
   const prodName = isVi && product.nameVi ? product.nameVi : product.name;
   const colName = isVi && collection.nameVi ? collection.nameVi : collection.name;
   const prodDescription = isVi && product.descriptionVi ? product.descriptionVi : product.description;
@@ -297,7 +300,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                   {isVi ? 'Bề mặt: ' : 'Finish: '}
                   <span className="font-semibold text-[#5C3822]">
                     {isLumaProduct
-                      ? (isVi ? 'Màu RAL tùy chỉnh' : 'Custom RAL color')
+                      ? `${isVi ? 'Màu RAL tùy chỉnh' : 'Custom RAL color'} · ${selectedRalColor.code}`
                       : selectedFinish === 'chocolate'
                         ? (isVi ? 'Hổ Phách Chocolate' : 'Chocolate Amber')
                         : (isVi ? 'Bạc Phong Hóa Silver' : 'Weathered Silver')}
@@ -394,7 +397,10 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                         : 'border-[#EAE3DA] hover:border-[#C4A482]'
                     }`}
                   >
-                    <span className={`w-5 h-5 rounded-full border border-black/20 shadow-inner shrink-0 ${isLumaProduct ? 'bg-[#E5D1B8]' : 'bg-[#5C3822]'}`} />
+                    <span
+                      className="w-5 h-5 rounded-full border border-black/20 shadow-inner shrink-0"
+                      style={isLumaProduct ? { backgroundColor: selectedRalColor.hex } : undefined}
+                    />
                     <span className="text-xs font-medium text-[#1C1A17]">
                       {isLumaProduct ? (isVi ? 'Màu RAL tùy chỉnh' : 'Custom RAL color') : 'Chocolate Amber'}
                     </span>
@@ -415,6 +421,50 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                     </span>
                   </button>
                 </div>
+
+                {isLumaProduct && selectedFinish === 'chocolate' && (
+                  <div className="mt-4 border-t border-[#EAE3DA] pt-3">
+                    <div className="mb-2 flex items-center justify-between gap-3">
+                      <span className="text-[11px] font-semibold uppercase tracking-wider text-[#7A6B5F]">
+                        {isVi ? 'Mã màu RAL:' : 'RAL color code:'}
+                      </span>
+                      <span className="text-[10px] font-mono uppercase text-[#8C5535]">
+                        {isVi ? selectedRalColor.nameVi : selectedRalColor.name}
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-4 gap-2 sm:grid-cols-8">
+                      {LUMA_RAL_COLORS.map((color) => {
+                        const isSelected = selectedRalColor.id === color.id;
+                        return (
+                          <button
+                            key={color.id}
+                            type="button"
+                            onClick={() => setSelectedRalId(color.id)}
+                            title={`${color.code} · ${isVi ? color.nameVi : color.name}`}
+                            aria-label={`${color.code} ${isVi ? color.nameVi : color.name}`}
+                            className={`group flex min-w-0 flex-col items-center gap-1 rounded-xs p-1 transition-colors cursor-pointer ${
+                              isSelected ? 'bg-[#FAF7F2] ring-1 ring-[#5C3822]' : 'hover:bg-[#FAF7F2]'
+                            }`}
+                          >
+                            <span
+                              className={`relative h-7 w-7 rounded-full border border-black/20 shadow-inner transition-transform group-hover:scale-105 sm:h-8 sm:w-8 ${
+                                isSelected ? 'ring-2 ring-offset-1 ring-[#5C3822]' : ''
+                              }`}
+                              style={{ backgroundColor: color.hex }}
+                            >
+                              {isSelected && <Check className="absolute inset-0 m-auto h-3.5 w-3.5 text-white drop-shadow-md" />}
+                            </span>
+                            <span className="text-[9px] font-mono leading-none text-[#5C3822]">{color.code.replace('RAL ', '')}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                    <div className="mt-2 flex items-center justify-between text-[10px] text-[#8C7A6B]">
+                      <span>{selectedRalColor.code}</span>
+                      <span>{isVi ? selectedRalColor.nameVi : selectedRalColor.name}</span>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
 
