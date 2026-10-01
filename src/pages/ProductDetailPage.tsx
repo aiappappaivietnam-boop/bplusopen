@@ -66,6 +66,12 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
     return products.filter((p) => p.collection === product.collection && p.id !== product.id);
   }, [product.collection, product.id, products]);
 
+  // Every aluminum, steel, or other powder-coated metal product uses the same
+  // eight RAL finish choices shown in the B+ catalog finish guide.
+  const isMetalProduct = /aluminum|steel|metal/i.test(
+    `${product.material} ${product.materialVi || ''}`,
+  );
+
   // Finishes: Chocolate Ipe vs Weathered Silver
   const [selectedFinish, setSelectedFinish] = useState<'chocolate' | 'silver'>('chocolate');
   const [selectedRalId, setSelectedRalId] = useState(LUMA_RAL_COLORS[0].id);
@@ -299,7 +305,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-xs border border-[#EAE3DA] px-2.5 py-1 text-[11px] font-mono text-[#2A1D15] rounded-xs shadow-xs">
                   {isVi ? 'Bề mặt: ' : 'Finish: '}
                   <span className="font-semibold text-[#5C3822]">
-                    {isLumaProduct
+                    {isMetalProduct
                       ? `${isVi ? 'Màu RAL tùy chỉnh' : 'Custom RAL color'} · ${selectedRalColor.code}`
                       : selectedFinish === 'chocolate'
                         ? (isVi ? 'Hổ Phách Chocolate' : 'Chocolate Amber')
@@ -399,10 +405,10 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                   >
                     <span
                       className="w-5 h-5 rounded-full border border-black/20 shadow-inner shrink-0"
-                      style={isLumaProduct ? { backgroundColor: selectedRalColor.hex } : undefined}
+                      style={isMetalProduct ? { backgroundColor: selectedRalColor.hex } : undefined}
                     />
                     <span className="text-xs font-medium text-[#1C1A17]">
-                      {isLumaProduct ? (isVi ? 'Màu RAL tùy chỉnh' : 'Custom RAL color') : 'Chocolate Amber'}
+                      {isMetalProduct ? (isVi ? 'Màu RAL tùy chỉnh' : 'Custom RAL color') : 'Chocolate Amber'}
                     </span>
                   </button>
 
@@ -415,14 +421,14 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                         : 'border-[#EAE3DA] hover:border-[#C4A482]'
                     }`}
                   >
-                    <span className={`w-5 h-5 rounded-full border border-black/20 shadow-inner shrink-0 ${isLumaProduct ? 'bg-[#6F726D]' : 'bg-[#A8A9AD]'}`} />
+                    <span className={`w-5 h-5 rounded-full border border-black/20 shadow-inner shrink-0 ${isMetalProduct ? 'bg-[#6F726D]' : 'bg-[#A8A9AD]'}`} />
                     <span className="text-xs font-medium text-[#1C1A17]">
-                      {isLumaProduct ? (isVi ? 'Mẫu hoàn thiện catalog' : 'Catalog finish sample') : 'Weathered Silver'}
+                      {isMetalProduct ? (isVi ? 'Mẫu hoàn thiện catalog' : 'Catalog finish sample') : 'Weathered Silver'}
                     </span>
                   </button>
                 </div>
 
-                {isLumaProduct && selectedFinish === 'chocolate' && (
+                {isMetalProduct && selectedFinish === 'chocolate' && (
                   <div className="mt-4 border-t border-[#EAE3DA] pt-3">
                     <div className="mb-2 flex items-center justify-between gap-3">
                       <span className="text-[11px] font-semibold uppercase tracking-wider text-[#7A6B5F]">
