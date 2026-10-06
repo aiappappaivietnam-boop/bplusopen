@@ -186,25 +186,24 @@ export const MaterialsPage: React.FC<MaterialsPageProps> = ({ onNavigate }) => {
       id: 'sustainability',
       title: 'SUSTAINABILITY',
       titleVi: 'PHÁT TRIỂN BỀN VỮNG',
-      image: 'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=800&q=80',
-      alt: 'Bolivian rainforest canopy',
-      hasLogo: true,
+      image: '/sustainability/cards/design.png',
+      alt: 'B+Open design and outdoor living',
       action: () => onNavigate('sustainability'),
     },
     {
       id: 'design',
       title: 'DESIGN',
       titleVi: 'THIẾT KẾ',
-      image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80',
-      alt: 'Drafting and designing furniture prototypes',
+      image: '/sustainability/cards/materials.png',
+      alt: 'B+Open outdoor furniture materials',
       action: () => onNavigate('design'),
     },
     {
       id: 'craftsmanship',
       title: 'CRAFTSMANSHIP',
       titleVi: 'KỸ THUẬT CHẾ TÁC',
-      image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80',
-      alt: 'Artisan wood bench and mortise joinery',
+      image: '/sustainability/cards/craftsmanship.png',
+      alt: 'B+Open craftsmanship and joinery',
       action: () => {
         onNavigate('story');
         setTimeout(() => {
@@ -217,8 +216,8 @@ export const MaterialsPage: React.FC<MaterialsPageProps> = ({ onNavigate }) => {
       id: 'product-care',
       title: 'PRODUCT CARE',
       titleVi: 'BẢO QUẢN SẢN PHẨM',
-      image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80',
-      alt: 'Outdoor patio lounge sofa furniture',
+      image: '/sustainability/cards/product-care.png',
+      alt: 'B+Open product care',
       action: () => onNavigate('care'),
     },
   ];
