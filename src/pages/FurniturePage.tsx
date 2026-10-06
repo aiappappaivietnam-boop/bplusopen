@@ -131,12 +131,42 @@ export const FurniturePage: React.FC<FurniturePageProps> = ({
   });
 
   const categoriesList = [
-    { id: 'dining', name: 'DINING', nameVi: 'ĂN UỐNG', image: '/furniture/categories-space/7.Dining.png', catFilter: 'dining' },
-    { id: 'lounge', name: 'LOUNGE', nameVi: 'THƯ GIÃN', image: '/furniture/categories-space/8.Lounge.png', catFilter: 'deep-seating' },
-    { id: 'poolside', name: 'POOLSIDE', nameVi: 'HỒ BƠI', image: '/furniture/categories-space/9.Poolside.png', catFilter: 'chaises' },
-    { id: 'terrace-balcony', name: 'TERRACE & BALCONY', nameVi: 'SÂN THƯỢNG & BAN CÔNG', image: '/furniture/categories-space/10.Terrace & Balcony.png', catFilter: 'all' },
-    { id: 'garden-courtyard', name: 'GARDEN & COURTYARD', nameVi: 'VƯỜN & SÂN TRONG', image: '/furniture/categories-space/11.Garden & Courtyard.png', catFilter: 'all' },
-    { id: 'hospitality', name: 'HOSPITALITY', nameVi: 'KHÔNG GIAN DỊCH VỤ', image: '/furniture/categories-space/12.Hospitality.png', catFilter: 'all' },
+    {
+      id: 'pillows',
+      name: 'PILLOWS',
+      image: 'https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=600&q=80',
+      catFilter: 'accessories'
+    },
+    {
+      id: 'lounging',
+      name: 'LOUNGING',
+      image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80',
+      catFilter: 'lounging'
+    },
+    {
+      id: 'dining',
+      name: 'DINING',
+      image: 'https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=600&q=80',
+      catFilter: 'dining'
+    },
+    {
+      id: 'new',
+      name: 'NEW',
+      image: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=600&q=80',
+      catFilter: 'all'
+    },
+    {
+      id: 'accessories',
+      name: 'ACCESSORIES',
+      image: 'https://images.unsplash.com/photo-1546484475-7f7bd55792da?auto=format&fit=crop&w=600&q=80',
+      catFilter: 'accessories'
+    },
+    {
+      id: 'ipe-wood',
+      name: 'IPE WOOD',
+      image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80',
+      catFilter: 'all'
+    },
   ];
 
   // 3. DIVE FURTHER subcategories matching the exact screenshot (6 items: 3 columns x 2 rows)
@@ -145,42 +175,42 @@ export const FurniturePage: React.FC<FurniturePageProps> = ({
       id: 'entertaining-staples',
       name: 'ENTERTAINING STAPLES',
       nameVi: 'BÀN ĂN TIỆC NGOÀI TRỜI',
-      image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80',
+      image: '/furniture/categories-space/7.Dining.png',
       catFilter: 'dining'
     },
     {
       id: 'chaise-lounges',
       name: 'CHAISE LOUNGES',
       nameVi: 'GHẾ TẮM NẮNG HỒ BƠI',
-      image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80',
+      image: '/furniture/categories-space/8.Lounge.png',
       catFilter: 'chaises'
     },
     {
       id: 'sectionals',
       name: 'SECTIONALS',
       nameVi: 'SOFA GÓC MODULE ĐẲNG CẤP',
-      image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80',
+      image: '/furniture/categories-space/9.Poolside.png',
       catFilter: 'deep-seating'
     },
     {
       id: 'benches',
       name: 'BENCHES',
       nameVi: 'GHẾ BĂNG GỖ NGUYÊN KHỐI',
-      image: 'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?auto=format&fit=crop&w=800&q=80',
+      image: '/furniture/categories-space/10.Terrace & Balcony.png',
       catFilter: 'accessories'
     },
     {
       id: 'dining-sets',
       name: 'DINING SETS',
       nameVi: 'BỘ BÀN GHẾ ĂN HOÀN CHỈNH',
-      image: 'https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=800&q=80',
+      image: '/furniture/categories-space/11.Garden & Courtyard.png',
       catFilter: 'dining'
     },
     {
       id: 'fabrics',
       name: 'FABRICS',
       nameVi: 'VẢI & ĐỆM SUNBRELLA® CAO CẤP',
-      image: 'https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=800&q=80',
+      image: '/furniture/categories-space/12.Hospitality.png',
       catFilter: 'all'
     },
   ];
