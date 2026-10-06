@@ -131,42 +131,21 @@ export const FurniturePage: React.FC<FurniturePageProps> = ({
   });
 
   const categoriesList = [
-    {
-      id: 'pillows',
-      name: 'PILLOWS',
-      image: 'https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=600&q=80',
-      catFilter: 'accessories'
-    },
-    {
-      id: 'lounging',
-      name: 'LOUNGING',
-      image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80',
-      catFilter: 'lounging'
-    },
-    {
-      id: 'dining',
-      name: 'DINING',
-      image: 'https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=600&q=80',
-      catFilter: 'dining'
-    },
-    {
-      id: 'new',
-      name: 'NEW',
-      image: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=600&q=80',
-      catFilter: 'all'
-    },
-    {
-      id: 'accessories',
-      name: 'ACCESSORIES',
-      image: 'https://images.unsplash.com/photo-1546484475-7f7bd55792da?auto=format&fit=crop&w=600&q=80',
-      catFilter: 'accessories'
-    },
-    {
-      id: 'ipe-wood',
-      name: 'IPE WOOD',
-      image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80',
-      catFilter: 'all'
-    },
+    { id: 'powder-coated-metal', name: 'POWDER-COATED METAL', nameVi: 'KIM LOẠI SƠN TĨNH ĐIỆN', image: '/furniture/categories-material/1.Powder-Coated Metal.png', catFilter: 'all' },
+    { id: 'poly', name: 'POLY', nameVi: 'POLY', image: '/furniture/categories-material/5.Poly.png', catFilter: 'all' },
+    { id: 'wood', name: 'WOOD', nameVi: 'GỖ', image: '/furniture/categories-material/2.Wood.png', catFilter: 'all' },
+    { id: 'upholstery', name: 'UPHOLSTERY', nameVi: 'VẢI BỌC', image: '/furniture/categories-material/3.Upholstery.png', catFilter: 'all' },
+    { id: 'woven-rope', name: 'WOVEN ROPE', nameVi: 'DÂY ĐAN', image: '/furniture/categories-material/4.Woven Rope.png', catFilter: 'all' },
+    { id: 'mixed-materials', name: 'MIXED MATERIALS', nameVi: 'VẬT LIỆU KẾT HỢP', image: '/furniture/categories-material/6.Mixed Materials.png', catFilter: 'all' },
+  ];
+
+  const spaceCategoriesList = [
+    { id: 'dining-space', name: 'DINING', nameVi: 'ĂN UỐNG', image: '/furniture/categories-space/7.Dining.png', catFilter: 'dining' },
+    { id: 'lounge-space', name: 'LOUNGE', nameVi: 'THƯ GIÃN', image: '/furniture/categories-space/8.Lounge.png', catFilter: 'deep-seating' },
+    { id: 'poolside-space', name: 'POOLSIDE', nameVi: 'HỒ BƠI', image: '/furniture/categories-space/9.Poolside.png', catFilter: 'chaises' },
+    { id: 'terrace-balcony-space', name: 'TERRACE & BALCONY', nameVi: 'SÂN THƯỢNG & BAN CÔNG', image: '/furniture/categories-space/10.Terrace & Balcony.png', catFilter: 'all' },
+    { id: 'garden-courtyard-space', name: 'GARDEN & COURTYARD', nameVi: 'VƯỜN & SÂN TRONG', image: '/furniture/categories-space/11.Garden & Courtyard.png', catFilter: 'all' },
+    { id: 'hospitality-space', name: 'HOSPITALITY', nameVi: 'KHÔNG GIAN DỊCH VỤ', image: '/furniture/categories-space/12.Hospitality.png', catFilter: 'all' },
   ];
 
   // 3. DIVE FURTHER subcategories matching the exact screenshot (6 items: 3 columns x 2 rows)
@@ -220,7 +199,7 @@ export const FurniturePage: React.FC<FurniturePageProps> = ({
     onNavigate('collection-detail', { collection: col.mappedCollection });
   };
 
-  const handleSelectCategoryCard = (cat: (typeof categoriesList)[0]) => {
+  const handleSelectCategoryCard = (cat: { catFilter: string }) => {
     onSelectCategory(cat.catFilter);
   };
 
@@ -345,63 +324,45 @@ export const FurniturePage: React.FC<FurniturePageProps> = ({
         </div>
       </section>
 
-      {/* 3. CATEGORIES SECTION matching screenshot carousel */}
+      {/* 3. MATERIAL CATEGORIES */}
       <section className="py-6 sm:py-10 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-3 sm:mb-4">
           <h2 className="text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase text-[#1C1A17] pl-1">
-            <InlineEditableContent contentKey="furniture.section.categories" value="CATEGORIES" />
+            <InlineEditableContent contentKey="furniture.section.categories.material" value="CATEGORIES BY MATERIAL" />
           </h2>
         </div>
-
-        {/* Carousel with 4 visible items and navigation arrows */}
         <div className="relative group/cat">
-          {/* Left Arrow Button */}
-          <button
-            onClick={() => scrollCategories('left')}
-            aria-label="Scroll categories left"
-            className="absolute -left-2 sm:-left-3 top-1/2 -translate-y-1/2 z-20 bg-[#404040]/90 hover:bg-[#1C1A17] text-white w-10 sm:w-11 h-18 sm:h-20 flex items-center justify-center rounded-xs shadow-xl transition-all cursor-pointer"
-          >
-            <ChevronLeft className="w-6 h-6 sm:w-7 sm:h-7 stroke-[2.2]" />
-          </button>
-
-          {/* Scrollable Track */}
-          <div
-            ref={categoriesTrackRef}
-            className="flex gap-3 sm:gap-4 overflow-x-auto scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] py-1 px-1"
-          >
+          <button onClick={() => scrollCategories('left')} aria-label="Scroll material categories left" className="absolute -left-2 sm:-left-3 top-1/2 -translate-y-1/2 z-20 bg-[#404040]/90 hover:bg-[#1C1A17] text-white w-10 sm:w-11 h-18 sm:h-20 flex items-center justify-center rounded-xs shadow-xl transition-all cursor-pointer"><ChevronLeft className="w-6 h-6 sm:w-7 sm:h-7 stroke-[2.2]" /></button>
+          <div ref={categoriesTrackRef} className="flex gap-3 sm:gap-4 overflow-x-auto scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] py-1 px-1">
             {categoriesList.map((cat) => (
-              <div
-                key={cat.id}
-                onClick={() => handleSelectCategoryCard(cat)}
-                className="w-[calc(100%-1.5rem)] sm:w-[calc(50%-10px)] md:w-[calc(33.333%-12px)] lg:w-[calc(25%-12px)] shrink-0 aspect-[16/11] relative overflow-hidden bg-[#EAE4D9] cursor-pointer group/card transition-transform duration-300"
-              >
-                <img
-                  src={cat.image}
-                  alt={cat.name}
-                  className="w-full h-full object-cover object-center transition-transform duration-500 group-hover/card:scale-105"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-transparent flex items-end justify-center pb-4 sm:pb-5 px-3">
-                  <span className="text-white font-sans text-sm sm:text-base font-bold tracking-[0.15em] uppercase text-center drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">
-                    {cat.name}
-                  </span>
-                </div>
+              <div key={cat.id} onClick={() => handleSelectCategoryCard(cat)} className="w-[calc(100%-1.5rem)] sm:w-[calc(50%-10px)] md:w-[calc(33.333%-12px)] lg:w-[calc(16.666%-14px)] shrink-0 aspect-[4/3] relative overflow-hidden bg-[#EAE4D9] cursor-pointer group/card transition-transform duration-300">
+                <img src={cat.image} alt={isVi ? cat.nameVi : cat.name} className="w-full h-full object-cover object-center transition-transform duration-500 group-hover/card:scale-105" loading="lazy" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent flex items-end justify-center pb-3 sm:pb-4 px-2"><span className="text-white font-sans text-[10px] sm:text-xs font-bold tracking-[0.1em] uppercase text-center drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">{isVi ? cat.nameVi : cat.name}</span></div>
               </div>
             ))}
           </div>
-
-          {/* Right Arrow Button */}
-          <button
-            onClick={() => scrollCategories('right')}
-            aria-label="Scroll categories right"
-            className="absolute -right-2 sm:-right-3 top-1/2 -translate-y-1/2 z-20 bg-[#404040]/90 hover:bg-[#1C1A17] text-white w-10 sm:w-11 h-18 sm:h-20 flex items-center justify-center rounded-xs shadow-xl transition-all cursor-pointer"
-          >
-            <ChevronRight className="w-6 h-6 sm:w-7 sm:h-7 stroke-[2.2]" />
-          </button>
+          <button onClick={() => scrollCategories('right')} aria-label="Scroll material categories right" className="absolute -right-2 sm:-right-3 top-1/2 -translate-y-1/2 z-20 bg-[#404040]/90 hover:bg-[#1C1A17] text-white w-10 sm:w-11 h-18 sm:h-20 flex items-center justify-center rounded-xs shadow-xl transition-all cursor-pointer"><ChevronRight className="w-6 h-6 sm:w-7 sm:h-7 stroke-[2.2]" /></button>
         </div>
       </section>
 
-      {/* 4. DIVE FURTHER INTO OUR ABUNDANCE OF DESIGNS TO SUIT YOUR TASTE AND SPACE. */}
+      {/* 4. SPACE CATEGORIES */}
+      <section className="py-6 sm:py-10 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mb-3 sm:mb-4">
+          <h2 className="text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase text-[#1C1A17] pl-1">
+            <InlineEditableContent contentKey="furniture.section.categories.space" value="CATEGORIES BY SPACE" />
+          </h2>
+        </div>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-6">
+          {spaceCategoriesList.map((cat) => (
+            <div key={cat.id} onClick={() => handleSelectCategoryCard(cat)} className="relative aspect-[4/3] overflow-hidden bg-[#EAE4D9] cursor-pointer group/card transition-transform duration-300">
+              <img src={cat.image} alt={isVi ? cat.nameVi : cat.name} className="w-full h-full object-cover object-center transition-transform duration-500 group-hover/card:scale-105" loading="lazy" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent flex items-end justify-center pb-3 sm:pb-4 px-2"><span className="text-white font-sans text-[10px] sm:text-xs font-bold tracking-[0.1em] uppercase text-center drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">{isVi ? cat.nameVi : cat.name}</span></div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 5. DIVE FURTHER INTO OUR ABUNDANCE OF DESIGNS TO SUIT YOUR TASTE AND SPACE. */}
       <section className="py-12 sm:py-16 max-w-5xl mx-auto px-4 sm:px-6 border-t border-black/10">
         <div className="text-center max-w-2xl mx-auto mb-10">
           <h2 className="font-sans text-xl sm:text-2xl font-light tracking-[0.06em] text-[#1C1A17] uppercase leading-snug">
@@ -445,7 +406,7 @@ export const FurniturePage: React.FC<FurniturePageProps> = ({
         </div>
       </section>
 
-      {/* 5. BOTTOM BANNER matching screenshot */}
+      {/* 6. BOTTOM BANNER matching screenshot */}
       <section className="bg-[#FAF7F2] py-14 sm:py-18 border-t border-[#EDE5DA] text-center px-4">
         <div className="max-w-xl mx-auto space-y-4">
           <p className="font-sans text-sm sm:text-base text-[#2E2823] font-medium tracking-wide">
