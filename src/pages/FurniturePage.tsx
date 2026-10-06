@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { Product, PageId } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -32,30 +32,6 @@ export const FurniturePage: React.FC<FurniturePageProps> = ({
   const { collections } = useCatalogData();
   const collectionsTrackRef = useRef<HTMLDivElement>(null);
   const categoriesTrackRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (video) {
-      video.muted = true;
-      video.defaultMuted = true;
-      const playPromise = video.play();
-      if (playPromise !== undefined) {
-        playPromise.catch((err) => {
-          console.log('Autoplay waiting for interaction:', err);
-          const tryPlay = () => {
-            if (videoRef.current) {
-              videoRef.current.play().catch(() => {});
-            }
-          };
-          window.addEventListener('click', tryPlay, { once: true });
-          window.addEventListener('touchstart', tryPlay, { once: true });
-          window.addEventListener('scroll', tryPlay, { once: true });
-        });
-      }
-    }
-  }, []);
-
   const scrollCollections = (direction: 'left' | 'right') => {
     if (collectionsTrackRef.current) {
       const amount = collectionsTrackRef.current.clientWidth * 0.5;
@@ -209,52 +185,8 @@ export const FurniturePage: React.FC<FurniturePageProps> = ({
 
   return (
     <div className="bg-white min-h-screen text-[#1C1A17] animate-in fade-in duration-300">
-      {/* 1. HERO BANNER matching screenshot with auto-play outdoor furniture video */}
-      <div className="relative w-full h-[360px] sm:h-[460px] lg:h-[540px] overflow-hidden bg-[#1E1B18]">
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          poster="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2400&q=85"
-          className="w-full h-full object-cover object-center brightness-[0.72]"
-        >
-          <source
-            src="https://assets.mixkit.co/videos/42172/42172-720.mp4"
-            type="video/mp4"
-          />
-          <source
-            src="https://assets.mixkit.co/videos/42167/42167-720.mp4"
-            type="video/mp4"
-          />
-          <source
-            src="https://assets.mixkit.co/videos/43645/43645-720.mp4"
-            type="video/mp4"
-          />
-          <source
-            src="https://assets.mixkit.co/videos/43644/43644-720.mp4"
-            type="video/mp4"
-          />
-          <img
-            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2400&q=85"
-            alt="Luxury Wood Furniture"
-            className="w-full h-full object-cover object-center brightness-[0.72]"
-          />
-        </video>
-        <div className="absolute inset-0 bg-black/20 flex flex-col items-center justify-center text-center px-4 pt-16 sm:pt-20 pointer-events-none select-none">
-          <h1 className="font-sans text-2xl sm:text-4xl md:text-5xl lg:text-[52px] text-white font-light tracking-[0.2em] sm:tracking-[0.24em] uppercase drop-shadow-[0_2px_12px_rgba(0,0,0,0.65)]">
-            LUXURY WOOD FURNITURE
-          </h1>
-          <p className="text-white/95 text-xs sm:text-sm md:text-base tracking-[0.32em] sm:tracking-[0.38em] uppercase font-sans font-medium mt-3 sm:mt-4 drop-shadow-[0_2px_8px_rgba(0,0,0,0.65)]">
-            MADE TO INSPIRE
-          </p>
-        </div>
-      </div>
-
-      {/* 2. COLLECTIONS SECTION matching screenshot carousel */}
-      <section className="py-8 sm:py-12 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+      {/* 1. COLLECTIONS */}
+      <section className="mx-auto w-[calc(100%-32px)] max-w-[640px] pb-7 pt-3 sm:pb-10 sm:pt-5">
         <div className="mb-3 sm:mb-4">
           <h2 className="text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase text-[#1C1A17] pl-1">
             <InlineEditableContent contentKey="furniture.section.collections" value="COLLECTIONS" />
@@ -324,8 +256,8 @@ export const FurniturePage: React.FC<FurniturePageProps> = ({
         </div>
       </section>
 
-      {/* 3. MATERIAL CATEGORIES */}
-      <section className="py-6 sm:py-10 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+      {/* 2. MATERIAL CATEGORIES */}
+      <section className="mx-auto w-[calc(100%-32px)] max-w-[640px] py-3 sm:py-5">
         <div className="mb-3 sm:mb-4">
           <h2 className="text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase text-[#1C1A17] pl-1">
             <InlineEditableContent contentKey="furniture.section.categories.material" value="CATEGORIES BY MATERIAL" />
@@ -345,8 +277,8 @@ export const FurniturePage: React.FC<FurniturePageProps> = ({
         </div>
       </section>
 
-      {/* 4. SPACE CATEGORIES */}
-      <section className="py-6 sm:py-10 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+      {/* 3. SPACE CATEGORIES */}
+      <section className="mx-auto w-[calc(100%-32px)] max-w-[640px] py-3 sm:py-5">
         <div className="mb-3 sm:mb-4">
           <h2 className="text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase text-[#1C1A17] pl-1">
             <InlineEditableContent contentKey="furniture.section.categories.space" value="CATEGORIES BY SPACE" />
@@ -362,8 +294,8 @@ export const FurniturePage: React.FC<FurniturePageProps> = ({
         </div>
       </section>
 
-      {/* 5. DIVE FURTHER INTO OUR ABUNDANCE OF DESIGNS TO SUIT YOUR TASTE AND SPACE. */}
-      <section className="py-12 sm:py-16 max-w-5xl mx-auto px-4 sm:px-6 border-t border-black/10">
+      {/* 4. DIVE FURTHER INTO OUR ABUNDANCE OF DESIGNS TO SUIT YOUR TASTE AND SPACE. */}
+      <section className="mx-auto w-[calc(100%-32px)] max-w-[440px] border-t border-black/10 px-0 py-8 sm:py-10">
         <div className="text-center max-w-2xl mx-auto mb-10">
           <h2 className="font-sans text-xl sm:text-2xl font-light tracking-[0.06em] text-[#1C1A17] uppercase leading-snug">
             <InlineEditableContent
