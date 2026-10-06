@@ -122,6 +122,25 @@ export const DesignPage: React.FC<DesignPageProps> = ({ onNavigate }) => {
                   ? 'Mỗi thiết kế bắt đầu từ cách sản phẩm được sử dụng trong thực tế. B+Open nghiên cứu thói quen, không gian và đặc thù của nội thất ngoài trời để xác định yêu cầu về kích thước, công năng và trải nghiệm sử dụng.'
                   : 'Every design begins with how the product will be used in real life. B+Open studies habits, spaces and the specific demands of outdoor furniture to define the right dimensions, function and user experience.'}
               </p>
+              <div className="mt-2 md:col-start-2">
+                <InlineEditableContent
+                  contentKey="design.part1.formTitle"
+                  value={isVi ? 'HÌNH THỨC ĐI CÙNG CÔNG NĂNG' : 'FORM FOLLOWS FUNCTION'}
+                  as="h3"
+                  className="mb-3 text-sm font-bold uppercase tracking-[0.08em] text-[#1C1A17]"
+                  label="Design part 1 form title"
+                />
+                <InlineEditableContent
+                  contentKey="design.part1.formDescription"
+                  value={isVi
+                    ? 'Từ những yêu cầu ban đầu, thiết kế được phát triển với sự cân bằng giữa tỷ lệ, hình dáng và công năng. Các chi tiết không chỉ tạo nên ngôn ngữ riêng cho sản phẩm mà còn phục vụ trực tiếp cho sự thoải mái và khả năng sử dụng.'
+                    : 'From the initial requirements, each design is developed with a balance of proportion, form and function. Details do more than create a distinct product language; they directly support comfort and usability.'}
+                  as="p"
+                  multiline
+                  className="text-sm leading-relaxed text-[#2C2A29] sm:text-base"
+                  label="Design part 1 form description"
+                />
+              </div>
             </div>
           </div>
         </div>
