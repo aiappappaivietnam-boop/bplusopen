@@ -131,42 +131,12 @@ export const FurniturePage: React.FC<FurniturePageProps> = ({
   });
 
   const categoriesList = [
-    {
-      id: 'pillows',
-      name: 'PILLOWS',
-      image: 'https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=600&q=80',
-      catFilter: 'accessories'
-    },
-    {
-      id: 'lounging',
-      name: 'LOUNGING',
-      image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80',
-      catFilter: 'lounging'
-    },
-    {
-      id: 'dining',
-      name: 'DINING',
-      image: 'https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=600&q=80',
-      catFilter: 'dining'
-    },
-    {
-      id: 'new',
-      name: 'NEW',
-      image: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=600&q=80',
-      catFilter: 'all'
-    },
-    {
-      id: 'accessories',
-      name: 'ACCESSORIES',
-      image: 'https://images.unsplash.com/photo-1546484475-7f7bd55792da?auto=format&fit=crop&w=600&q=80',
-      catFilter: 'accessories'
-    },
-    {
-      id: 'ipe-wood',
-      name: 'IPE WOOD',
-      image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80',
-      catFilter: 'all'
-    },
+    { id: 'dining', name: 'DINING', nameVi: 'ĂN UỐNG', image: '/furniture/categories-space/7.Dining.png', catFilter: 'dining' },
+    { id: 'lounge', name: 'LOUNGE', nameVi: 'THƯ GIÃN', image: '/furniture/categories-space/8.Lounge.png', catFilter: 'deep-seating' },
+    { id: 'poolside', name: 'POOLSIDE', nameVi: 'HỒ BƠI', image: '/furniture/categories-space/9.Poolside.png', catFilter: 'chaises' },
+    { id: 'terrace-balcony', name: 'TERRACE & BALCONY', nameVi: 'SÂN THƯỢNG & BAN CÔNG', image: '/furniture/categories-space/10.Terrace & Balcony.png', catFilter: 'all' },
+    { id: 'garden-courtyard', name: 'GARDEN & COURTYARD', nameVi: 'VƯỜN & SÂN TRONG', image: '/furniture/categories-space/11.Garden & Courtyard.png', catFilter: 'all' },
+    { id: 'hospitality', name: 'HOSPITALITY', nameVi: 'KHÔNG GIAN DỊCH VỤ', image: '/furniture/categories-space/12.Hospitality.png', catFilter: 'all' },
   ];
 
   // 3. DIVE FURTHER subcategories matching the exact screenshot (6 items: 3 columns x 2 rows)
@@ -220,7 +190,7 @@ export const FurniturePage: React.FC<FurniturePageProps> = ({
     onNavigate('collection-detail', { collection: col.mappedCollection });
   };
 
-  const handleSelectCategoryCard = (cat: (typeof categoriesList)[0]) => {
+  const handleSelectCategoryCard = (cat: { catFilter: string }) => {
     onSelectCategory(cat.catFilter);
   };
 
@@ -373,17 +343,17 @@ export const FurniturePage: React.FC<FurniturePageProps> = ({
               <div
                 key={cat.id}
                 onClick={() => handleSelectCategoryCard(cat)}
-                className="w-[calc(100%-1.5rem)] sm:w-[calc(50%-10px)] md:w-[calc(33.333%-12px)] lg:w-[calc(25%-12px)] shrink-0 aspect-[16/11] relative overflow-hidden bg-[#EAE4D9] cursor-pointer group/card transition-transform duration-300"
+                className="w-[calc(100%-1.5rem)] sm:w-[calc(50%-10px)] md:w-[calc(33.333%-12px)] lg:w-[calc(16.666%-14px)] shrink-0 aspect-[4/3] relative overflow-hidden bg-[#EAE4D9] cursor-pointer group/card transition-transform duration-300"
               >
                 <img
                   src={cat.image}
-                  alt={cat.name}
+                  alt={isVi ? cat.nameVi : cat.name}
                   className="w-full h-full object-cover object-center transition-transform duration-500 group-hover/card:scale-105"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-transparent flex items-end justify-center pb-4 sm:pb-5 px-3">
                   <span className="text-white font-sans text-sm sm:text-base font-bold tracking-[0.15em] uppercase text-center drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">
-                    {cat.name}
+                    {isVi ? cat.nameVi : cat.name}
                   </span>
                 </div>
               </div>
