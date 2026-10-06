@@ -5,6 +5,7 @@ import { JensenLeafLogo } from '../components/JensenLeafLogo';
 import { ChevronLeft, ChevronRight, ArrowLeft } from 'lucide-react';
 import { InlineEditableContent } from '../components/InlineEditableContent';
 import { InlineEditableImage } from '../components/InlineEditableImage';
+import { STORY_THUMBNAIL_IMAGES } from '../data/storyThumbnailImages';
 
 interface DesignPageProps {
   onNavigate: (page: PageId, extra?: { category?: string; collection?: string }) => void;
@@ -20,17 +21,17 @@ export const DesignPage: React.FC<DesignPageProps> = ({ onNavigate }) => {
       id: 'sustainability',
       title: 'SUSTAINABILITY',
       titleVi: 'PHÁT TRIỂN BỀN VỮNG',
-      image: '/sustainability/cards/design.png',
+      image: STORY_THUMBNAIL_IMAGES.sustainability,
       alt: 'B+Open design and outdoor living',
       action: () => onNavigate('sustainability'),
     },
     {
-      id: 'materials',
-      title: 'MATERIALS',
-      titleVi: 'CHẤT LIỆU',
-      image: '/sustainability/cards/materials.png',
-      alt: 'B+Open outdoor furniture materials',
-      action: () => onNavigate('materials'),
+      id: 'design',
+      title: 'DESIGN',
+      titleVi: 'THIẾT KẾ',
+      image: STORY_THUMBNAIL_IMAGES.design,
+      alt: 'B+Open design and material detail',
+      action: () => onNavigate('design'),
     },
     {
       id: 'craftsmanship',
