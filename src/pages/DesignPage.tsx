@@ -134,51 +134,38 @@ export const DesignPage: React.FC<DesignPageProps> = ({ onNavigate }) => {
           
           {/* Main Photo with Floating Text Card */}
           <div className="relative w-full overflow-hidden shadow-sm border border-[#E8E4DD] rounded-xs">
-            {/* Macro angle photo of chair joinery & woven detail */}
+            {/* Testing and refinement image supplied for the Design page */}
             <div className="relative h-[360px] sm:h-[480px] md:h-[560px] lg:h-[620px] overflow-hidden">
-              <img
-                src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=2000&q=85"
-                alt="B+Open chair craftsmanship detail with sculpted wood armrest and woven texture"
+              <InlineEditableImage
+                record="collection"
+                recordId="design-testing"
+                field="heroImage"
+                value="/design/design-testing.png"
+                alt="B+Open furniture prototype being tested and refined"
                 className="w-full h-full object-cover object-center"
               />
             </div>
 
             {/* Floating White Overlay Card on top-left */}
             <div className="absolute top-6 left-6 sm:top-10 sm:left-10 max-w-[340px] sm:max-w-md bg-white/95 backdrop-blur-xs p-6 sm:p-8 shadow-lg border border-black/5">
+              <div className="mb-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[#1C1A17]">
+                {isVi ? 'ĐOẠN 3' : 'PART 3'}
+              </div>
               <h3 className="text-base sm:text-lg font-bold text-[#1C1A17] uppercase tracking-[0.08em] mb-3">
-                {isVi ? 'QUY TRÌNH CỦA CHÚNG TÔI' : 'OUR PROCESS'}
+                {isVi ? 'THỬ NGHIỆM VÀ ĐIỀU CHỈNH' : 'TESTING AND REFINEMENT'}
               </h3>
               <p className="text-xs sm:text-sm text-[#2C2A29] leading-relaxed font-normal">
                 {isVi
-                  ? 'Mỗi sản phẩm của B+Open đều được khơi nguồn cảm hứng từ thiên nhiên, mài giũa đến độ hoàn mỹ qua nét bút của các nhà thiết kế đoạt giải thưởng, và được kiểm nghiệm nghiêm ngặt cùng ban lãnh đạo trụ sở tại Virginia nhằm đảm bảo rằng bạn sẽ cảm thấy êm ái tuyệt đối khi ngồi trên ghế B+Open cũng như tràn đầy niềm tự hào khi ngắm nhìn nó qua ô cửa sổ phòng bếp.'
-                  : 'Every B+Open item is inspired by nature, honed to perfection by the pens of award-winning designers, and tested with our Virginia-based leadership team to ensure that you can feel as comfortable sitting in a B+Open chair as you can feel a sense of pride while admiring it through your kitchen window.'}
+                  ? 'Ý tưởng được kiểm tra qua mẫu thử và nhiều vòng đánh giá trước khi hoàn thiện. Từ cảm giác sử dụng, độ ổn định đến từng chi tiết kết cấu, mọi yếu tố đều được điều chỉnh để đảm bảo thiết kế hoạt động đúng như mục tiêu ban đầu.'
+                  : 'Ideas are tested through prototypes and multiple rounds of review before completion. From the user experience and stability to every structural detail, each element is refined to ensure the design performs as intended.'}
               </p>
             </div>
-          </div>
-
-          {/* Three Narrative Paragraphs below the photo */}
-          <div className="max-w-3xl mx-auto mt-12 sm:mt-16 space-y-6 text-center text-sm sm:text-base leading-relaxed text-[#2C2A29]">
-            <p>
-              {isVi
-                ? 'Đội ngũ của chúng tôi luôn cống hiến hết mình để tìm kiếm những thiết kế truyền cảm hứng phù hợp với nhu cầu của người tiêu dùng hiện đại. Không ngừng đánh giá xu hướng, thấu hiểu hành vi khách hàng và suy ngẫm cách chúng tôi có thể gia tăng giá trị cho các vật liệu tự nhiên được lồng ghép bền vững vào từng thiết kế.'
-                : "Our team dedicates themselves to finding inspired designs that suit the needs of today's consumer. Always evaluating trends, understanding consumer behavior, and reflecting upon how we can add value to the natural materials that we can sustainably incorporate into our designs."}
-            </p>
-            <p>
-              {isVi
-                ? 'Khi B+Open đã xác định được nguồn cảm hứng cho bộ sưu tập tiếp theo, chúng tôi hợp tác cùng các nhà thiết kế hàng đầu Châu Âu và Bắc Mỹ từng đoạt giải thưởng chuyên sâu về nội thất gỗ và ngoài trời, nhằm mài giũa sản phẩm thành những thiết kế vừa mới lạ đầy bất ngờ, vừa gần gũi thân thương giúp làm bừng sáng khoảng sân hiên của bạn.'
-                : 'Once B+Open has determined the inspiration of our next collection, we engage with the top award-winning European and North American designers who specialize in outdoor and wood furniture to further hone our furniture into the excitingly new, yet pleasingly familiar designs that make your patio shine.'}
-            </p>
-            <p>
-              {isVi
-                ? 'Từ nét bút phác thảo đến thớ gỗ đời thực: Đội ngũ nghệ nhân bậc thầy của chúng tôi, hoạt động bền vững gần nguồn nguyên liệu tại Bolivia, hiện thực hóa các thiết kế thông qua những đợt thử nghiệm và tinh chỉnh khắt khe để bảo đảm độ ổn định kết cấu cùng tính thẩm mỹ hoàn hảo nhất.'
-                : 'From pen to wood: Our team of expert craftsmen, sustainably located near the source of our materials in Bolivia, bring these designs to life with rigorous rounds of testing and revision to ensure the structural stability and design aesthetics are just right.'}
-            </p>
           </div>
 
         </div>
       </section>
 
-      {/* 5. DARK CONTRAST SECTION: AWARD-WINNING CREATIVE MINDS (Matching Screenshot 2) */}
+      {/* 5. DARK CONTRAST SECTION: DESIGN CONNECTED TO ENGINEERING */}
       <section className="bg-[#141414] text-white py-16 sm:py-24 border-y border-white/10">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-center">
@@ -186,23 +173,26 @@ export const DesignPage: React.FC<DesignPageProps> = ({ onNavigate }) => {
             {/* Left Column: Text */}
             <div className="space-y-4 text-left">
               <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#CDBAA8] block">
-                {isVi ? 'Các Nhà Thiết Kế Của Chúng Tôi' : 'Our Designers'}
+                {isVi ? 'ĐOẠN 4' : 'PART 4'}
               </span>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold uppercase tracking-tight text-white leading-tight">
-                {isVi ? 'NHỮNG BỘ ÓC SÁNG TẠO ĐOẠT GIẢI THƯỞNG' : 'AWARD-WINNING CREATIVE MINDS'}
+                {isVi ? 'THIẾT KẾ GẮN VỚI KỸ THUẬT' : 'DESIGN CONNECTED TO ENGINEERING'}
               </h2>
               <p className="text-sm sm:text-base text-white/80 leading-relaxed font-normal pt-2">
                 {isVi
-                  ? 'B+Open hợp tác độc quyền với các nhà thiết kế nội thất đoạt giải thưởng danh giá, những chuyên gia về nội thất gỗ và không gian ngoài trời với phong cách thẩm mỹ đa dạng, tinh tế.'
-                  : 'B+Open exclusively partners with award-winning furniture designers who specialize in outdoor and wood furniture with a wide array of aesthetic inclinations.'}
+                  ? 'Thiết kế và kỹ thuật được phát triển song song để đảm bảo sản phẩm có thể được sản xuất chính xác và ổn định. Các xử lý kết cấu, mối nối, bề mặt và các chi tiết lắp ráp được tính toán ngay từ quá trình thiết kế.'
+                  : 'Design and engineering are developed in parallel to ensure products can be produced accurately and consistently. Structural solutions, joints, surfaces and assembly details are considered from the earliest stage of design.'}
               </p>
             </div>
 
             {/* Right Column: Photo of Designer Sketching Blueprints & Miniature Models */}
             <div className="relative overflow-hidden shadow-2xl border border-white/10 rounded-xs">
-              <img
-                src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=85"
-                alt="Furniture designer drafting sketches and blueprints on desk with miniature prototype chair models"
+              <InlineEditableImage
+                record="collection"
+                recordId="design-technique"
+                field="heroImage"
+                value="/design/design-technique.png"
+                alt="B+Open furniture being shaped with workshop tools"
                 className="w-full h-full object-cover aspect-[4/3]"
               />
               <div className="absolute inset-0 bg-black/10 hover:bg-transparent transition-colors duration-300" />
@@ -212,7 +202,7 @@ export const DesignPage: React.FC<DesignPageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* 6. CRAFTSMANSHIP & TIME-TESTED JOINERY (Matching Screenshot 3) */}
+      {/* 6. CRAFTSMANSHIP */}
       <section className="bg-white py-16 sm:py-24">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 space-y-12 text-center">
           
@@ -224,37 +214,8 @@ export const DesignPage: React.FC<DesignPageProps> = ({ onNavigate }) => {
             <div className="space-y-5 text-sm sm:text-base leading-relaxed text-[#2C2A29] font-normal max-w-2xl mx-auto">
               <p>
                 {isVi
-                  ? 'Nội thất gỗ của B+Open được tạo nên từ phần lõi tinh túy nhất của những thân cây thu hoạch. Phần gỗ lõi (heartwood) là phần có độ ổn định kích thước cao nhất và chiếm tỷ trọng lớn hơn đáng kể ở những cây Ipe cổ thụ hàng thế kỷ phát triển chậm. Gỗ lõi đóng vai trò sống còn trong nội thất ngoài trời để duy trì độ bền lâu dài và sự vững chãi của các mối ghép mộng mẹp qua những khắc nghiệt của chu kỳ đóng băng - tan băng, hay những đợt mưa nắng kéo dài.'
-                  : "B+Open's wood furniture is made from the heart of the trees we harvest. The heartwood portion of the tree is the most dimensionally stable and is a significantly greater portion of slow-growing, century old trees. Heartwood is critical in outdoor furniture to maintain the long-term strength and integrity of the mortise and tenon joinery throughout the seasonal extremities of freeze and thaw, and extended wet and dry periods."}
-              </p>
-              <p>
-                {isVi
-                  ? 'Gỗ của chúng tôi được sấy lò cẩn trọng trong thời gian từ 4 đến 8 tuần để giảm độ ẩm xuống còn 12%, mức độ lý tưởng cho phép các mối ghép mộng gỗ của nội thất ngày càng khít chặt và ổn định hơn khi tiếp xúc với độ ẩm không khí cao hơn trong quá trình sử dụng. Quá trình sấy chậm và dưỡng gỗ giải tỏa các ứng suất tự nhiên trong thớ gỗ, đảm bảo độ bền bỉ hàng chục năm ngoài trời trong mọi điều kiện khí hậu.'
-                  : "Our timber is carefully kiln dried for periods ranging from four to eight weeks to reduce the moisture content to 12%, which is perfectly suited to allow our furniture's wood joinery to only grow more stable when exposed to higher levels of humidity in the air when in use. The slow drying and conditioning process relaxes the natural tensions in the wood to assure years of outdoor use in a wide range of climates."}
-              </p>
-              <p>
-                {isVi
-                  ? 'Nội thất gỗ của B+Open được thiết kế với các cấu kiện có kích thước lớn và dày dặn nhằm tăng cường độ chịu lực và tính ổn định. Mỗi món đồ nội thất đều được thử nghiệm nghiêm ngặt trong phòng thí nghiệm theo các tiêu chuẩn khắt khe dành cho công trình thương mại - những tiêu chuẩn vượt xa yêu cầu dân dụng thông thường.'
-                  : "B+Open's wood furniture is designed with heavy dimensioned components for greater strength and stability. Each piece of furniture has been laboratory-tested to the demanding specifications of commercial applications. Commercial specifications far exceed the standards for common residential use."}
-              </p>
-            </div>
-          </div>
-
-          {/* Part B: Time-Tested Joinery Techniques */}
-          <div className="space-y-6 pt-4">
-            <h2 className="text-lg sm:text-xl md:text-2xl font-bold uppercase tracking-[0.08em] text-[#1C1A17]">
-              {isVi ? 'KỸ THUẬT NỐI MỘNG ĐƯỢC THỬ THÁCH QUA THỜI GIAN' : 'TIME-TESTED JOINERY TECHNIQUES'}
-            </h2>
-            <div className="space-y-5 text-sm sm:text-base leading-relaxed text-[#2C2A29] font-normal max-w-2xl mx-auto">
-              <p>
-                {isVi
-                  ? 'Nội thất gỗ của chúng tôi được chế tác bằng kỹ thuật nối mộng lồng truyền thống (interlocking mortise and tenon) và mộng chốt đinh gỗ (dowelled joinery) tạo nên những liên kết vững như bàn thạch. Được gia công chính xác với dung sai cực kỳ ngặt nghèo bằng công nghệ CNC tiên tiến, các chi tiết rời được gắn kết vĩnh cửu bằng các khớp mộng khít khao chống ẩm. Cấp độ chế tác này triệt tiêu hoàn toàn hiện tượng rung lắc lỏng lẻo, giúp đồ nội thất luôn an toàn và vững vàng qua trọn một đời người.'
-                  : 'Our wood furniture is crafted using traditional interlocking mortise and tenon, and dowelled joinery that form rock solid connections. Engineered to extremely tight tolerances through CNC technology, the individual furniture components are permanently attached with snug, moisture-sealed joints. This level of craftsmanship prevents problems such as shaking during use, making the furniture safe and stable during a lifetime of use.'}
-              </p>
-              <p>
-                {isVi
-                  ? "Bề mặt hoàn thiện thủ công 'mịn như gương kính' của B+Open có được là nhờ đặc tính siêu đặc chắc của gỗ Ipe kết hợp cùng kỹ thuật chà nhám ngược thớ (cross-grain sanding) độc bản của chúng tôi. Chà nhám ngược thớ ngăn chặn sự bong xơ của các sợi vi mô bề mặt, giữ cho lớp hoàn thiện luôn mịn màng êm ái khi gỗ chịu tác động của thời tiết ngoài trời."
-                  : "The 'smooth-as-glass' hand finish of B+Open furniture is possible due to the dense nature of Ipe wood and our unique cross-grain sanding technique. Sanding cross-grain prevents the lifting of surface micro-fibers and preserves a smooth feel as the wood weathers outdoors."}
+                  ? 'Tay nghề chế tác là cầu nối giữa ý tưởng thiết kế và sản phẩm hoàn thiện. Chúng tôi chú trọng độ chính xác trong gia công, sự ổn định của kết cấu và chất lượng của từng bề mặt để sản phẩm đáp ứng nhu cầu sử dụng lâu dài.'
+                  : 'Craftsmanship connects a design concept to the finished product. We focus on precision, structural stability and the quality of every surface so each piece can serve its purpose over time.'}
               </p>
             </div>
           </div>
