@@ -28,7 +28,7 @@ export const SustainabilityPage: React.FC<SustainabilityPageProps> = ({ onNaviga
       id: 'design',
       title: 'DESIGN',
       titleVi: 'THIẾT KẾ',
-      image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80',
+      image: '/sustainability/cards/design.png',
       alt: 'Drafting and designing furniture prototypes',
       action: () => onNavigate('design'),
     },
@@ -36,7 +36,7 @@ export const SustainabilityPage: React.FC<SustainabilityPageProps> = ({ onNaviga
       id: 'materials',
       title: 'MATERIALS',
       titleVi: 'CHẤT LIỆU',
-      image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80',
+      image: '/sustainability/cards/materials.png',
       alt: 'Outdoor dining furniture and hardwood materials',
       action: () => onNavigate('materials'),
     },
@@ -44,7 +44,7 @@ export const SustainabilityPage: React.FC<SustainabilityPageProps> = ({ onNaviga
       id: 'craftsmanship',
       title: 'CRAFTSMANSHIP',
       titleVi: 'KỸ THUẬT CHẾ TÁC',
-      image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80',
+      image: '/sustainability/cards/craftsmanship.png',
       alt: 'Artisan wood bench and mortise joinery',
       action: () => {
         onNavigate('story');
@@ -58,7 +58,7 @@ export const SustainabilityPage: React.FC<SustainabilityPageProps> = ({ onNaviga
       id: 'product-care',
       title: 'PRODUCT CARE',
       titleVi: 'BẢO QUẢN SẢN PHẨM',
-      image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80',
+      image: '/sustainability/cards/product-care.png',
       alt: 'Outdoor patio lounge sofa furniture',
       action: () => onNavigate('care'),
     },
@@ -112,23 +112,23 @@ export const SustainabilityPage: React.FC<SustainabilityPageProps> = ({ onNaviga
         </div>
       </section>
 
-      {/* 3. SECTION: THE SEEDS OF SUSTAINABILITY (Matching Screenshot 1) */}
+      {/* 3. SECTION: DESIGN FOR LASTING VALUE */}
       <section className="bg-white py-14 sm:py-20 border-b border-[#EAE6E1]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center space-y-6">
           <h2 className="text-xl sm:text-2xl md:text-3xl font-bold uppercase tracking-[0.08em] text-[#1C1A17]">
-            {isVi ? 'NHỮNG HẠT MẦM CỦA SỰ BỀN VỮNG' : 'THE SEEDS OF SUSTAINABILITY'}
+            {isVi ? 'THIẾT KẾ CHO GIÁ TRỊ LÂU DÀI' : 'DESIGNED FOR LASTING VALUE'}
           </h2>
           
           <div className="space-y-5 text-sm sm:text-base leading-relaxed text-[#2C2A29] font-normal text-center max-w-2xl mx-auto">
             <p>
               {isVi
-                ? 'Tại B+Open, chúng tôi hiểu rằng để mang lại các loại gỗ chất lượng cao nhất cho thị trường, khu rừng cần được bảo vệ chu đáo đến tận khi cây đạt độ trưởng thành hoàn hảo và xa hơn thế nữa.'
-                : 'At B+Open we understand that in order to bring the highest-quality timbers to market, the forest needs to be safe-guarded well into full maturity and beyond.'}
+                ? 'B+Open hướng đến những thiết kế có tính ứng dụng cao, phù hợp với nhu cầu sử dụng thực tế và không phụ thuộc vào xu hướng ngắn hạn. Sản phẩm được phát triển với mục tiêu duy trì giá trị về công năng và thẩm mỹ trong thời gian dài.'
+                : 'B+Open creates highly functional designs for real use, made to remain relevant beyond short-lived trends. Each product is developed with long-term thinking about both performance and aesthetics.'}
             </p>
             <p>
               {isVi
-                ? 'Cây gỗ cứng Ipe (phát âm là "ee-pay") sinh trưởng rất chậm, phải mất gần một thế kỷ để đạt tới kích thước tiêu chuẩn cần thiết cho ra đời những thân gỗ mịn màng và bền bỉ bậc nhất trên thị trường hiện nay.'
-                : 'Ipe (pronounced "EE-pay") hardwood trees grow slowly, taking nearly a century to reach the dimensions necessary to produce the finest, most durable, timbers on the market today.'}
+                ? 'Giá trị của sản phẩm được xây dựng từ khả năng đồng hành lâu dài cùng không gian và người sử dụng.'
+                : 'A product’s value is built through its ability to serve a space and its users for years to come.'}
             </p>
           </div>
         </div>
@@ -139,17 +139,17 @@ export const SustainabilityPage: React.FC<SustainabilityPageProps> = ({ onNaviga
         <div className="w-full">
           <div className="relative w-full h-[320px] sm:h-[460px] md:h-[600px] lg:h-[720px] overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=2200&q=85"
-              alt="B+Open's FSC® Certified forests in Bolivia"
+              src="/sustainability/sustainability-slide-middle.png"
+              alt="B+Open material moodboard"
               className="w-full h-full object-cover object-center"
             />
           </div>
           {/* Image caption */}
           <div className="py-3 px-4 text-center">
             <p className="text-xs sm:text-[13px] text-[#4A4744] italic tracking-wide">
-              {isVi
-                ? '(Những cánh rừng được chứng nhận FSC® của B+Open tại Bolivia)'
-                : "(B+Open's FSC® Certified forests in Bolivia)"}
+                {isVi
+                ? '(Không gian và chất liệu định hình nên thiết kế B+Open)'
+                : '(Spaces and materials that shape B+Open design)'}
             </p>
           </div>
         </div>
@@ -159,50 +159,45 @@ export const SustainabilityPage: React.FC<SustainabilityPageProps> = ({ onNaviga
       <section className="bg-white py-12 sm:py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 space-y-12 text-center">
           
-          {/* Part A: WE KNOW THE SOURCE OF OUR TIMBER */}
+          {/* Part A: CHOOSING THE RIGHT MATERIALS */}
           <div className="space-y-6">
             <h2 className="text-lg sm:text-xl md:text-2xl font-bold uppercase tracking-[0.08em] text-[#1C1A17]">
-              {isVi ? 'CHÚNG TÔI THẤU HIỂU NGUỒN GỐC GỖ CỦA MÌNH' : 'WE KNOW THE SOURCE OF OUR TIMBER'}
+              {isVi ? 'LỰA CHỌN VẬT LIỆU PHÙ HỢP' : 'CHOOSING THE RIGHT MATERIALS'}
             </h2>
             <div className="space-y-5 text-sm sm:text-base leading-relaxed text-[#2C2A29] font-normal max-w-2xl mx-auto">
               <p>
                 {isVi
-                  ? 'Miền Đông Bolivia là vùng đất của gia đình và lâm nghiệp bền vững. Quốc gia này sở hữu hơn 3,7 triệu mẫu đất rừng được Hội đồng Quản lý Rừng (FSC®) chứng nhận, đưa Bolivia trở thành quốc gia dẫn đầu về rừng bền vững trong số các vùng nhiệt đới. Những người coi Bolivia là "hogar" (mái ấm) luôn gắn kết bẩm sinh với môi trường tự nhiên, thấu hiểu sâu sắc cách giữ gìn những tài nguyên này cho các thế hệ mai sau.'
-                  : 'Eastern Bolivia is a place of family and forestry. The country is home to 3.7 million acres of Forest Stewardship Council (FSC®)-Certified forestland, making Bolivia the leader in sustainable forests among tropical countries. Those that call Bolivia "hogar" (home) have an innate connection to the natural environment, understanding how these resources are to be preserved for future generations.'}
+                  ? 'Mỗi vật liệu được cân nhắc dựa trên đặc tính sử dụng, độ bền và khả năng đáp ứng điều kiện ngoài trời. Việc lựa chọn đúng vật liệu ngay từ đầu giúp sản phẩm ổn định hơn trong quá trình sử dụng và hạn chế nhu cầu thay mới.'
+                  : 'Every material is considered for its performance, durability and ability to meet outdoor conditions. Choosing the right material from the beginning helps products perform consistently and reduces the need for replacement.'}
               </p>
               <p>
                 {isVi
-                  ? 'Thông qua hợp đồng nhượng quyền và thuê đất dài hạn với chính phủ Bolivia, B+Open trực tiếp quản lý hơn 2 triệu mẫu rừng nhiệt đới khô tại Đông Bolivia. Nhờ quy trình chuỗi hành trình sản phẩm được chứng nhận FSC®, chúng tôi có thể truy xuất nguồn gốc chính xác của từng cây gỗ và vị trí khai thác chọn lọc bền vững cho đến khi sản phẩm hoàn thiện cập bến trung tâm phân phối tại Virginia.'
-                  : 'Through a land-lease partnership with the Bolivian government, B+Open manages over 2 million acres of dry-tropical forests in Eastern Bolivia. Through the FSC®-certification chain of custody process, we are able to track the exact tree and location from where it is sustainably felled to when it arrives in our distribution center in Virginia as a finished piece of furniture.'}
+                  ? 'Chất liệu được chọn để cân bằng giữa vẻ đẹp, công năng và sự bền bỉ trong từng không gian sống.'
+                  : 'Materials are selected to balance beauty, performance and durability in every living space.'}
               </p>
             </div>
           </div>
 
-          {/* Part B: FEEL GOOD FURNITURE */}
+          {/* Part B: OPTIMIZED THROUGH PRODUCTION */}
           <div className="space-y-6 pt-4">
             <h2 className="text-lg sm:text-xl md:text-2xl font-bold uppercase tracking-[0.08em] text-[#1C1A17]">
-              {isVi ? 'NỘI THẤT MANG LẠI SỰ AN LÀNH' : 'FEEL GOOD FURNITURE'}
+              {isVi ? 'TỐI ƯU TRONG QUÁ TRÌNH SẢN XUẤT' : 'OPTIMIZED THROUGH PRODUCTION'}
             </h2>
             <div className="space-y-5 text-sm sm:text-base leading-relaxed text-[#2C2A29] font-normal max-w-2xl mx-auto">
               <p>
                 {isVi
-                  ? 'Bằng việc sở hữu sản phẩm của B+Open, bạn đang trực tiếp ủng hộ sự trường tồn của những cánh rừng do chúng tôi quản lý. B+Open gia tăng giá trị cho các tài nguyên thiên nhiên này thông qua thiết kế sáng tạo và kỹ thuật chế tác tiên tiến; nhưng chúng tôi sẽ chẳng thể tạo ra giá trị nào nếu các cánh rừng biến mất. Đó là lý do kỹ thuật thu hoạch dấu chân nhỏ của chúng tôi chỉ chọn lọc những cây Ipe trăm tuổi đã già cỗi, giữ lại các cây non và sung mãn hơn để nuôi dưỡng rừng trước chu kỳ thu hoạch tiếp theo.'
-                  : "By purchasing B+Open you are directly supporting the longevity of the forests we manage. B+Open adds value to these natural resources, through creative furniture design and manufacturing techniques; but we wouldn't be able to add any value if our forests disappeared. That is why our small-footprint harvesting techniques only select the century-old mature Ipe trees, leaving the younger and more fertile trees to replenish the forest before our next harvest."}
+                  ? 'B+Open chú trọng các bước từ phát triển sản phẩm đến gia công và hoàn thiện, nhằm sử dụng nguồn lực hiệu quả và hạn chế phát sinh không cần thiết trong quá trình sản xuất. Tư duy tối ưu được đưa vào cả thiết kế, kỹ thuật và quy trình thực hiện.'
+                  : 'B+Open focuses on every stage from product development through fabrication and finishing, using resources efficiently and avoiding unnecessary waste. Optimization is built into the design, engineering and production process.'}
               </p>
               <p>
                 {isVi
-                  ? 'B+Open đã thiết lập kế hoạch luân phiên khai thác rừng theo chuẩn chứng nhận FSC® qua từng mùa. Điều này đảm bảo mỗi lô rừng sẽ không bao giờ bị tác động lại trong suốt 30 năm, tạo thời gian cho các thế hệ cây Ipe mới vươn lên và đóng góp vào tính đa dạng sinh học của rừng.'
-                  : 'B+Open has made an FSC®-Certified plan to rotate which areas of the forest are harvested every season. This ensures that the same plot of forest is not touched again before thirty years have passed, allowing new batches of mature Ipe trees to grow, contributing to forest diversity.'}
+                  ? 'Mỗi bước đều được cân nhắc để giữ trọn chất lượng sản phẩm và giá trị của vật liệu.'
+                  : 'Every step is considered to preserve the quality of the product and the value of its materials.'}
               </p>
               <p>
                 {isVi
-                  ? "Chất gỗ Ipe của chúng tôi có độ bền truyền đời. Bạn hoàn toàn có thể an tâm khi biết rằng nội thất B+Open có thể truyền lại cho thế hệ tiếp theo. Khi các xu hướng thay đổi, hãy tự tin rằng đến đời cháu chắt của bạn sở hữu những khoảng sân vườn riêng, B+Open vẫn sẽ luôn đồng hành để tạo nên những tác phẩm nội thất gỗ mới mẻ, phong cách và bền vững."
-                  : "Our Ipe wood is heirloom-durable. Rest comfortably in the knowledge you can pass down your B+Open furniture to the next generation. As trends change, feel confident knowing that when your children's-children have backyards of their own B+Open will be there making new, stylish and sustainable, wood furniture."}
-              </p>
-              <p>
-                {isVi
-                  ? 'Cam kết bảo tồn rừng của chúng tôi biến việc lựa chọn B+Open cho không gian thư giãn của bạn thành một quyết định đầy tự hào.'
-                  : 'Our commitment to preserving our forests makes choosing B+Open for your leisure spaces a decision to be proud of.'}
+                  ? 'Đó là cách chúng tôi tạo ra những sản phẩm có chất lượng ổn định và phù hợp với nhu cầu sử dụng thực tế.'
+                  : 'This is how we create products with consistent quality for real-world use.'}
               </p>
             </div>
           </div>
@@ -215,17 +210,17 @@ export const SustainabilityPage: React.FC<SustainabilityPageProps> = ({ onNaviga
         <div className="w-full">
           <div className="relative w-full h-[320px] sm:h-[460px] md:h-[600px] lg:h-[720px] overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2200&q=85"
-              alt="Be patio-proud with sustainable B+Open furniture"
+              src="/sustainability/sustainability-slide-final.png"
+              alt="Detailed sustainable outdoor furniture construction"
               className="w-full h-full object-cover object-center"
             />
           </div>
           {/* Caption */}
           <div className="py-3 px-4 text-center">
             <p className="text-xs sm:text-[13px] text-[#4A4744] italic tracking-wide">
-              {isVi
-                ? '(Tự hào với không gian sân vườn cùng nội thất bền vững B+Open)'
-                : '(Be patio-proud with sustainable B+Open furniture)'}
+                {isVi
+                ? '(Chi tiết vật liệu và kỹ thuật hoàn thiện của B+Open)'
+                : '(B+Open material and finishing detail)'}
             </p>
           </div>
         </div>
@@ -235,18 +230,18 @@ export const SustainabilityPage: React.FC<SustainabilityPageProps> = ({ onNaviga
       <section className="bg-white py-12 sm:py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center space-y-6">
           <h2 className="text-lg sm:text-xl md:text-2xl font-bold uppercase tracking-[0.08em] text-[#1C1A17]">
-            {isVi ? 'CHỨNG NHẬN FSC® CÓ TRÁCH NHIỆM GIẢI TRÌNH' : 'ACCOUNTABLY FSC®-CERTIFIED'}
+            {isVi ? 'HƯỚNG ĐẾN VÒNG ĐỜI SẢN PHẨM DÀI HƠN' : 'TOWARD A LONGER PRODUCT LIFE'}
           </h2>
           <div className="space-y-5 text-sm sm:text-base leading-relaxed text-[#2C2A29] font-normal max-w-2xl mx-auto">
             <p>
-              {isVi
-                ? 'Hội đồng Quản lý Rừng, FSC®, được thành lập năm 1993 với sứ mệnh thúc đẩy việc quản lý rừng có trách nhiệm với môi trường, mang lại lợi ích xã hội và thịnh vượng kinh tế trên toàn cầu. Ngày nay, hơn 380 triệu mẫu rừng trên khắp thế giới đã được chứng nhận độc lập, với nhãn FSC® xuất hiện trên các sản phẩm tự nhiên được sản xuất 100% theo các hướng dẫn đã được xác minh.'
-                : "The Forest Stewardship Council, FSC®, formed in 1993 with the mission to promote environmentally sound, socially beneficial and economically prosperous management of the world's forests. Today, more than 380 million acres of forests worldwide have been independently certified, with the FSC® label carried on natural products 100% produced within the verified guidelines."}
+                {isVi
+                ? 'Chúng tôi quan tâm đến giá trị của sản phẩm trong suốt quá trình sử dụng, từ độ bền đến khả năng bảo trì và duy trì chất lượng theo thời gian. Mục tiêu là tạo ra những sản phẩm có thể sử dụng lâu dài, thay vì chỉ đáp ứng nhu cầu trong ngắn hạn.'
+                : 'We consider a product’s value throughout its life, from durability and maintenance to its ability to retain quality over time. The goal is to create products that meet real needs for many years.'}
             </p>
             <p>
-              {isVi
-                ? "B+Open, mã chứng nhận C013910, là một trong những tổ chức đầu tiên sở hữu diện tích rừng tại Nam Mỹ đạt chứng nhận 100% FSC® vào năm 1995. Điều này có nghĩa là các khu rừng cung cấp gỗ cho chúng tôi được thanh tra độc lập và xác minh tính tuân thủ nghiêm ngặt dựa trên 10 Nguyên tắc Quản lý Rừng của Hội đồng Quản lý Rừng FSC®. Các nguyên tắc này bao gồm việc công nhận quyền của cộng đồng và các dân tộc bản địa, tính khả thi kinh tế lâu dài, cùng sự bảo tồn động vật hoang dã và môi trường sống."
-                : "B+Open, C013910, was one of the first organizations with forests in South America to become 100% FSC®-Certified in 1995. This means that the forests our wood products come from are independently inspected and verified for compliance against strict standards based on the Forest Stewardship Council's, 10 Principles of Forest Stewardship. These principles include the recognition of communities and indigenous peoples' rights, long-term economic viability, and protection of wildlife and the environment."}
+                {isVi
+                ? 'Từ thiết kế, lựa chọn vật liệu đến kỹ thuật sản xuất, mỗi quyết định đều hướng đến một vòng đời bền bỉ hơn và giảm nhu cầu thay mới.'
+                : 'From design and material selection to production, every decision is made to support a longer product life and reduce the need for replacement.'}
             </p>
           </div>
 
