@@ -173,43 +173,43 @@ export const FurniturePage: React.FC<FurniturePageProps> = ({
   const diveFurtherList = [
     {
       id: 'entertaining-staples',
-      name: 'ENTERTAINING STAPLES',
-      nameVi: 'BÀN ĂN TIỆC NGOÀI TRỜI',
+      name: 'DINING',
+      nameVi: 'DINING',
       image: '/furniture/categories-space/7.Dining.png',
       catFilter: 'dining'
     },
     {
       id: 'chaise-lounges',
-      name: 'CHAISE LOUNGES',
-      nameVi: 'GHẾ TẮM NẮNG HỒ BƠI',
+      name: 'LOUNGE',
+      nameVi: 'LOUNGE',
       image: '/furniture/categories-space/8.Lounge.png',
       catFilter: 'chaises'
     },
     {
       id: 'sectionals',
-      name: 'SECTIONALS',
-      nameVi: 'SOFA GÓC MODULE ĐẲNG CẤP',
+      name: 'POOLSIDE',
+      nameVi: 'POOLSIDE',
       image: '/furniture/categories-space/9.Poolside.png',
       catFilter: 'deep-seating'
     },
     {
       id: 'benches',
-      name: 'BENCHES',
-      nameVi: 'GHẾ BĂNG GỖ NGUYÊN KHỐI',
+      name: 'TERRACE & BALCONY',
+      nameVi: 'TERRACE & BALCONY',
       image: '/furniture/categories-space/10.Terrace & Balcony.png',
       catFilter: 'accessories'
     },
     {
       id: 'dining-sets',
-      name: 'DINING SETS',
-      nameVi: 'BỘ BÀN GHẾ ĂN HOÀN CHỈNH',
+      name: 'GARDEN & COURTYARD',
+      nameVi: 'GARDEN & COURTYARD',
       image: '/furniture/categories-space/11.Garden & Courtyard.png',
       catFilter: 'dining'
     },
     {
       id: 'fabrics',
-      name: 'FABRICS',
-      nameVi: 'VẢI & ĐỆM SUNBRELLA® CAO CẤP',
+      name: 'HOSPITALITY',
+      nameVi: 'HOSPITALITY',
       image: '/furniture/categories-space/12.Hospitality.png',
       catFilter: 'all'
     },
