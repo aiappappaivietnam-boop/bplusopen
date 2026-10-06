@@ -131,42 +131,12 @@ export const FurniturePage: React.FC<FurniturePageProps> = ({
   });
 
   const categoriesList = [
-    {
-      id: 'pillows',
-      name: 'PILLOWS',
-      image: 'https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=600&q=80',
-      catFilter: 'accessories'
-    },
-    {
-      id: 'lounging',
-      name: 'LOUNGING',
-      image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80',
-      catFilter: 'lounging'
-    },
-    {
-      id: 'dining',
-      name: 'DINING',
-      image: 'https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=600&q=80',
-      catFilter: 'dining'
-    },
-    {
-      id: 'new',
-      name: 'NEW',
-      image: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=600&q=80',
-      catFilter: 'all'
-    },
-    {
-      id: 'accessories',
-      name: 'ACCESSORIES',
-      image: 'https://images.unsplash.com/photo-1546484475-7f7bd55792da?auto=format&fit=crop&w=600&q=80',
-      catFilter: 'accessories'
-    },
-    {
-      id: 'ipe-wood',
-      name: 'IPE WOOD',
-      image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80',
-      catFilter: 'all'
-    },
+    { id: 'powder-coated-metal', name: 'POWDER-COATED METAL', nameVi: 'POWDER-COATED METAL', image: '/furniture/categories-material/1.Powder-Coated Metal.png', catFilter: 'all' },
+    { id: 'poly', name: 'POLY', nameVi: 'POLY', image: '/furniture/categories-material/5.Poly.png', catFilter: 'all' },
+    { id: 'wood', name: 'WOOD', nameVi: 'WOOD', image: '/furniture/categories-material/2.Wood.png', catFilter: 'all' },
+    { id: 'upholstery', name: 'UPHOLSTERY', nameVi: 'UPHOLSTERY', image: '/furniture/categories-material/3.Upholstery.png', catFilter: 'all' },
+    { id: 'woven-rope', name: 'WOVEN ROPE', nameVi: 'WOVEN ROPE', image: '/furniture/categories-material/4.Woven Rope.png', catFilter: 'all' },
+    { id: 'mixed-materials', name: 'MIXED MATERIALS', nameVi: 'MIXED MATERIALS', image: '/furniture/categories-material/6.Mixed Materials.png', catFilter: 'all' },
   ];
 
   // 3. DIVE FURTHER subcategories matching the exact screenshot (6 items: 3 columns x 2 rows)
