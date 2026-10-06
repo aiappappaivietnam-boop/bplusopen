@@ -315,11 +315,55 @@ export const FurniturePage: React.FC<FurniturePageProps> = ({
         </div>
       </section>
 
-      {/* 3. CATEGORIES SECTION matching screenshot carousel */}
+      {/* 3. DIVE FURTHER INTO OUR ABUNDANCE OF DESIGNS TO SUIT YOUR TASTE AND SPACE. */}
+      <section className="py-12 sm:py-16 max-w-5xl mx-auto px-4 sm:px-6 border-t border-black/10">
+        <div className="text-center max-w-2xl mx-auto mb-10">
+          <h2 className="font-sans text-xl sm:text-2xl font-light tracking-[0.06em] text-[#1C1A17] uppercase leading-snug">
+            <InlineEditableContent
+              contentKey="furniture.section.dive.title"
+              value="DIVE FURTHER INTO OUR ABUNDANCE OF DESIGNS TO SUIT YOUR TASTE AND SPACE."
+              as="span"
+            />
+          </h2>
+          <p className="text-xs sm:text-sm text-[#666666] font-normal mt-2.5">
+            <InlineEditableContent
+              contentKey="furniture.section.dive.description"
+              value="Discover additional selections and special accents to enhance your outdoor enjoyment."
+              as="span"
+              multiline
+            />
+          </p>
+        </div>
+
+        {/* 3 columns x 2 rows grid of curated cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {diveFurtherList.map((item) => (
+            <div
+              key={item.id}
+              onClick={() => handleSelectDiveCard(item)}
+              className="group cursor-pointer flex flex-col items-center text-center"
+            >
+              <div className="w-full aspect-[4/3] overflow-hidden bg-[#EAE4D9] mb-3">
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+              <span className="font-sans text-[12px] sm:text-[13px] font-semibold tracking-[0.12em] uppercase text-[#1C1A17] group-hover:text-[#8C5535] transition-colors">
+                {item.name}
+              </span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 4. CATEGORIES BY SPACE — positioned below Dive Further */}
       <section className="py-6 sm:py-10 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-3 sm:mb-4">
           <h2 className="text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase text-[#1C1A17] pl-1">
-            <InlineEditableContent contentKey="furniture.section.categories" value="CATEGORIES" />
+            <InlineEditableContent contentKey="furniture.section.categories" value="CATEGORIES BY SPACE" />
           </h2>
         </div>
 
@@ -368,50 +412,6 @@ export const FurniturePage: React.FC<FurniturePageProps> = ({
           >
             <ChevronRight className="w-6 h-6 sm:w-7 sm:h-7 stroke-[2.2]" />
           </button>
-        </div>
-      </section>
-
-      {/* 4. DIVE FURTHER INTO OUR ABUNDANCE OF DESIGNS TO SUIT YOUR TASTE AND SPACE. */}
-      <section className="py-12 sm:py-16 max-w-5xl mx-auto px-4 sm:px-6 border-t border-black/10">
-        <div className="text-center max-w-2xl mx-auto mb-10">
-          <h2 className="font-sans text-xl sm:text-2xl font-light tracking-[0.06em] text-[#1C1A17] uppercase leading-snug">
-            <InlineEditableContent
-              contentKey="furniture.section.dive.title"
-              value="DIVE FURTHER INTO OUR ABUNDANCE OF DESIGNS TO SUIT YOUR TASTE AND SPACE."
-              as="span"
-            />
-          </h2>
-          <p className="text-xs sm:text-sm text-[#666666] font-normal mt-2.5">
-            <InlineEditableContent
-              contentKey="furniture.section.dive.description"
-              value="Discover additional selections and special accents to enhance your outdoor enjoyment."
-              as="span"
-              multiline
-            />
-          </p>
-        </div>
-
-        {/* 3 columns x 2 rows grid of curated cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {diveFurtherList.map((item) => (
-            <div
-              key={item.id}
-              onClick={() => handleSelectDiveCard(item)}
-              className="group cursor-pointer flex flex-col items-center text-center"
-            >
-              <div className="w-full aspect-[4/3] overflow-hidden bg-[#EAE4D9] mb-3">
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                />
-              </div>
-              <span className="font-sans text-[12px] sm:text-[13px] font-semibold tracking-[0.12em] uppercase text-[#1C1A17] group-hover:text-[#8C5535] transition-colors">
-                {item.name}
-              </span>
-            </div>
-          ))}
         </div>
       </section>
 
