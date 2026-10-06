@@ -86,7 +86,7 @@ export const DesignPage: React.FC<DesignPageProps> = ({ onNavigate }) => {
       <section className="relative w-full overflow-hidden bg-[#24211E]">
         <div className="relative w-full h-[360px] sm:h-[480px] md:h-[580px] lg:h-[680px]">
           {/* B+Open design process image supplied for the Design page */}
-          <InlineEditableImage record="collection" recordId="design" field="heroImage" value="/design/design-hero-new.png" alt="B+Open furniture design sketches and material samples" className="w-full h-full object-cover object-center filter saturate-[1.05] contrast-105" />
+          <InlineEditableImage record="collection" recordId="design" field="heroImage" value="/design/design-banner.png" alt="B+Open furniture design sketches and material samples" className="w-full h-full object-cover object-center filter saturate-[1.05] contrast-105" />
           {/* Subtle dark vignette overlay for typography legibility */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/50" />
 
