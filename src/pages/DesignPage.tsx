@@ -79,22 +79,22 @@ export const DesignPage: React.FC<DesignPageProps> = ({ onNavigate }) => {
         </div>
 
         <div className="text-[11px] text-white/60 tracking-wider hidden sm:block">
-          {isVi ? 'QUY TRÌNH THIẾT KẾ ĐỘC BẢN' : 'DESIGN PROCESS'}
+          {isVi ? 'KHÁM PHÁ QUY TRÌNH THIẾT KẾ' : 'EXPLORE THE DESIGN PROCESS'}
         </div>
       </div>
 
       {/* 2. HERO BANNER: "OUR STORY: DESIGN" (Matching Screenshot 1) */}
       <section className="relative w-full overflow-hidden bg-[#24211E]">
         <div className="relative w-full h-[360px] sm:h-[480px] md:h-[580px] lg:h-[680px]">
-          {/* Official Jensen Outdoor award-winning furniture design photograph */}
-          <InlineEditableImage record="collection" recordId="design" field="heroImage" value="https://www.jensenoutdoor.com/wp-content/uploads/2021/02/FI-Jett.jpg" alt="Award-Winning Modern Outdoor Furniture Design - B+Open" className="w-full h-full object-cover object-center filter saturate-[1.05] contrast-105" />
+          {/* B+Open design process image supplied for the Design page */}
+          <InlineEditableImage record="collection" recordId="design" field="heroImage" value="/design/design-hero-new.png" alt="B+Open furniture design sketches and material samples" className="w-full h-full object-cover object-center filter saturate-[1.05] contrast-105" />
           {/* Subtle dark vignette overlay for typography legibility */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/50" />
 
           {/* Centered headline */}
           <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center select-none">
             <span className="text-white text-xs sm:text-sm md:text-base font-bold tracking-[0.25em] sm:tracking-[0.32em] uppercase mb-2 drop-shadow-md text-white/90">
-              {isVi ? 'CÂU CHUYỆN CỦA CHÚNG TÔI:' : 'OUR STORY:'}
+              {isVi ? 'KHÁM PHÁ QUY TRÌNH' : 'EXPLORE THE PROCESS'}
             </span>
             <h1 className="text-white text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-[0.22em] sm:tracking-[0.28em] uppercase drop-shadow-[0_4px_20px_rgba(0,0,0,0.6)]">
               {isVi ? 'THIẾT KẾ' : 'DESIGN'}
@@ -103,24 +103,27 @@ export const DesignPage: React.FC<DesignPageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* 3. SECTION: DESIGNS 'MADE TO INSPIRE'. (Matching Screenshot 1) */}
+      {/* 3. SECTION: UNDERSTANDING HOW THE PRODUCT IS USED */}
       <section className="bg-white py-14 sm:py-20 border-b border-[#EAE6E1]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center space-y-6">
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#1C1A17]">
+            {isVi ? 'ĐOẠN 1' : 'PART 1'}
+          </p>
           <h2 className="text-xl sm:text-2xl md:text-3xl font-bold uppercase tracking-[0.08em] text-[#1C1A17]">
-            {isVi ? "THIẾT KẾ 'KHƠI NGUỒN CẢM HỨNG'" : "DESIGNS 'MADE TO INSPIRE'."}
+            {isVi ? 'HIỂU NHU CẦU SỬ DỤNG' : 'UNDERSTANDING HOW THE PRODUCT IS USED'}
           </h2>
           
           <div className="space-y-5 text-sm sm:text-base leading-relaxed text-[#2C2A29] font-normal text-center max-w-2xl mx-auto">
-            <p>
-              {isVi
-                ? 'Khi bắt đầu hành trình thiết kế một bộ sưu tập nội thất mới, luôn có một quy trình hợp tác sâu sắc kết nối hoạt động quản lý rừng tại Bolivia với các đội ngũ thiết kế của chúng tôi tại Hoa Kỳ và Châu Âu. Ý tưởng nào vừa mới mẻ đầy hứng khởi, nhưng lại gần gũi thân thuộc, mà chúng tôi có thể mang tới cho thị trường ngoài trời để tôn vinh trọn vẹn vẻ đẹp ngoạn mục của những chất liệu bền vững sẵn có? Trải qua nhiều năm, đội ngũ của chúng tôi không ngừng đổi mới bền vững cả trong ngôn ngữ thiết kế lẫn tay nghề chế tác để đáp ứng những nhu cầu luôn đổi thay.'
-                : 'When we begin the work of designing a new furniture collection, there is a collaborative process that connects our forestry operations in Bolivia, to our design teams in the United States and Europe. What excitingly new, yet pleasingly familiar, idea can we bring to the outdoor market that best accentuates the striking beauty of the sustainable materials we have to work with? Over the years our team has continued to sustainably innovate our designs and craftsmanship to meet with an ever-changing need.'}
-            </p>
-            <p className="font-medium text-[#1C1A17]">
-              {isVi
-                ? "Hãy cùng tiếp tục khám phá cách các thiết kế của B+Open được 'Khơi Nguồn Cảm Hứng'."
-                : "Read on to explore how B+Open designs are 'Made to Inspire.'"}
-            </p>
+            <div className="grid gap-8 text-left md:grid-cols-[auto_1fr] md:items-start md:gap-10">
+              <p className="text-xs font-bold uppercase tracking-[0.12em] text-[#1C1A17]">
+                {isVi ? 'HIỂU NHU CẦU SỬ DỤNG' : 'UNDERSTANDING HOW THE PRODUCT IS USED'}
+              </p>
+              <p>
+                {isVi
+                  ? 'Mỗi thiết kế bắt đầu từ cách sản phẩm được sử dụng trong thực tế. B+Open nghiên cứu thói quen, không gian và đặc thù của nội thất ngoài trời để xác định yêu cầu về kích thước, công năng và trải nghiệm sử dụng.'
+                  : 'Every design begins with how the product will be used in real life. B+Open studies habits, spaces and the specific demands of outdoor furniture to define the right dimensions, function and user experience.'}
+              </p>
+            </div>
           </div>
         </div>
       </section>
