@@ -22,7 +22,7 @@ export const StoryPage: React.FC<StoryPageProps> = ({ onNavigate }) => {
             record="collection"
             recordId="story-hero"
             field="heroImage"
-            value="/about-us/about-us-hero.jpg"
+            value="/about-us/about-us-banner-new.png"
             alt="B+OPEN outdoor living space"
             className="h-full w-full object-cover object-center"
           />
