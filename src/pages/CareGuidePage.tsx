@@ -209,7 +209,7 @@ export const CareGuidePage: React.FC<CareGuidePageProps> = ({ onNavigate }) => {
 
               <p className="text-sm sm:text-base text-[#1C1A17]/80 leading-relaxed font-light">
                 {isVi
-                  ? 'Lớp sơn tĩnh điện giúp bảo vệ bề mặt nhôm và thép, đồng thời mang đến màu sắc và độ hoàn thiện cho nội thất ngoài trời. Với cách vệ sinh và chăm sóc phù hợp, bạn có thể duy trì vẻ đẹp lâu dài.'
+                  ? 'Lớp sơn tĩnh điện giúp bảo vệ bề mặt nhôm và thép, đồng thời mang đến màu sắc và độ hoàn thiện cho nội thất ngoài trời. Với cách vệ sinh và chăm sóc phù hợp, bạn có thể duy trì vẻ đẹp của lớp sơn và hạn chế những tác động từ môi trường theo thời gian.'
                   : 'Powder coating protects aluminum and steel while adding color and a refined outdoor finish. With simple care, the surface stays beautiful over time.'}
               </p>
 
