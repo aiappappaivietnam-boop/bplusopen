@@ -143,34 +143,34 @@ const MATERIAL_DETAILS: Record<string, MaterialDetail> = {
     },
     image: '/materials/aluminum-lounger.png',
   },
-  hpl: {
-    id: 'hpl',
-    badge: 'Table Surface',
-    badgeVi: 'Mặt Bàn Chịu Lực',
-    title: 'HIGH PRESSURE LAMINATE (HPL)',
-    titleVi: 'TẤM ÉP CAO ÁP HPL ĐẲNG CẤP',
-    subtitle: 'Resin-Infused Composite with Extreme Scratch & Thermal Resistance',
-    subtitleVi: 'Hợp Chất Ngấm Nhựa Chịu Nhiệt & Chống Trầy Cực Cao',
+  steel: {
+    id: 'steel',
+    badge: 'Load-Bearing Performance',
+    badgeVi: 'KHẢ NĂNG CHỊU LỰC',
+    title: 'POWDER COATED STEEL',
+    titleVi: 'THÉP SƠN TĨNH ĐIỆN',
+    subtitle: 'Strength, Stability, and Durable Outdoor Protection',
+    subtitleVi: 'Độ Chắc Chắn, Khả Năng Chịu Lực Và Độ Bền Ngoài Trời',
     description:
-      'High Pressure Laminate (HPL) is a composite formed by saturating multiple layers of kraft paper with thermosetting phenolic resins, consolidated under simultaneous intense heat (300°F) and extreme pressure (1,000+ psi). The resulting non-porous slab is virtually impervious to heat, sharp impact, wine spills, and UV degradation.',
+      'Powder-coated steel brings high strength, load-bearing capacity, and excellent stability to outdoor furniture. A powder-coated finish protects the metal surface while creating a durable, refined layer that stands up to everyday use and changing weather.',
     descriptionVi:
-      'Tấm ép cao áp HPL là vật liệu composite được tạo thành bằng cách ngâm nhiều lớp giấy kraft trong nhựa phenolic nhiệt rắn, sau đó ép đồng thời dưới nhiệt độ cao (150°C) và áp suất cực đại (hơn 1.000 psi). Bề mặt không có lỗ rỗng giúp chống chịu hoàn hảo trước nhiệt độ nồi chảo nóng, va đập, vết rượu vang và tia cực tím.',
+      'Thép sơn tĩnh điện mang đến độ chắc chắn, khả năng chịu lực cao và sự ổn định cho các sản phẩm nội thất ngoài trời. Lớp sơn tĩnh điện giúp bảo vệ bề mặt kim loại, đồng thời tạo nên lớp hoàn thiện bền đẹp trước tác động của môi trường và quá trình sử dụng.',
     specs: [
-      { label: 'Manufacturing Process', labelVi: 'Quy Trình Sản Xuất', value: 'High Heat (300°F) + Extreme Pressure', valueVi: 'Nhiệt Độ Cao (150°C) + Áp Suất Cực Đại' },
-      { label: 'Surface Porosity', labelVi: 'Độ Rỗng Bề Mặt', value: 'Zero-Porosity Antimicrobial Slab', valueVi: 'Bề mặt kín hoàn toàn, kháng khuẩn' },
-      { label: 'Thermal Resistance', labelVi: 'Chịu Nhiệt', value: 'Withstands hot dinnerware & freezing ice', valueVi: 'Chịu đĩa nóng trực tiếp và băng giá' },
-      { label: 'Impact Durability', labelVi: 'Độ Bền Va Đập', value: 'Solid core resist chipping & delamination', valueVi: 'Lõi đặc nguyên khối chống sứt mẻ và bong tróc' },
+      { label: 'Steel Density', labelVi: 'Thép: Khối Lượng Riêng', value: '~7.85 g/cm³', valueVi: '~7,85 g/cm³' },
+      { label: 'Powder Coating Durability', labelVi: 'Sơn Tĩnh Điện: Độ Bền Thời Tiết', value: 'Polyester coating resists UV and weather', valueVi: 'Hệ sơn polyester chuyên dụng chống UV và thời tiết' },
+      { label: 'Load-Bearing Capacity', labelVi: 'Thép: Khả Năng Chịu Lực', value: 'Suitable for high-load outdoor applications', valueVi: 'Phù hợp với những kết cấu yêu cầu độ cứng và khả năng chịu tải tốt' },
+      { label: 'Color System', labelVi: 'Sơn Tĩnh Điện: Hệ Màu', value: 'RAL Color System', valueVi: 'RAL Color System' },
     ],
     features: [
-      { en: 'Completely food-safe and hygienic, prohibiting the growth of mold or bacteria.', vi: 'An toàn vệ sinh thực phẩm 100%, ngăn ngừa vi khuẩn và nấm mốc phát triển.' },
-      { en: 'Unaltered by severe outdoor temperature swings between summer and winter.', vi: 'Không cong vênh hay biến dạng trước sự chênh lệch nhiệt độ giữa mùa hè và mùa đông.' },
-      { en: 'Contemporary sleek aesthetic with matte bevel-profile edges.', vi: 'Thẩm mỹ hiện đại tinh tế với mép vát cạnh chuẩn phong cách tối giản Châu Âu.' },
+      { en: 'Strong construction delivers high load-bearing capacity for demanding outdoor use.', vi: 'Kết cấu thép mang lại độ cứng và khả năng chịu tải cao, phù hợp với những sản phẩm cần cảm giác vững chắc khi sử dụng.' },
+      { en: 'Steel hardness supports long-term stability and dependable performance.', vi: 'Độ cứng của thép giúp kết cấu duy trì sự chắc chắn, phù hợp với những sản phẩm outdoor có tần suất sử dụng cao.' },
+      { en: 'Powder coating protects the surface and improves resistance to outdoor conditions.', vi: 'Thép được xử lý bề mặt và phủ hệ sơn phù hợp giúp hạn chế tác động của môi trường lên phần kim loại bên dưới.' },
     ],
     careTip: {
-      en: 'Wipe with a damp sponge or microfiber cloth. Resists all household cleaners and acidic foods like lemon juice and balsamic vinegar.',
-      vi: 'Lau chùi đơn giản với khăn sợi microfiber ẩm. Kháng hoàn toàn các chất tẩy gia dụng và axit từ nước chanh hay giấm thơm.',
+      en: 'Clean regularly with water and a mild soap solution. Avoid harsh chemicals and abrasive materials, and dry the surface after cleaning to help preserve the finish.',
+      vi: 'Vệ sinh định kỳ bằng nước sạch và khăn mềm. Tránh chất tẩy mạnh, vật liệu mài mòn và để bụi bẩn hoặc nước đọng lâu trên bề mặt.',
     },
-    image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1200&q=80',
+    image: '/materials/steel-outdoor.png',
   },
 };
 
@@ -444,7 +444,7 @@ export const MaterialsPage: React.FC<MaterialsPageProps> = ({ onNavigate }) => {
             </div>
           </div>
 
-          {/* BLOCK 4: HIGH PRESSURE LAMINATE (HPL) (Left: Text | Right: Image) */}
+          {/* BLOCK 4: POWDER COATED STEEL (Left: Text | Right: Image) */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-center">
             {/* Left: Text Box (Order 2 on mobile, Order 1 on desktop) */}
             <div className="space-y-3 sm:space-y-4 text-left order-2 md:order-1">
@@ -452,28 +452,28 @@ export const MaterialsPage: React.FC<MaterialsPageProps> = ({ onNavigate }) => {
                 {isVi ? 'Mặt Bàn Chịu Lực' : 'Table Surface'}
               </span>
               <h3 className="text-xl sm:text-2xl font-bold uppercase tracking-[0.06em] text-[#1C1A17]">
-                {isVi ? 'TẤM ÉP CAO ÁP HPL' : 'HIGH PRESSURE LAMINATE (HPL)'}
+                {isVi ? 'THÉP SƠN TĨNH ĐIỆN' : 'POWDER COATED STEEL'}
               </h3>
               <p className="text-xs sm:text-sm text-[#2C2A29] leading-relaxed font-normal">
                 {isVi
-                  ? 'HPL là vật liệu composite công nghệ cao từ giấy kraft ngậm nhựa nhiệt rắn, kết hợp cùng nhau tạo nên bề mặt hoàn thiện với chất lượng thị giác xuất sắc, tuổi thọ lâu dài và đặc tính kháng khuẩn vượt trội.'
-                  : 'HPL is a high tech composite of kraft paper enriched with resin, put together these materials create a surface finish with excellent visual qualities, a long life, and antimicrobial properties.'}
+                  ? 'Thép sơn tĩnh điện mang đến độ chắc chắn, khả năng chịu lực cao và sự ổn định cho các sản phẩm nội thất ngoài trời. Lớp sơn tĩnh điện giúp bảo vệ bề mặt kim loại và tạo nên lớp hoàn thiện bền đẹp.'
+                  : 'Powder-coated steel brings strength, load-bearing capacity, and stability to outdoor furniture while protecting the metal with a durable refined finish.'}
               </p>
               <div className="pt-1">
                 <button
-                  onClick={() => setSelectedMaterial(MATERIAL_DETAILS.hpl)}
+                  onClick={() => setSelectedMaterial(MATERIAL_DETAILS.steel)}
                   className="inline-block text-xs font-bold text-[#1C1A17] underline underline-offset-4 hover:opacity-75 transition-opacity cursor-pointer uppercase tracking-wider"
                 >
-                  {isVi ? 'Khám phá sự thật về tấm ép HPL' : 'Get the Facts on High Pressure Laminate'}
+                  {isVi ? 'Tìm hiểu thêm về thép sơn tĩnh điện' : 'Learn About Powder Coated Steel'}
                 </button>
               </div>
             </div>
 
-            {/* Right: Photo of modern outdoor dining table with sleek HPL surface */}
+            {/* Right: Powder coated steel outdoor furniture detail */}
             <div className="relative overflow-hidden shadow-xs border border-[#E8E4DD] rounded-xs aspect-[4/3] order-1 md:order-2">
               <img
-                src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=85"
-                alt="High Pressure Laminate outdoor dining tabletop with aluminum frame and chairs"
+                src="/materials/steel-patio.png"
+                alt="Powder coated steel outdoor table and chairs"
                 className="w-full h-full object-cover"
               />
             </div>
