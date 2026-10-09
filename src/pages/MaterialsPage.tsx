@@ -27,34 +27,34 @@ interface MaterialDetail {
 }
 
 const MATERIAL_DETAILS: Record<string, MaterialDetail> = {
-  ipe: {
-    id: 'ipe',
+  teak: {
+    id: 'teak',
     badge: 'Durable Hardwood',
-    badgeVi: 'Gỗ Cứng Bền Bỉ',
-    title: 'IPE WOOD',
-    titleVi: 'GỖ CỨNG IPE BOLIVIA',
-    subtitle: 'The Crown Jewel of Sustainable Outdoor Timbers',
-    subtitleVi: 'Viên Ngọc Quý Của Lâm Nghiệp Bền Vững Thế Giới',
+    badgeVi: 'GỖ CỨNG BỀN BỈ',
+    title: 'NATURAL TEAK WOOD',
+    titleVi: 'GỖ TEAK TỰ NHIÊN',
+    subtitle: 'Natural Beauty and Lasting Outdoor Performance',
+    subtitleVi: 'Vẻ Đẹp Tự Nhiên Và Độ Bền Bỉ Ngoài Trời',
     description:
-      'Ipe (pronounced "EE-pay") is an exceptionally dense, naturally oily tropical hardwood sustainably harvested from FSC®-certified dry-tropical forests in Eastern Bolivia. With a Janka hardness rating of 3,680 lbf—nearly three times harder than Teak—it resists rot, insects, extreme temperature cycles, and severe weather for decades with virtually zero maintenance.',
+      'Natural teak is a sought-after material for outdoor furniture thanks to its natural durability, moisture resistance, and exceptional stability through changing weather. Its warm brown tone and distinctive grain gradually develop a refined silver-gray patina over time.',
     descriptionVi:
-      'Gỗ Ipe (phát âm là "EE-pay") là loài gỗ cứng nhiệt đới đặc sánh và giàu dầu tự nhiên, được khai thác bền vững từ các khu rừng nhiệt đới khô đạt chứng nhận FSC® tại miền Đông Bolivia. Với độ cứng Janka đạt tới 3.680 lbf—gấp gần 3 lần gỗ Teak—Ipe kháng sâu mọt, ẩm mục, thời tiết khắc nghiệt trong nhiều thập kỷ mà gần như không cần bảo dưỡng phức tạp.',
+      'Gỗ Teak tự nhiên là vật liệu được ưa chuộng cho nội thất ngoài trời nhờ độ bền tự nhiên, khả năng chống ẩm và sự ổn định cao trước những thay đổi của thời tiết. Bề mặt gỗ sở hữu sắc nâu ấm cùng vân gỗ đặc trưng, dần chuyển sang lớp patina bạc xám theo thời gian.',
     specs: [
-      { label: 'Janka Hardness', labelVi: 'Độ Cứng Janka', value: '3,680 lbf (3x Teak)', valueVi: '3.680 lbf (Gấp 3 lần Teak)' },
-      { label: 'FSC® Certification', labelVi: 'Chứng Nhận FSC®', value: '100% FSC® C013910 Certified', valueVi: '100% Chứng nhận FSC® C013910' },
-      { label: 'Fire Rating', labelVi: 'Kháng Cháy', value: 'Class A (Same as concrete/steel)', valueVi: 'Loại A (Tương đương bê tông & thép)' },
-      { label: 'Lifespan', labelVi: 'Tuổi Thọ', value: 'Heirloom (50+ years outdoors)', valueVi: 'Di sản (50+ năm ngoài trời)' },
+      { label: 'Janka Hardness', labelVi: 'Độ Cứng Janka', value: '~1,070 lbf / 4,740 N', valueVi: '~1.070 lbf / 4.740 N' },
+      { label: 'Natural Durability', labelVi: 'Độ Bền Tự Nhiên', value: 'Class 1 – Very durable', valueVi: 'Class 1 – Rất bền' },
+      { label: 'Density', labelVi: 'Khối Lượng Riêng', value: '~610–655 kg/m³', valueVi: '~610–655 kg/m³' },
+      { label: 'Volumetric Shrinkage', labelVi: 'Độ Co Thể Tích', value: '~7%', valueVi: '~7%' },
     ],
     features: [
-      { en: 'Natural organic oils resist moisture, mildew, and wood-boring insects.', vi: 'Dầu hữu cơ tự nhiên kháng ẩm, rêu mốc và côn trùng đục khoét gỗ.' },
-      { en: 'Weathers gracefully from deep chocolate brown to a distinguished silver-gray patina.', vi: 'Biến đổi màu thanh lịch từ nâu socola sang lớp màu patina bạc quý phái.' },
-      { en: 'Slowly kiln-dried for 4–8 weeks to 12% moisture content for maximum joint stability.', vi: 'Sấy lò chậm 4–8 tuần đạt độ ẩm 12% giúp mối ghép ổn định tuyệt đối.' },
+      { en: 'Natural oils protect the wood from moisture and insects.', vi: 'Dầu tự nhiên bảo vệ gỗ.' },
+      { en: 'Excellent dimensional stability through changing weather.', vi: 'Ổn định kích thước.' },
+      { en: 'Naturally durable for demanding outdoor environments.', vi: 'Bền bỉ ngoài trời.' },
     ],
     careTip: {
-      en: 'Maintain the rich chocolate color with Penofin Verde Oil once a year, or allow it to age naturally to a handsome silver patina.',
-      vi: 'Duy trì màu nâu hạt dẻ ấm áp với dầu lau Penofin Verde mỗi năm một lần, hoặc để gỗ tự nhiên ngả màu patina bạc cổ kính.',
+      en: 'Clean periodically with a warm cloth and allow the surface to dry naturally. Teak can be left unfinished outdoors and will gradually develop its characteristic silver-gray tone.',
+      vi: 'Vệ sinh định kỳ bằng khăn ấm và để bề mặt khô tự nhiên. Teak có thể để mộc ngoài trời, dần chuyển sang sắc bạc xám đặc trưng theo thời gian.',
     },
-    image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80',
+    image: '/materials/teak-grain.png',
   },
   solara: {
     id: 'solara',
@@ -208,7 +208,7 @@ export const MaterialsPage: React.FC<MaterialsPageProps> = ({ onNavigate }) => {
       action: () => {
         onNavigate('story');
         setTimeout(() => {
-          const el = document.getElementById('materials-ipe');
+          const el = document.getElementById('materials-teak');
           if (el) el.scrollIntoView({ behavior: 'smooth' });
         }, 100);
       },
@@ -292,18 +292,18 @@ export const MaterialsPage: React.FC<MaterialsPageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* 4. FEATURE 1: IPE WOOD WITH FULL-WIDTH LANDSCAPE (Matching Screenshot 1 & 2) */}
+      {/* 4. FEATURE 1: NATURAL TEAK WOOD */}
       <section className="bg-white pt-4 pb-12 sm:pb-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Panoramic Image with Top-Left Floating Card */}
           <div className="relative w-full overflow-hidden shadow-sm border border-[#E8E4DD] rounded-xs">
             
-            {/* Golden Hour Sunset Mountain View with Stone Patio, Fire Pit, and Adirondack Chairs */}
+            {/* Natural teak grain supplied for the Materials page */}
             <div className="relative h-[420px] sm:h-[540px] md:h-[640px] lg:h-[720px] overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=2200&q=85"
-                alt="Golden sunset patio with roaring fire pit and B+Open Ipe Adirondack chairs overlooking scenic mountains"
+                src="/materials/teak-surface.png"
+                alt="Natural teak wood grain"
                 className="w-full h-full object-cover object-center"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20" />
@@ -315,18 +315,18 @@ export const MaterialsPage: React.FC<MaterialsPageProps> = ({ onNavigate }) => {
                 {isVi ? 'ĐẤT & RỪNG • BỀN BỈ TRUYỀN ĐỜI' : 'EARTH • HEIRLOOM DURABLE'}
               </span>
               <h3 className="text-lg sm:text-xl font-bold text-[#1C1A17] uppercase tracking-[0.06em] mb-3">
-                {isVi ? 'GỖ IPE TỰ NHIÊN' : 'IPE WOOD'}
+                {isVi ? 'GỖ TEAK TỰ NHIÊN' : 'NATURAL TEAK WOOD'}
               </h3>
               <p className="text-xs sm:text-[13px] text-[#2C2A29] leading-relaxed font-normal mb-5">
                 {isVi
-                  ? 'Gỗ Ipe, viên ngọc quý trên vương miện gỗ tự nhiên của chúng tôi, hiện thân cho tiêu chuẩn chất lượng di sản mà chúng tôi cam kết cho mọi chất liệu cấu thành.'
-                  : 'Ipe wood, the crown jewel of our timbers, embodies the heirloom-quality standard we hold all of our materials to.'}
+                  ? 'Gỗ Teak tự nhiên là vật liệu được ưa chuộng cho nội thất ngoài trời nhờ khả năng chống ẩm, ổn định kích thước và vẻ đẹp vân gỗ đặc trưng.'
+                  : 'Natural teak is valued for outdoor furniture for its moisture resistance, dimensional stability, and distinctive grain.'}
               </p>
               <button
-                onClick={() => setSelectedMaterial(MATERIAL_DETAILS.ipe)}
+                onClick={() => setSelectedMaterial(MATERIAL_DETAILS.teak)}
                 className="inline-block text-xs font-bold text-[#9B522E] underline underline-offset-4 hover:opacity-75 transition-opacity cursor-pointer uppercase tracking-wider"
               >
-                {isVi ? 'Đọc thêm về gỗ Ipe' : 'Read About Ipe Wood'}
+                {isVi ? 'Đọc thêm về gỗ Teak' : 'Read About Teak Wood'}
               </button>
             </div>
 
