@@ -48,7 +48,7 @@ export const CareGuidePage: React.FC<CareGuidePageProps> = ({ onNavigate }) => {
             record="collection"
             recordId="care-guide"
             field="heroImage"
-            value="https://www.jensenoutdoor.com/wp-content/uploads/2020/12/coral-gray-70421-70401-opal-63710-h-1.jpg"
+            value="/care/care-hero.png"
             alt={isVi ? 'Bảo dưỡng nội thất ngoài trời' : 'Outdoor furniture care'}
             className="h-full w-full object-cover"
           />
@@ -75,7 +75,7 @@ export const CareGuidePage: React.FC<CareGuidePageProps> = ({ onNavigate }) => {
         
         <p className="text-sm sm:text-base text-[#1C1A17]/80 leading-relaxed max-w-3xl mx-auto mb-10 font-light">
           {isVi
-            ? 'Tại B+Open, chúng tôi tin rằng nội thất xa xỉ cũng phải mang lại sự xa xỉ của sự chăm sóc đơn giản. Duy trì vẻ đẹp và sự thoải mái cho nội thất gỗ Ipe, vải đệm và sợi mây đan của bạn sẽ vô cùng nhẹ nhàng khi bạn tuân thủ các nguyên tắc bảo dưỡng dễ dàng của chúng tôi.'
+            ? 'Tại B+Open, chúng tôi tin rằng nội thất xa xỉ cũng phải mang lại sự xa xỉ của sự chăm sóc đơn giản. Duy trì vẻ đẹp và sự thoải mái cho nội thất của bạn sẽ vô cùng nhẹ nhàng khi bạn tuân thủ các nguyên tắc bảo dưỡng dễ dàng của chúng tôi.'
             : 'At B+Open, we believe that luxury furniture should offer the luxury of simple care. Maintaining the beauty and comfort of your Ipe furniture, cushion fabrics, and woven fibers will feel effortless when you follow our easy care guidelines.'}
         </p>
 
@@ -108,15 +108,15 @@ export const CareGuidePage: React.FC<CareGuidePageProps> = ({ onNavigate }) => {
             <div className="lg:col-span-7 space-y-3">
               <div className="relative rounded-xs overflow-hidden shadow-xl border border-[#DCD3C0] bg-black">
                 <img
-                  src="https://www.jensenoutdoor.com/wp-content/uploads/2025/02/Innova-AuroraGardenBench-Restored.gif"
-                  alt="Ipe Wood Restoration Before and After"
+                  src="/care/teak-care.png"
+                  alt="Natural teak care and maintenance"
                   className="w-full h-auto object-cover"
                   loading="lazy"
                 />
               </div>
               <p className="text-xs sm:text-[13px] text-[#5A524A] italic text-center sm:text-left leading-relaxed">
                 {isVi
-                  ? 'Gỗ Ipe phong hóa khoác lên mình ánh bạc quý phái trước khi các bước đơn giản của Bộ Phục Hồi Ipe đưa gỗ trở lại tông màu nâu sô-cô-la nguyên bản.'
+                  ? 'Gỗ Teak dần thay đổi sắc màu theo thời gian. Bốn cấp độ bảo dưỡng giúp bạn lựa chọn diện mạo và mức độ chăm sóc phù hợp.'
                   : 'Weathered Ipe wood takes on a silver glow before following the simple steps in the Ipe Aftercare Kit to return the wood to it’s chocolate-brown finish.'}
               </p>
             </div>
@@ -133,7 +133,7 @@ export const CareGuidePage: React.FC<CareGuidePageProps> = ({ onNavigate }) => {
 
               <p className="text-sm sm:text-base text-[#1C1A17]/80 leading-relaxed font-light">
                 {isVi
-                  ? 'Không phải mọi tình huống chăm sóc đều giống nhau, đó là lý do vì sao chúng tôi thiết kế cẩm nang đơn giản này để chia sẻ cách thức, thời điểm và lý do cần chăm sóc cho nội thất của bạn.'
+                  ? 'Gỗ Teak có thể giữ sắc nâu ấm qua các bước chăm sóc phù hợp hoặc chuyển dần sang màu bạc xám tự nhiên theo thời gian. Khám phá 4 cấp độ bảo dưỡng để lựa chọn chăm sóc phù hợp với vẻ đẹp bạn mong muốn.'
                   : 'Not all care scenarios are created equal, that’s why we have created an easy guide to share how, when, and why to maintain your furniture.'}
               </p>
 
@@ -149,7 +149,7 @@ export const CareGuidePage: React.FC<CareGuidePageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* 4. SUNBRELLA® FABRICS SECTION */}
+      {/* 4. SOLUTION-DYED ACRYLIC SECTION */}
       <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
@@ -157,8 +157,8 @@ export const CareGuidePage: React.FC<CareGuidePageProps> = ({ onNavigate }) => {
           <div className="lg:col-span-6 order-2 lg:order-1">
             <div className="relative rounded-xs overflow-hidden shadow-lg border border-[#EAE3D2]">
               <img
-                src="https://www.jensenoutdoor.com/wp-content/uploads/2025/08/S26_Tempo_SwivelRocker_L2_4K-1024x683.jpg"
-                alt="Sunbrella Fabric cushions on Ipe swivel rocker"
+                src="/care/upholstery-care.png"
+                alt="Solution-dyed acrylic outdoor upholstery"
                 className="w-full h-auto object-cover hover:scale-102 transition-transform duration-700"
                 loading="lazy"
               />
@@ -168,31 +168,31 @@ export const CareGuidePage: React.FC<CareGuidePageProps> = ({ onNavigate }) => {
           {/* Right: Content */}
           <div className="lg:col-span-6 order-1 lg:order-2 space-y-6">
             <div className="text-xs uppercase tracking-[0.25em] font-semibold text-[#ae5c4a]">
-              Sunbrella® Fabrics
+                SOLUTION-DYED ACRYLIC
             </div>
 
             <h3 className="font-serif text-3xl sm:text-4xl font-medium text-[#1C1A17] tracking-tight">
-              {isVi ? 'Vệ sinh vải dệt bền bỉ Sunbrella®' : 'Cleaning durable Sunbrella® fabrics'}
+              {isVi ? 'Hướng dẫn bảo dưỡng vải bọc Solution-Dyed Acrylic' : 'Solution-Dyed Acrylic Upholstery Care'}
             </h3>
 
             <p className="text-sm sm:text-base text-[#1C1A17]/80 leading-relaxed font-light">
               {isVi
-                ? 'Gỗ Ipe có thể được duy trì ở trạng thái "mới tinh" như ban đầu, hoặc để gỗ tự nhiên ngả sang màu ánh bạc patina thanh lịch theo năm tháng. Diện mạo và mức độ bảo trì hoàn toàn do bạn quyết định.'
-                : 'Ipe wood can be maintained with an ‘as new’ finish, or allowed to gracefully age to an elegant silver-patina. The look, and level of maintenance, is up to you.'}
+                  ? 'Vải Solution-Dyed Acrylic được lựa chọn cho nội thất ngoài trời nhờ khả năng duy trì màu sắc tốt dưới ánh nắng và cảm giác mềm mại khi sử dụng. Vệ sinh phù hợp giúp duy trì vẻ hoàn thiện của sản phẩm theo thời gian.'
+                  : 'Solution-Dyed Acrylic is made for outdoor upholstery, combining colorfast performance with a soft hand. Simple, regular care keeps the fabric clean and looking its best.'}
             </p>
 
             <button
               onClick={() => setActiveModal('ipe-instructions')}
               className="inline-flex items-center justify-center px-8 py-4 bg-[#ae5c4a] hover:bg-[#974b3a] text-white font-sans text-xs sm:text-sm font-bold uppercase tracking-[0.14em] shadow-md transition-colors cursor-pointer rounded-xs"
             >
-              <span>{isVi ? 'Hướng Dẫn Bảo Dưỡng Gỗ Ipe' : 'Ipe Care Instructions'}</span>
+                <span>{isVi ? 'Hướng Dẫn Bảo Dưỡng Vải Bọc' : 'Upholstery Care Instructions'}</span>
             </button>
           </div>
 
         </div>
       </section>
 
-      {/* 5. WOVEN VIRO® FIBER SECTION */}
+      {/* 5. POWDER-COATED FINISH SECTION */}
       <section className="py-20 sm:py-28 bg-[#F8F5EE] border-t border-[#EAE3D2]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
@@ -200,24 +200,24 @@ export const CareGuidePage: React.FC<CareGuidePageProps> = ({ onNavigate }) => {
             {/* Left: Content */}
             <div className="lg:col-span-6 space-y-6">
               <div className="text-xs uppercase tracking-[0.25em] font-semibold text-[#ae5c4a]">
-                Woven Viro® Fiber
+                POWDER-COATED FINISH
               </div>
 
               <h2 className="font-serif text-3xl sm:text-4xl font-medium text-[#1C1A17] tracking-tight">
-                {isVi ? 'Sợi Mây Viro® Ít Cần Bảo Dưỡng' : 'Low Maintenance Viro® Fiber'}
+                {isVi ? 'Bề mặt sơn tĩnh điện' : 'Powder-Coated Finish'}
               </h2>
 
               <p className="text-sm sm:text-base text-[#1C1A17]/80 leading-relaxed font-light">
                 {isVi
-                  ? 'Sợi mây đan thủ công Viro® Fiber có độ bền vượt trội tương đương với sự dễ dàng trong bảo quản. Hãy đọc cẩm nang chăm sóc của chúng tôi để thấy việc giữ sạch đơn giản đến nhường nào!'
-                  : 'Woven Viro® Fiber is as durable as it is easy to maintain. Read our care guide to see how simple it is!'}
+                  ? 'Lớp sơn tĩnh điện giúp bảo vệ bề mặt nhôm và thép, đồng thời mang đến màu sắc và độ hoàn thiện cho nội thất ngoài trời. Với cách vệ sinh và chăm sóc phù hợp, bạn có thể duy trì vẻ đẹp lâu dài.'
+                  : 'Powder coating protects aluminum and steel while adding color and a refined outdoor finish. With simple care, the surface stays beautiful over time.'}
               </p>
 
               <button
                 onClick={() => setActiveModal('viro-instructions')}
                 className="inline-flex items-center justify-center px-8 py-4 bg-[#ae5c4a] hover:bg-[#974b3a] text-white font-sans text-xs sm:text-sm font-bold uppercase tracking-[0.14em] shadow-md transition-colors cursor-pointer rounded-xs"
               >
-                <span>{isVi ? 'Hướng Dẫn Bảo Dưỡng Sợi Viro®' : 'Woven Viro® Fiber Care Instructions'}</span>
+                <span>{isVi ? 'Hướng Dẫn Bảo Dưỡng Bề Mặt Sơn Tĩnh Điện' : 'Powder-Coated Finish Care'}</span>
               </button>
             </div>
 
@@ -225,8 +225,8 @@ export const CareGuidePage: React.FC<CareGuidePageProps> = ({ onNavigate }) => {
             <div className="lg:col-span-6">
               <div className="relative rounded-xs overflow-hidden shadow-lg border border-[#EAE3D2]">
                 <img
-                  src="https://www.jensenoutdoor.com/wp-content/uploads/2022/02/coral-hpsq-2.jpg"
-                  alt="Close-up of Woven Viro Fiber outdoor seating"
+                  src="/care/powder-coated-finish.png"
+                  alt="Powder-coated outdoor furniture finish"
                   className="w-full h-auto object-cover hover:scale-102 transition-transform duration-700"
                   loading="lazy"
                 />
@@ -245,8 +245,8 @@ export const CareGuidePage: React.FC<CareGuidePageProps> = ({ onNavigate }) => {
           <div className="lg:col-span-6">
             <div className="relative rounded-xs overflow-hidden shadow-lg border border-[#EAE3D2] bg-white p-4">
               <img
-                src="https://www.jensenoutdoor.com/wp-content/uploads/2020/12/17_IpeAftercareKit81000.jpg"
-                alt="B+Open Ipe Aftercare Kit Supplies"
+                src="/care/care-supplies.png"
+                alt="B+Open outdoor furniture care supplies"
                 className="w-full h-auto object-contain hover:scale-102 transition-transform duration-700"
                 loading="lazy"
               />
@@ -260,12 +260,12 @@ export const CareGuidePage: React.FC<CareGuidePageProps> = ({ onNavigate }) => {
             </div>
 
             <h2 className="font-serif text-3xl sm:text-4xl font-medium text-[#1C1A17] tracking-tight">
-              {isVi ? 'Vật Liệu Chuẩn Xác' : 'The Right Stuff'}
+              {isVi ? 'Chăm Sóc Đúng Cách, Bền Đẹp Dài Lâu' : 'Care the Right Way, Keep It Beautiful'}
             </h2>
 
             <p className="text-sm sm:text-base text-[#1C1A17]/80 leading-relaxed font-light">
               {isVi
-                ? 'B+Open đã hợp tác với các nhà cung cấp sản phẩm bảo dưỡng hàng đầu trong ngành nội thất ngoại thất để tạo nên những sản phẩm chăm sóc giúp việc duy trì vẻ đẹp đồ gỗ của bạn trở nên vô cùng nhẹ nhàng.'
+                ? 'Mỗi vật liệu outdoor cần một phương pháp chăm sóc riêng. B+Open tổng hợp các sản phẩm và hướng dẫn bảo dưỡng phù hợp cho gỗ Teak, kim loại sơn tĩnh điện và vải bọc ngoài trời.'
                 : 'B+Open has worked with the leading care suppliers in the outdoor industry to create care products that make maintaining your furniture a breeze.'}
             </p>
 
@@ -463,7 +463,7 @@ export const CareGuidePage: React.FC<CareGuidePageProps> = ({ onNavigate }) => {
                   {isVi ? 'Giao Thức Tiêu Chuẩn' : 'Maintenance Matrix'}
                 </span>
                 <h3 className="font-serif text-2xl sm:text-3xl font-medium text-[#1C1A17] mt-1">
-                  {isVi ? '4 Cấp Độ Bảo Dưỡng Nội Thất Gỗ Ipe' : 'The 4 Levels of Ipe Care'}
+                  {isVi ? '4 Cấp Độ Bảo Dưỡng Nội Thất Gỗ Teak' : 'The 4 Levels of Teak Care'}
                 </h3>
                 <p className="text-sm text-[#5A524A] mt-2">
                   {isVi 
@@ -497,14 +497,14 @@ export const CareGuidePage: React.FC<CareGuidePageProps> = ({ onNavigate }) => {
                 <div className="p-5 bg-white border border-[#EAE3D2] rounded-xs">
                   <div className="flex items-center justify-between mb-2">
                     <span className="px-2.5 py-1 bg-[#ae5c4a]/10 text-[#ae5c4a] font-bold text-xs uppercase tracking-wider rounded-xs">
-                      {isVi ? 'Cấp Độ 2: Tẩy Rửa & Làm Sạch Sâu' : 'Level 2: Deep Cleansing'}
+                      {isVi ? 'Cấp Độ 2: Làm Sạch Chuyên Sâu' : 'Level 2: Deep Cleansing'}
                     </span>
                     <span className="text-xs text-[#8C7A6B]">
                       {isVi ? '1 năm/lần' : 'Annually'}
                     </span>
                   </div>
                   <h4 className="font-serif text-base font-bold text-[#1C1A17] mb-1">
-                    {isVi ? 'Dùng Dung Dịch Ipe Cleaner Chuyên Dụng' : 'Specialized Ipe Cleaner Application'}
+                      {isVi ? 'Loại Bỏ Vết Bẩn Và Rêu Mốc Bề Mặt' : 'Remove Stains and Surface Mold'}
                   </h4>
                   <p className="text-xs text-[#5A524A] leading-relaxed">
                     {isVi
@@ -517,14 +517,14 @@ export const CareGuidePage: React.FC<CareGuidePageProps> = ({ onNavigate }) => {
                 <div className="p-5 bg-white border border-[#EAE3D2] rounded-xs">
                   <div className="flex items-center justify-between mb-2">
                     <span className="px-2.5 py-1 bg-[#ae5c4a]/10 text-[#ae5c4a] font-bold text-xs uppercase tracking-wider rounded-xs">
-                      {isVi ? 'Cấp Độ 3: Bổ Sung Dầu Dưỡng Penofin®' : 'Level 3: Penofin® Oil Conditioning'}
+                      {isVi ? 'Cấp Độ 3: Bảo Vệ Bề Mặt & Duy Trì Màu Sắc' : 'Level 3: Protect and Maintain the Finish'}
                     </span>
                     <span className="text-xs text-[#8C7A6B]">
                       {isVi ? '1-2 lần/năm (Tùy Chọn)' : '1-2x yearly (Optional)'}
                     </span>
                   </div>
                   <h4 className="font-serif text-base font-bold text-[#1C1A17] mb-1">
-                    {isVi ? 'Duy Trì Sắc Nâu Hổ Phách Chocolate' : 'Preserve the Rich Chocolate Glow'}
+                      {isVi ? 'Lựa Chọn Lớp Hoàn Thiện Phù Hợp' : 'Choose the Right Finish'}
                   </h4>
                   <p className="text-xs text-[#5A524A] leading-relaxed">
                     {isVi
@@ -537,7 +537,7 @@ export const CareGuidePage: React.FC<CareGuidePageProps> = ({ onNavigate }) => {
                 <div className="p-5 bg-white border border-[#EAE3D2] rounded-xs">
                   <div className="flex items-center justify-between mb-2">
                     <span className="px-2.5 py-1 bg-[#ae5c4a]/10 text-[#ae5c4a] font-bold text-xs uppercase tracking-wider rounded-xs">
-                      {isVi ? 'Cấp Độ 4: Phục Hồi Toàn Diện Bằng Bộ Aftercare Kit' : 'Level 4: Complete Restoration Kit'}
+                      {isVi ? 'Cấp Độ 4: Phục Hồi Bề Mặt Gỗ' : 'Level 4: Restore the Wood Surface'}
                     </span>
                     <span className="text-xs text-[#8C7A6B]">
                       {isVi ? 'Khi muốn đưa gỗ bạc về màu ban đầu' : 'To reverse grey patina'}
@@ -584,7 +584,7 @@ export const CareGuidePage: React.FC<CareGuidePageProps> = ({ onNavigate }) => {
                   {isVi ? 'Cẩm Nang Kỹ Thuật' : 'Official Guidelines'}
                 </span>
                 <h3 className="font-serif text-2xl font-medium text-[#1C1A17] mt-1">
-                  {isVi ? 'Hướng Dẫn Chi Tiết Bảo Dưỡng Gỗ Ipe' : 'Ipe Wood Care Instructions'}
+                  {isVi ? 'Hướng Dẫn Bảo Dưỡng Vải Bọc Solution-Dyed Acrylic' : 'Solution-Dyed Acrylic Upholstery Care'}
                 </h3>
               </div>
 
@@ -639,10 +639,10 @@ export const CareGuidePage: React.FC<CareGuidePageProps> = ({ onNavigate }) => {
             <div className="space-y-6 text-left">
               <div>
                 <span className="text-xs uppercase tracking-[0.2em] font-semibold text-[#ae5c4a]">
-                  {isVi ? 'Vật Liệu Mây Đan' : 'Woven Specifications'}
+                  {isVi ? 'Bề Mặt Sơn Tĩnh Điện' : 'Powder-Coated Finish'}
                 </span>
                 <h3 className="font-serif text-2xl font-medium text-[#1C1A17] mt-1">
-                  {isVi ? 'Hướng Dẫn Bảo Quản Sợi Viro® Fiber' : 'Woven Viro® Fiber Care Guide'}
+                  {isVi ? 'Hướng Dẫn Bảo Dưỡng Bề Mặt Sơn Tĩnh Điện' : 'Powder-Coated Finish Care Guide'}
                 </h3>
               </div>
 
