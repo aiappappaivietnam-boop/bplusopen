@@ -592,23 +592,23 @@ export const CareGuidePage: React.FC<CareGuidePageProps> = ({ onNavigate }) => {
               <div className="space-y-4 text-xs sm:text-sm text-[#5A524A] leading-relaxed">
                 <div className="p-4 bg-white border border-[#EAE3D2] rounded-xs">
                   <div className="font-bold text-[#1C1A17] mb-1">
-                    {isVi ? 'Lựa chọn 1: Để gỗ ngả sang màu xám bạc patina tự nhiên' : 'Option 1: Allow to naturally weather into Silver Patina'}
+                  {isVi ? '01. HƯỚNG DẪN VỆ SINH & TẦN SUẤT' : '01. CLEANING & FREQUENCY'}
                   </div>
                   <p>
                     {isVi
-                      ? 'Gỗ Ipe có mật độ thớ gỗ cực cao (độ cứng Janka 3,680 lbf) và chứa dầu tự nhiên dồi dào. Bạn hoàn toàn không cần làm gì ngoài việc xịt rửa bụi bẩn định kỳ. Gỗ sẽ từ từ chuyển từ nâu sẫm sang màu bạc ánh kim tuyệt đẹp mà không hề suy giảm độ bền cơ học.'
-                      : 'Ipe has extraordinary natural oil density (Janka 3,680 lbf). Beyond regular rinsing with soapy water, no oiling is required. It gracefully shifts to a silvery-grey patina without losing strength.'}
+                      ? 'Vệ sinh nhẹ định kỳ hàng tuần hoặc khi có bụi bẩn. Dùng bàn chải lông mềm loại bỏ bụi, lá cây và tạp chất trên bề mặt. Khi xuất hiện vết bẩn, xử lý sớm bằng khăn sạch thấm nhẹ, tránh chà xát khiến vết bẩn lan rộng. Làm sạch khi cần: Dùng nước ấm pha chất làm sạch dịu nhẹ, chải nhẹ bằng bàn chải mềm, sau đó xả kỹ để loại bỏ cặn chất tẩy. Để vải khô tự nhiên hoàn toàn trước khi sử dụng lại hoặc cất giữ.'
+                      : 'Clean lightly each week or whenever dust and debris appear. Use a soft brush to remove dust, leaves, and surface debris. Treat spills promptly with a clean, lightly damp cloth and avoid rubbing. When needed, use warm water with a mild cleaner, brush gently, rinse thoroughly, and allow the fabric to dry completely before use or storage.'}
                   </p>
                 </div>
 
                 <div className="p-4 bg-white border border-[#EAE3D2] rounded-xs">
                   <div className="font-bold text-[#1C1A17] mb-1">
-                    {isVi ? 'Lựa chọn 2: Duy trì sắc nâu sô-cô-la hổ phách bằng dầu Penofin®' : 'Option 2: Maintain chocolate brown with Penofin®'}
+                  {isVi ? '02. CÁC LƯU Ý QUAN TRỌNG' : '02. IMPORTANT NOTES'}
                   </div>
                   <p>
                     {isVi
-                      ? 'Làm sạch bề mặt bằng nước và chất tẩy nhẹ. Đợi gỗ khô hoàn toàn trong 24-48 giờ. Quét một lớp mỏng dầu Penofin Verde Rosewood Oil. Quan trọng nhất: Sau 20 phút, lau sạch hoàn toàn lượng dầu thừa bằng giẻ cotton sạch để tránh bị dính rít bề mặt.'
-                      : 'Wash and let dry for 24-48 hours. Brush a light, uniform coat of Penofin Verde. Most crucially: After 20 minutes, wipe off ALL excess standing oil thoroughly with clean rags.'}
+                      ? 'Xử lý vết bẩn sớm: Thấm nhẹ chất lỏng bằng khăn sạch, không chà mạnh. Với vết dầu mỡ hoặc kem chống nắng, cần áp dụng phương pháp làm sạch phù hợp với loại vết bẩn. Hạn chế ẩm kéo dài: Đảm bảo vải và ruột đệm khô hoàn toàn trước khi che phủ hoặc cất giữ. Khả năng kháng nấm mốc của sợi không đồng nghĩa với việc bụi bẩn và hơi ẩm không thể gây nấm mốc. Tránh làm hư hại sợi: Không dùng bàn chải cứng, chất tẩy mạnh tùy tiện hoặc dung môi khi chưa có hướng dẫn tương thích. Giặt vỏ đệm đúng cách: Chỉ tháo vỏ hoặc giặt máy khi cấu tạo sản phẩm cho phép; đóng khóa kéo, chọn chế độ giặt nhẹ và phơi khô tự nhiên theo hướng dẫn.'
+                      : 'Treat spills promptly by blotting with a clean cloth and avoiding aggressive rubbing. For oils or sunscreen, use a cleaning method suited to the stain. Keep cushions dry before covering or storing; mildew resistance does not replace regular cleaning and ventilation. Avoid stiff brushes, harsh cleaners, or solvents unless approved for the fabric. Remove and machine-wash covers only when the product allows it, closing zippers and using a gentle cycle with natural drying.'}
                   </p>
                 </div>
               </div>
