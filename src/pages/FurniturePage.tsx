@@ -272,7 +272,15 @@ export const FurniturePage: React.FC<FurniturePageProps> = ({
               <div
                 key={col.id}
                 onClick={() => handleSelectCollectionCard(col)}
-                className="w-[calc(100%-1.5rem)] sm:w-[calc(50%-10px)] md:w-[calc(33.333%-12px)] lg:w-[calc(25%-12px)] shrink-0 aspect-[16/11] relative overflow-hidden bg-[#EAE4D9] cursor-pointer group/card transition-all duration-300 hover:shadow-xl"
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    handleSelectCollectionCard(col);
+                  }
+                }}
+                role="button"
+                tabIndex={0}
+                className="w-[calc(100%-1.5rem)] sm:w-[calc(50%-10px)] md:w-[calc(33.333%-12px)] lg:w-[calc(25%-12px)] shrink-0 aspect-[16/11] relative overflow-hidden bg-[#EAE4D9] cursor-pointer group/card transition-all duration-300 hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C6A15B] focus-visible:ring-offset-2"
                 title={isVi ? `Xem chi tiết bộ sưu tập ${col.name}` : `Explore ${col.name} Collection`}
               >
                 {collections.some((collection) => collection.id === col.mappedCollection) ? (
@@ -292,11 +300,11 @@ export const FurniturePage: React.FC<FurniturePageProps> = ({
                     loading="lazy"
                   />
                 )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col items-center justify-end pb-4 sm:pb-5 px-3 transition-colors group-hover/card:from-black/90">
-                  <span className="text-white font-sans text-sm sm:text-base font-bold tracking-[0.18em] uppercase text-center drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent flex flex-col items-center justify-end pb-3 sm:pb-4 px-3 transition-colors group-hover/card:from-black/95">
+                  <span className="rounded-sm bg-black/55 px-3 py-1.5 text-white font-sans text-base sm:text-lg md:text-xl font-extrabold tracking-[0.16em] uppercase text-center leading-tight shadow-[0_2px_10px_rgba(0,0,0,0.45)] ring-1 ring-white/20">
                     {col.name}
                   </span>
-                  <span className="text-[10px] text-[#E5D7C5] tracking-widest uppercase font-medium mt-1 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 transform translate-y-1 group-hover/card:translate-y-0">
+                  <span className="text-[10px] sm:text-xs text-white tracking-widest uppercase font-semibold mt-2 transition-opacity duration-300">
                     {isVi ? 'Xem Chi Tiết →' : 'Explore Collection →'}
                   </span>
                 </div>

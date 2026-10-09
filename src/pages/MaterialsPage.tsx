@@ -252,10 +252,10 @@ export const MaterialsPage: React.FC<MaterialsPageProps> = ({ onNavigate }) => {
       {/* 2. HERO BANNER: "THE HIGHEST-QUALITY: MATERIALS" (Matching Screenshot 1) */}
       <section className="relative w-full overflow-hidden bg-[#201D1A]">
         <div className="relative w-full h-[360px] sm:h-[480px] md:h-[580px] lg:h-[680px]">
-          {/* Official Jensen Outdoor heirloom timber furniture photograph */}
+          {/* Materials banner supplied for the B+Open Materials page */}
           <img
-            src="https://www.jensenoutdoor.com/wp-content/uploads/2020/10/opal-63400-63720-h-3-1024x683.jpg"
-            alt="Round Outdoor Hardwood Dining Table with Chairs - B+Open"
+            src="/materials/materials-banner.png"
+            alt="B+Open materials and sustainable furniture design"
             className="w-full h-full object-cover object-center filter saturate-[1.05] contrast-105"
           />
           {/* Vignette overlay */}
@@ -278,7 +278,7 @@ export const MaterialsPage: React.FC<MaterialsPageProps> = ({ onNavigate }) => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center space-y-6">
           <h2 className="text-xl sm:text-2xl md:text-[28px] font-bold uppercase tracking-[0.06em] text-[#1C1A17] leading-snug max-w-3xl mx-auto">
             {isVi 
-              ? 'NỘI THẤT BỀN VỮNG CHẤT LƯỢNG CAO NHẤT THẾ GIỚI ĐÒI HỎI NHỮNG CHẤT LIỆU HOÀN HẢO NHẤT'
+              ? <>NỘI THẤT BỀN VỮNG CHẤT LƯỢNG CAO<br />ĐÒI HỎI NHỮNG CHẤT LIỆU HOÀN HẢO</>
               : 'THE HIGHEST-QUALITY SUSTAINABLE FURNITURE IN THE WORLD REQUIRES THE RIGHT MATERIALS'}
           </h2>
           
