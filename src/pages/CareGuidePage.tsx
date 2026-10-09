@@ -477,18 +477,18 @@ export const CareGuidePage: React.FC<CareGuidePageProps> = ({ onNavigate }) => {
                 <div className="p-5 bg-white border border-[#EAE3D2] rounded-xs">
                   <div className="flex items-center justify-between mb-2">
                     <span className="px-2.5 py-1 bg-[#ae5c4a]/10 text-[#ae5c4a] font-bold text-xs uppercase tracking-wider rounded-xs">
-                      {isVi ? 'Cấp Độ 1: Vệ Sinh Định Kỳ Hàng Mùa' : 'Level 1: Routine Seasonal Wash'}
+                      {isVi ? 'Cấp Độ 1: Vệ Sinh Bề Mặt Định Kỳ' : 'Level 1: Routine Seasonal Wash'}
                     </span>
                     <span className="text-xs text-[#8C7A6B]">
-                      {isVi ? '3-6 tháng/lần' : 'Every 3-6 months'}
+                      {isVi ? 'Thường xuyên / khi cần' : 'Regularly / as needed'}
                     </span>
                   </div>
                   <h4 className="font-serif text-base font-bold text-[#1C1A17] mb-1">
-                    {isVi ? 'Loại Bỏ Bụi Bẩn & Phấn Hoa Bề Mặt' : 'Surface Dust & Pollen Removal'}
+                    {isVi ? 'Loại Bỏ Bụi Bẩn Và Tạp Chất' : 'Surface Dust & Pollen Removal'}
                   </h4>
                   <p className="text-xs text-[#5A524A] leading-relaxed">
                     {isVi
-                      ? 'Dùng nước sạch pha xà phòng nhẹ (như Dawn) và bàn chải lông mềm để chải sạch bụi bẩn thông thường. Sau đó xả lại bằng vòi nước và để khô tự nhiên.'
+                      ? 'Dùng khăn mềm hơi ẩm hoặc bàn chải lông mềm để loại bỏ bụi bẩn, lá cây và các vết bám thông thường. Với vết bẩn khó làm sạch, sử dụng một lượng nhỏ chất làm sạch dịu nhẹ phù hợp cho gỗ, sau đó để bề mặt khô tự nhiên.'
                       : 'Rinse with clean water and mild dish soap using a soft bristle brush. Rinse thoroughly and allow to air dry.'}
                   </p>
                 </div>
@@ -500,7 +500,7 @@ export const CareGuidePage: React.FC<CareGuidePageProps> = ({ onNavigate }) => {
                       {isVi ? 'Cấp Độ 2: Làm Sạch Chuyên Sâu' : 'Level 2: Deep Cleansing'}
                     </span>
                     <span className="text-xs text-[#8C7A6B]">
-                      {isVi ? '1 năm/lần' : 'Annually'}
+                      {isVi ? '3–6 tháng/lần*' : 'Every 3–6 months*'}
                     </span>
                   </div>
                   <h4 className="font-serif text-base font-bold text-[#1C1A17] mb-1">
@@ -508,9 +508,10 @@ export const CareGuidePage: React.FC<CareGuidePageProps> = ({ onNavigate }) => {
                   </h4>
                   <p className="text-xs text-[#5A524A] leading-relaxed">
                     {isVi
-                      ? 'Thoa đều dung dịch Penofin Pro-Tech Cleaner lên bề mặt gỗ ẩm, để hoạt chất ngấm 10-15 phút rồi chà nhẹ bằng miếng cọ xơ. Rửa sạch triệt để bằng vòi xịt nước.'
+                      ? 'Khi bụi bẩn, vết ố hoặc đốm đen tích tụ, sử dụng dung dịch làm sạch chuyên dụng cho teak outdoor theo hướng dẫn của nhà sản xuất. Chà nhẹ theo chiều vân gỗ, rửa sạch phần dung dịch còn lại và để gỗ khô hoàn toàn. Tránh dùng máy rửa áp lực cao vì có thể làm hư hại bề mặt gỗ.'
                       : 'Apply Penofin Pro-Tech Cleaner to damp timber. Let dwell for 10-15 minutes, scrub with an abrasive pad along the grain, and rinse thoroughly.'}
                   </p>
+                  <p className="text-xs italic text-[#5A524A] mt-2">{isVi ? '*Chu kỳ 3–6 tháng chỉ là mốc tham khảo để kiểm tra và vệ sinh sâu, không phải lịch bắt buộc. Tần suất thực tế phụ thuộc mức độ phơi nắng mưa, bụi bẩn, tán cây và môi trường sử dụng.' : '*The 3–6 month interval is a reference for inspection and deep cleaning, not a mandatory schedule. Actual frequency depends on exposure and surroundings.'}</p>
                 </div>
 
                 {/* Level 3 */}
@@ -520,7 +521,7 @@ export const CareGuidePage: React.FC<CareGuidePageProps> = ({ onNavigate }) => {
                       {isVi ? 'Cấp Độ 3: Bảo Vệ Bề Mặt & Duy Trì Màu Sắc' : 'Level 3: Protect and Maintain the Finish'}
                     </span>
                     <span className="text-xs text-[#8C7A6B]">
-                      {isVi ? '1-2 lần/năm (Tùy Chọn)' : '1-2x yearly (Optional)'}
+                      {isVi ? 'Theo nhu cầu' : 'As needed'}
                     </span>
                   </div>
                   <h4 className="font-serif text-base font-bold text-[#1C1A17] mb-1">
@@ -528,7 +529,7 @@ export const CareGuidePage: React.FC<CareGuidePageProps> = ({ onNavigate }) => {
                   </h4>
                   <p className="text-xs text-[#5A524A] leading-relaxed">
                     {isVi
-                      ? 'Sau khi gỗ đã khô hoàn toàn sau khi làm sạch, quét một lớp mỏng dầu Penofin Verde Rosewood Oil. Sau 20-30 phút, dùng khăn cotton lau sạch hoàn toàn lượng dầu thừa trên bề mặt.'
+                      ? 'Nếu muốn giữ sắc nâu ấm, có thể sử dụng teak sealer hoặc sản phẩm bảo dưỡng màu chuyên dụng sau khi làm sạch và để gỗ khô hoàn toàn. Nếu yêu thích màu bạc xám tự nhiên, có thể để teak chuyển màu tự nhiên hoặc sử dụng chất bảo vệ không màu tương thích để hạn chế vết bẩn. Không bắt buộc phải phủ dầu nếu muốn để gỗ mộc.'
                       : 'Ensure timber is completely dry. Apply a thin, even coat of Penofin Verde Rosewood Oil. After 20-30 minutes, thoroughly wipe off any excess standing oil.'}
                   </p>
                 </div>
@@ -540,15 +541,15 @@ export const CareGuidePage: React.FC<CareGuidePageProps> = ({ onNavigate }) => {
                       {isVi ? 'Cấp Độ 4: Phục Hồi Bề Mặt Gỗ' : 'Level 4: Restore the Wood Surface'}
                     </span>
                     <span className="text-xs text-[#8C7A6B]">
-                      {isVi ? 'Khi muốn đưa gỗ bạc về màu ban đầu' : 'To reverse grey patina'}
+                      {isVi ? 'Khi gỗ phong hóa rõ rệt' : 'When visibly weathered'}
                     </span>
                   </div>
                   <h4 className="font-serif text-base font-bold text-[#1C1A17] mb-1">
-                    {isVi ? 'Khôi Phục Gỗ Đã Phong Hóa Sang Màu Ban Đầu' : 'Reverse Weathered Patina to As-New'}
+                    {isVi ? 'Xử Lý Bạc Màu, Ố Đen Và Bề Mặt Thô Nhám' : 'Reverse Weathered Patina to As-New'}
                   </h4>
                   <p className="text-xs text-[#5A524A] leading-relaxed">
                     {isVi
-                      ? 'Sử dụng trọn bộ Ipe Aftercare Kit gồm chất tẩy rửa (Step 1 Cleaner), chất trung hòa và làm sáng (Step 2 Brightener), xả sạch phơi khô và phủ dầu dưỡng Penofin (Step 3 Oil).'
+                      ? 'Với gỗ bạc màu mạnh, xuất hiện vết ố hoặc bề mặt thô ráp, sử dụng bộ sản phẩm teak cleaner & brightener phù hợp để làm sạch và hỗ trợ khôi phục sắc nâu tự nhiên. Nếu cần, chà nhám nhẹ theo chiều vân gỗ bằng giấy nhám mịn; sau đó để gỗ khô hoàn toàn trước khi quyết định có phủ chất bảo vệ hay không. Thử trước trên vùng khuất và tuân thủ hướng dẫn của sản phẩm.'
                       : 'Utilize the 3-step Ipe Aftercare Kit: Step 1 Cleaner strip, Step 2 Brightener neutralizer, followed by Step 3 Penofin Oil penetration.'}
                   </p>
                 </div>
