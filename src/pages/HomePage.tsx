@@ -478,7 +478,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             poster="/luma/scene-18.webp"
             className="w-full h-full object-cover object-center scale-101 transition-opacity duration-1000"
           >
-            <source src="/home/home-sustainability.mp4" type="video/mp4" />
+            <source src="https://www.jensenoutdoor.com/wp-content/uploads/2023/01/Homepage-5s-Sustainability.mp4" type="video/mp4" />
           </video>
           {/* Scrim Overlay for contrast */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/70 pointer-events-none" />
