@@ -120,28 +120,28 @@ const MATERIAL_DETAILS: Record<string, MaterialDetail> = {
     badgeVi: 'Tiêu Chuẩn Thương Mại',
     title: 'POWDER COATED ALUMINUM',
     titleVi: 'NHÔM HỢP KIM SƠN TĨNH ĐIỆN',
-    subtitle: 'Architectural Strength with Featherweight Elegance',
+    subtitle: 'Lightweight Strength and Flexible Outdoor Design',
     subtitleVi: 'Độ Bền Kiến Trúc Kết Hợp Sự Thanh Nhẹ Tinh Tế',
     description:
-      'We use heavy-gauge, seamless aluminum alloy tubing treated with a multi-stage chromate conversion process followed by electrostatic polyester powder-coating baked at 400°F. This creates an impervious barrier that will never rust, corrode, or oxidize.',
+      'Powder-coated aluminum combines lightweight strength with natural corrosion resistance and flexible outdoor design. Its tubular structure makes furniture easy to move and reconfigure, while the powder coating protects the surface and offers a wide range of color options.',
     descriptionVi:
-      'B+Open sử dụng ống hợp kim nhôm thành dày đúc liền mạch, được xử lý qua quy trình thụ động hóa nhiều giai đoạn trước khi phủ sơn tĩnh điện polyester nung ở 200°C. Lớp phủ tạo nên một lớp màng bảo vệ kiên cố tuyệt đối không bị rỉ sét, ăn mòn hay oxy hóa muối biển.',
+      'Nhôm sơn tĩnh điện kết hợp trọng lượng nhẹ, khả năng chống ăn mòn tự nhiên và sự linh hoạt trong thiết kế ngoài trời. Kết cấu ống giúp sản phẩm dễ di chuyển, thay đổi bố trí và tạo nên những thiết kế thanh thoát. Lớp sơn tĩnh điện bảo vệ bề mặt, đồng thời mang đến nhiều lựa chọn về màu sắc.',
     specs: [
-      { label: 'Coating Type', labelVi: 'Loại Lớp Phủ', value: 'Thermoset Architectural Polyester', valueVi: 'Sơn Polyester Kiến Trúc Nhiệt Rắn' },
-      { label: 'Corrosion Resistance', labelVi: 'Chống Ăn Mòn', value: 'Salt Spray Tested to ASTM B117', valueVi: 'Thử nghiệm phun muối đạt chuẩn ASTM B117' },
-      { label: 'Joint Construction', labelVi: 'Kết Cấu Mối Ghép', value: 'Full-Circumference 360° Heliarc Welds', valueVi: 'Mối hàn Heliarc khép kín 360°' },
-      { label: 'Weight Advantage', labelVi: 'Ưu Điểm Trọng Lượng', value: 'Heavy enough for wind, easy to reconfigure', valueVi: 'Đủ nặng trước gió lớn, dễ dàng di chuyển' },
+      { label: 'Aluminum Density', labelVi: 'Nhôm: Khối Lượng Riêng', value: '~2.70 g/cm³', valueVi: '~2,70 g/cm³' },
+      { label: 'Powder Coating Durability', labelVi: 'Sơn Tĩnh Điện: Độ Bền Thời Tiết', value: 'Polyester coating resists UV and weather', valueVi: 'Hệ sơn polyester chuyên dụng chống UV và thời tiết' },
+      { label: 'Corrosion Resistance', labelVi: 'Nhôm: Khả Năng Chống Ăn Mòn', value: 'Oxide layer protects the surface', valueVi: 'Lớp oxide tự nhiên giúp bảo vệ bề mặt khỏi ăn mòn' },
+      { label: 'Color System', labelVi: 'Sơn Tĩnh Điện: Hệ Màu', value: 'RAL Color System', valueVi: 'RAL Color System' },
     ],
     features: [
-      { en: '100% rust-proof even in beachfront, coastal, and poolside environments.', vi: '100% không rỉ sét ngay cả ở vùng bờ biển, hơi muối hay sát mép hồ bơi.' },
-      { en: 'Scratch-resistant matte finish that feels silky and stays cool to the touch.', vi: 'Bề mặt sơn mờ chống trầy xước, êm ái khi chạm và tản nhiệt nhanh.' },
-      { en: 'Harmoniously pairs with warm Ipe wood accents and woven Solara details.', vi: 'Kết hợp hài hòa cùng các điểm nhấn gỗ Ipe ấm áp và sợi đan Solara.' },
+      { en: 'Lightweight structure makes products easy to move, reconfigure, and use outdoors.', vi: 'Kết cấu nhôm giúp sản phẩm nhẹ hơn, thuận tiện khi bố trí, di chuyển hoặc thay đổi cách sử dụng ngoài trời.' },
+      { en: 'Aluminum naturally resists corrosion and pairs well with powder coating.', vi: 'Nhôm có khả năng chống ăn mòn tự nhiên, kết hợp cùng lớp sơn tĩnh điện giúp tăng khả năng bảo vệ bề mặt trước nắng, mưa và độ ẩm.' },
+      { en: 'Specialized outdoor polyester coatings offer durable color and finish.', vi: 'Lớp sơn tạo màu sắc và hoàn thiện đồng nhất; các hệ sơn polyester chuyên dụng outdoor có khả năng duy trì màu và độ bóng tốt hơn khi phơi ngoài trời.' },
     ],
     careTip: {
-      en: 'Simply wash with mild detergent and water. An occasional application of automotive wax preserves the showroom luster.',
-      vi: 'Chỉ cần lau rửa bằng nước và chất tẩy rửa nhẹ. Thoa sáp đánh bóng định kỳ sẽ duy trì độ bóng đẹp như ban đầu.',
+      en: 'Clean regularly with water and a mild soap solution. Avoid harsh chemicals, abrasive materials, and leaving wet dirt on the surface for long periods.',
+      vi: 'Vệ sinh định kỳ bằng nước sạch và khăn mềm. Tránh chất tẩy mạnh, vật liệu mài mòn và để bụi bẩn hoặc muối đọng lâu trên bề mặt.',
     },
-    image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1200&q=80',
+    image: '/materials/aluminum-lounger.png',
   },
   hpl: {
     id: 'hpl',
@@ -414,8 +414,8 @@ export const MaterialsPage: React.FC<MaterialsPageProps> = ({ onNavigate }) => {
             {/* Left: Photo of outdoor dining set with powder-coated aluminum frame */}
             <div className="relative overflow-hidden shadow-xs border border-[#E8E4DD] rounded-xs aspect-[4/3]">
               <img
-                src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1200&q=85"
-                alt="Commercial-grade powder coated aluminum dining set with hardwood tabletop"
+                src="/materials/aluminum-table.png"
+                alt="Powder coated aluminum outdoor table"
                 className="w-full h-full object-cover"
               />
             </div>
