@@ -87,32 +87,32 @@ const MATERIAL_DETAILS: Record<string, MaterialDetail> = {
   },
   sunbrella: {
     id: 'sunbrella',
-    badge: 'Complete Performance',
+    badge: 'Outdoor Upholstery',
     badgeVi: 'Hiệu Năng Toàn Diện',
-    title: 'SUNBRELLA® CUSHION FABRICS',
-    titleVi: 'VẢI ĐỆM NGOẠI THẤT SUNBRELLA®',
-    subtitle: 'The Gold Standard in Marine & Outdoor Performance Textiles',
-    subtitleVi: 'Tiêu Chuẩn Vàng Của Ngành Vải Ngoại Thất & Hàng Hải',
+    title: 'SOLUTION-DYED ACRYLIC',
+    titleVi: 'SOLUTION-DYED ACRYLIC',
+    subtitle: 'Soft, Colorfast, and Made for Outdoor Living',
+    subtitleVi: 'MỀM MẠI · BỀN MÀU · SẴN SÀNG CHO NGOÀI TRỜI',
     description:
-      'Sunbrella® fabrics are saturated to the fiber core with highly UV-stabilized pigments before the yarn is even spun. The resulting textile is luxuriously soft to the touch, breathable, resistant to mildew, and resilient against intense sunlight and sudden downpours.',
+      'Solution-dyed acrylic is a high-performance outdoor textile that combines a soft hand with lasting color and dependable resistance to moisture. It is designed for outdoor applications where comfort, style, and durability need to work together.',
     descriptionVi:
-      'Vải đệm Sunbrella® được ngấm màu sâu tận lõi sợi bằng sắc tố chống tia UV trước khi se sợi (100% Solution-Dyed Acrylic). Nhờ đó, vải mang lại cảm giác mềm mại dễ chịu khi tiếp xúc, thoáng khí, chống ẩm mốc và bền bỉ phi thường dưới nắng gắt hay mưa rào rực lửa.',
+      'Acrylic là loại sợi tổng hợp có độ bền và khả năng duy trì màu sắc tốt, phù hợp với những ứng dụng cần sự mềm mại và thoải mái ngoài trời. Sợi có khả năng chống phai màu nhờ công nghệ nhuộm màu solution-dyed, trong đó màu được tích hợp sâu vào cấu trúc sợi ngay từ đầu.',
     specs: [
-      { label: 'Fiber Material', labelVi: 'Chất Liệu Sợi', value: '100% Solution-Dyed Acrylic', valueVi: '100% Sợi Acrylic Nhuộm Dung Dịch' },
-      { label: 'Water Repellency', labelVi: 'Chống Thấm Nước', value: 'Fluorocarbon Water-Shield Finish', valueVi: 'Lớp phủ Fluorocarbon kháng nước bề mặt' },
-      { label: 'Cleaning Method', labelVi: 'Phương Pháp Tẩy Rửa', value: 'Bleach-Cleanable without fading', valueVi: 'Vệ sinh được bằng thuốc tẩy pha loãng' },
-      { label: 'Certification', labelVi: 'Chứng Chỉ An Toàn', value: 'OEKO-TEX & GREENGUARD Gold', valueVi: 'Đạt chuẩn OEKO-TEX & GREENGUARD Gold' },
+      { label: 'Composition', labelVi: 'Thành Phần', value: '100% Acrylic', valueVi: '100% Acrylic' },
+      { label: 'Yarn Technology', labelVi: 'Công Nghệ Nhuộm', value: 'Solution-Dyed: Color integrated into the fiber', valueVi: 'Solution-Dyed: Màu được tích hợp sâu vào cấu trúc sợi' },
+      { label: 'Moisture Resistance', labelVi: 'Khả Năng Kháng Ẩm', value: 'Resists moisture and water on the fabric surface', valueVi: 'Hạn chế ảnh hưởng của độ ẩm và nước trên bề mặt vải' },
+      { label: 'Colorfastness', labelVi: 'Độ Bền Màu', value: 'Maintains color in sunlight and weather', valueVi: 'Duy trì màu trước tác động của ánh sáng và thời tiết' },
     ],
     features: [
-      { en: 'Does not trap heat like synthetic vinyl; remains cool and inviting in summer.', vi: 'Không giữ nhiệt như simili/nhựa; luôn mát mẻ và thông thoáng suốt mùa hè.' },
-      { en: 'Fast-drying open-cell foam cushion cores prevent water retention.', vi: 'Lõi đệm mút tế bào mở (Quick-Dry Foam) thoát nước siêu tốc, không đọng ẩm.' },
-      { en: 'Backed by a 5-year manufacturer limited warranty against color loss.', vi: 'Được bảo hành chính hãng 5 năm đối với hiện tượng phai màu tự nhiên.' },
+      { en: 'Color-through solution-dyed construction helps limit fading in sunlight and outdoor conditions.', vi: 'Cấu trúc solution-dyed giúp màu đi xuyên vào sợi, hạn chế phai màu khi tiếp xúc thường xuyên với ánh nắng và môi trường ngoài trời.' },
+      { en: 'Water- and mildew-resistant construction suits outdoor use.', vi: 'Vải được thiết kế với khả năng kháng nước, chống bám bẩn và kháng nấm mốc, phù hợp với điều kiện sử dụng outdoor.' },
+      { en: 'Soft to the touch and easy to care for when used as directed.', vi: 'Êm ái và dễ chăm sóc: giữ được cảm giác mềm mại dành cho upholstery nhưng vẫn đáp ứng yêu cầu sử dụng ngoài trời.' },
     ],
     careTip: {
-      en: 'Most spills wipe clean with warm water and mild soap. For stubborn stains, use a dilute bleach mixture without worrying about color loss.',
-      vi: 'Vết bẩn thông thường dễ dàng lau sạch bằng nước ấm và xà phòng nhẹ. Vết bẩn cứng đầu có thể dùng dung dịch tẩy loãng mà không lo bay màu.',
+      en: 'Clean regularly with warm water and a mild soap solution. Blot spills promptly, treat stubborn stains according to the fabric care guidance, and allow the upholstery to dry completely.',
+      vi: 'Vệ sinh định kỳ bằng nước và chất làm sạch dịu nhẹ. Xử lý vết bẩn sớm và để vải khô hoàn toàn sau khi vệ sinh; tránh để cushion ẩm trong thời gian dài.',
     },
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
+    image: '/materials/upholstery-texture.png',
   },
   aluminum: {
     id: 'aluminum',
@@ -374,7 +374,7 @@ export const MaterialsPage: React.FC<MaterialsPageProps> = ({ onNavigate }) => {
             </div>
           </div>
 
-          {/* BLOCK 2: SUNBRELLA® CUSHION FABRICS (Left: Text | Right: Image) */}
+          {/* BLOCK 2: SOLUTION-DYED ACRYLIC (Left: Text | Right: Image) */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-center">
             {/* Left: Text Box (Order 2 on mobile, Order 1 on desktop) */}
             <div className="space-y-3 sm:space-y-4 text-left order-2 md:order-1">
@@ -382,28 +382,28 @@ export const MaterialsPage: React.FC<MaterialsPageProps> = ({ onNavigate }) => {
                 {isVi ? 'NƯỚC • KHÁNG NƯỚC TOÀN DIỆN' : 'WATER • COMPLETE PERFORMANCE'}
               </span>
               <h3 className="text-xl sm:text-2xl font-bold uppercase tracking-[0.06em] text-[#1C1A17]">
-                {isVi ? 'VẢI ĐỆM NGOẠI THẤT SUNBRELLA®' : 'SUNBRELLA® CUSHION FABRICS'}
+                {isVi ? 'SOLUTION-DYED ACRYLIC' : 'SOLUTION-DYED ACRYLIC'}
               </h3>
               <p className="text-xs sm:text-sm text-[#2C2A29] leading-relaxed font-normal">
                 {isVi
-                  ? 'Sunbrella® bao bọc các tấm đệm ngoài trời của chúng tôi trong chất liệu vải chuẩn ngoại thất bền bỉ, êm ái với đa dạng màu sắc và phong cách tuyển chọn.'
-                  : 'Sunbrella® wraps our outdoor cushions in durable, comfortable, outdoor-grade fabrics offered in a wide selection of colors and styles.'}
+                  ? 'Acrylic là loại sợi tổng hợp có độ bền và khả năng duy trì màu sắc tốt, mang lại sự mềm mại và thoải mái cho các sản phẩm upholstery ngoài trời.'
+                  : 'Acrylic is a durable, colorfast synthetic fiber that brings soft comfort to outdoor upholstery.'}
               </p>
               <div className="pt-1">
                 <button
                   onClick={() => setSelectedMaterial(MATERIAL_DETAILS.sunbrella)}
                   className="inline-block text-xs font-bold text-[#798E9D] underline underline-offset-4 hover:opacity-75 transition-opacity cursor-pointer uppercase tracking-wider"
                 >
-                  {isVi ? 'Đọc thêm về vải đệm Sunbrella®' : 'Read About Sunbrella® Cushion Fabrics'}
+                  {isVi ? 'Đọc thêm về Solution-Dyed Acrylic' : 'Read About Solution-Dyed Acrylic'}
                 </button>
               </div>
             </div>
 
-            {/* Right: Photo of two wooden chairs with royal blue Sunbrella cushions */}
+            {/* Right: Solution-dyed acrylic upholstery detail */}
             <div className="relative overflow-hidden shadow-xs border border-[#E8E4DD] rounded-xs aspect-[4/3] order-1 md:order-2">
               <img
-                src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?auto=format&fit=crop&w=1200&q=85"
-                alt="Two outdoor hardwood lounge armchairs with royal blue Sunbrella cushions on porch"
+                src="/materials/upholstery-chair.png"
+                alt="Outdoor chair with solution-dyed acrylic upholstery"
                 className="w-full h-full object-cover"
               />
             </div>
