@@ -48,7 +48,7 @@ export const CareGuidePage: React.FC<CareGuidePageProps> = ({ onNavigate }) => {
             record="collection"
             recordId="care-guide"
             field="heroImage"
-            value="/care/care-hero.png"
+            value="/care/care-hero-pool.png"
             alt={isVi ? 'Bảo dưỡng nội thất ngoài trời' : 'Outdoor furniture care'}
             className="h-full w-full object-cover"
           />
@@ -265,7 +265,7 @@ export const CareGuidePage: React.FC<CareGuidePageProps> = ({ onNavigate }) => {
 
             <p className="text-sm sm:text-base text-[#1C1A17]/80 leading-relaxed font-light">
               {isVi
-                ? 'Mỗi vật liệu outdoor cần một phương pháp chăm sóc riêng. B+Open tổng hợp các sản phẩm và hướng dẫn bảo dưỡng phù hợp cho gỗ Teak, kim loại sơn tĩnh điện và vải bọc ngoài trời.'
+                ? 'Mỗi vật liệu outdoor cần một phương pháp chăm sóc riêng. B+Open tổng hợp các sản phẩm và hướng dẫn bảo dưỡng phù hợp cho gỗ Teak, kim loại sơn tĩnh điện và vải bọc ngoài trời, giúp bạn duy trì vẻ đẹp của sản phẩm qua thời gian.'
                 : 'B+Open has worked with the leading care suppliers in the outdoor industry to create care products that make maintaining your furniture a breeze.'}
             </p>
 
@@ -594,7 +594,7 @@ export const CareGuidePage: React.FC<CareGuidePageProps> = ({ onNavigate }) => {
                   <div className="font-bold text-[#1C1A17] mb-1">
                   {isVi ? '01. HƯỚNG DẪN VỆ SINH & TẦN SUẤT' : '01. CLEANING & FREQUENCY'}
                   </div>
-                  <p>
+                  <p className="whitespace-pre-line">
                     {isVi
                       ? 'Vệ sinh nhẹ định kỳ hàng tuần hoặc khi có bụi bẩn. Dùng bàn chải lông mềm loại bỏ bụi, lá cây và tạp chất trên bề mặt. Khi xuất hiện vết bẩn, xử lý sớm bằng khăn sạch thấm nhẹ, tránh chà xát khiến vết bẩn lan rộng. Làm sạch khi cần: Dùng nước ấm pha chất làm sạch dịu nhẹ, chải nhẹ bằng bàn chải mềm, sau đó xả kỹ để loại bỏ cặn chất tẩy. Để vải khô tự nhiên hoàn toàn trước khi sử dụng lại hoặc cất giữ.'
                       : 'Clean lightly each week or whenever dust and debris appear. Use a soft brush to remove dust, leaves, and surface debris. Treat spills promptly with a clean, lightly damp cloth and avoid rubbing. When needed, use warm water with a mild cleaner, brush gently, rinse thoroughly, and allow the fabric to dry completely before use or storage.'}
@@ -650,8 +650,8 @@ export const CareGuidePage: React.FC<CareGuidePageProps> = ({ onNavigate }) => {
               <div className="space-y-3 text-xs sm:text-sm text-[#5A524A] leading-relaxed">
                 <p>
                   {isVi
-                    ? 'Sợi đan Viro® Fiber là loại sợi polyethylene cao cấp thân thiện với môi trường, có khả năng kháng tia UV, nước mặn clo và nhiệt độ khắc nghiệt.'
-                    : 'Viro® Fiber is an eco-friendly high-density polyethylene weave that resists UV degradation, chlorinated water, and temperature swings.'}
+                    ? '01. HƯỚNG DẪN VỆ SINH & TẦN SUẤT\nVệ sinh định kỳ 3–6 tháng/lần trong điều kiện thông thường. Với sản phẩm đặt gần biển, hồ bơi hoặc khu vực ô nhiễm cao, nên vệ sinh mỗi 1–3 tháng để loại bỏ muối và tạp chất tích tụ. Khi xuất hiện vết bẩn rõ rệt, nên làm sạch sớm thay vì chờ đến kỳ vệ sinh tiếp theo.\n\nCách thực hiện: Dùng khăn mềm hoặc miếng bọt biển không gây trầy xước, thấm nước sạch pha chất tẩy rửa dịu nhẹ có độ pH trung tính. Lau nhẹ bề mặt, rửa lại bằng nước sạch để loại bỏ cặn chất tẩy và để khô tự nhiên hoặc lau bằng khăn mềm. Nên vệ sinh khi bề mặt đã nguội và tránh ánh nắng trực tiếp để dung dịch không khô quá nhanh.\n\n02. CÁC LƯU Ý QUAN TRỌNG\nTránh làm trầy xước: Không sử dụng búi thép, giấy nhám, miếng cọ nhám hoặc chất tẩy rửa có tính mài mòn.\n\nHạn chế hóa chất mạnh: Tránh acetone, dung môi mạnh, chất tẩy có tính ăn mòn và hóa chất không tương thích với lớp sơn.\n\nLoại bỏ chất bẩn sớm: Không để muối biển, hóa chất hồ bơi, phân chim hoặc dầu mỡ bám lâu trên bề mặt.\n\nKiểm tra lớp sơn định kỳ: Nếu phát hiện vết xước sâu, bong tróc hoặc kim loại nền bị lộ, hãy liên hệ nhà cung cấp để được hướng dẫn sửa chữa phù hợp, đặc biệt với thép vì phần kim loại lộ ra có thể bị ăn mòn.'
+                    : '01. CLEANING & FREQUENCY\nClean every 3–6 months in normal conditions. For products near the sea, pool, or highly polluted areas, clean every 1–3 months to remove accumulated salt and debris. Treat visible stains early rather than waiting for the next scheduled cleaning.\n\nHow to clean: Use a soft cloth or non-abrasive sponge with clean water and a mild, pH-neutral cleaner. Wipe gently, rinse with clean water to remove residue, then air-dry or dry with a soft cloth. Clean when the surface is cool and avoid direct sunlight so the solution does not dry too quickly.\n\n02. IMPORTANT NOTES\nAvoid scratches: Do not use steel wool, sandpaper, abrasive pads, or abrasive cleaners.\n\nLimit harsh chemicals: Avoid acetone, strong solvents, corrosive cleaners, and chemicals incompatible with the coating.\n\nRemove debris early: Do not allow sea salt, pool chemicals, bird droppings, or grease to remain on the surface.\n\nInspect the coating regularly: If deep scratches, peeling, or exposed base metal appear, contact the supplier for suitable repair guidance, especially for steel because exposed metal can corrode.'}
                 </p>
                 <ul className="list-disc pl-5 space-y-2">
                   <li>
