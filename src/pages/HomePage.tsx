@@ -478,7 +478,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             poster="/luma/scene-18.webp"
             className="w-full h-full object-cover object-center scale-101 transition-opacity duration-1000"
           >
-            <source src="https://www.jensenoutdoor.com/wp-content/uploads/2023/01/Homepage-5s-Sustainability.mp4" type="video/mp4" />
+            <source src="/home/home-sustainability.mp4" type="video/mp4" />
           </video>
           {/* Scrim Overlay for contrast */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/70 pointer-events-none" />
@@ -503,17 +503,17 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           {/* Earth / Sustainability Badge */}
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#737D5A] text-white text-[11px] sm:text-xs font-bold uppercase tracking-wider mb-4 shadow-md">
             <span className="w-2 h-2 rounded-full bg-[#EFECE6]" />
-            {isVi ? '100% GỖ RỪNG BOLIVIA CHỨNG NHẬN FSC®' : '100% FSC®-CERTIFIED BOLIVIAN TIMBER'}
+            {isVi ? 'NỘI THẤT NGOÀI TRỜI' : 'OUTDOOR FURNITURE'}
           </span>
 
           {/* Big Bold Headline */}
           <h2 className="font-sans text-2xl sm:text-4xl lg:text-5xl font-black uppercase tracking-[0.06em] text-white leading-tight mb-3 sm:mb-4 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-            {isVi ? 'TỪ RỪNG XANH BOLIVIA.\nĐẾN KHÔNG GIAN GIA ĐÌNH BẠN.' : 'FROM OUR FOREST. TO YOUR FAMILY.'}
+            {isVi ? 'ĐỂ THỜI GIAN TRỞ THÀNH MỘT PHẦN CỦA THIẾT KẾ' : 'LET TIME BECOME PART OF THE DESIGN'}
           </h2>
 
           {/* Subtitle with Air Tone */}
           <p className="text-[13.5px] sm:text-base uppercase tracking-[0.14em] text-[#EFECE6] font-medium mb-6 max-w-xl leading-relaxed">
-            {isVi ? 'NỘI THẤT GỖ NGOÀI TRỜI 100% CHỨNG NHẬN FSC®' : 'FSC ® -Certified outdoor wood furniture.'}
+            {isVi ? 'THIẾT KẾ TINH TẾ, VẬT LIỆU BỀN BỈ' : 'REFINED DESIGN, MATERIALS MADE TO LAST'}
           </p>
 
           {/* Read Our Story Link */}
@@ -521,7 +521,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             onClick={() => onNavigate('story')}
             className="inline-flex items-center text-[13.5px] sm:text-base uppercase tracking-[0.16em] font-bold text-white hover:text-[#9B522E] underline underline-offset-8 cursor-pointer transition-colors min-h-[44px]"
           >
-            {isVi ? 'ĐỌC CÂU CHUYỆN CỦA CHÚNG TÔI' : 'Read Our Story'}
+            {isVi ? 'KHÁM PHÁ CÂU CHUYỆN CỦA CHÚNG TÔI' : 'Discover Our Story'}
           </button>
         </div>
 
