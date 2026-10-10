@@ -650,24 +650,24 @@ export const CareGuidePage: React.FC<CareGuidePageProps> = ({ onNavigate }) => {
               <div className="space-y-3 text-xs sm:text-sm text-[#5A524A] leading-relaxed">
                 <p>
                   {isVi
-                    ? 'Sợi đan Viro® Fiber là loại sợi polyethylene cao cấp thân thiện với môi trường, có khả năng kháng tia UV, nước mặn clo và nhiệt độ khắc nghiệt.'
-                    : 'Viro® Fiber is an eco-friendly high-density polyethylene weave that resists UV degradation, chlorinated water, and temperature swings.'}
+                    ? 'Sơn tĩnh điện giúp bảo vệ bề mặt nhôm và thép, đồng thời mang đến màu sắc và độ hoàn thiện cho nội thất ngoài trời.'
+                    : 'Powder coating protects aluminum and steel while adding color and a refined finish to outdoor furniture.'}
                 </p>
                 <ul className="list-disc pl-5 space-y-2">
                   <li>
                     {isVi
-                      ? 'Dùng vòi nước xịt nhẹ hoặc khăn ẩm lau bụi bẩn bám giữa các khe đan.'
-                      : 'Rinse with clean water or use a soft damp cloth to clear debris between weaves.'}
+                      ? '01. HƯỚNG DẪN VỆ SINH & TẦN SUẤT: Vệ sinh định kỳ 3–6 tháng/lần trong điều kiện thông thường. Với sản phẩm đặt gần biển, hồ bơi hoặc khu vực ô nhiễm cao, nên vệ sinh mỗi 1–3 tháng để loại bỏ muối và tạp chất tích tụ. Khi xuất hiện vết bẩn rõ rệt, nên làm sạch sớm. Dùng khăn mềm hoặc miếng bọt biển không gây trầy xước với nước sạch pha chất tẩy rửa dịu nhẹ có độ pH trung tính. Lau nhẹ, rửa lại bằng nước sạch và để khô tự nhiên; tránh ánh nắng trực tiếp để dung dịch không khô quá nhanh.'
+                      : '01. CLEANING & FREQUENCY: Clean every 3–6 months in normal conditions, or every 1–3 months near the sea, pools, or highly polluted areas. Treat visible stains early. Use a soft cloth or non-abrasive sponge with clean water and a mild pH-neutral cleaner, rinse thoroughly, and allow to dry away from direct sunlight.'}
                   </li>
                   <li>
                     {isVi
-                      ? 'Đối với vết thức ăn dầu mỡ, dùng dung dịch xà phòng loãng và bọt biển mềm chà nhẹ.'
-                      : 'For food or oil spills, apply mild liquid detergent with a soft sponge and rinse.'}
+                      ? '02. CÁC LƯU Ý QUAN TRỌNG: Không sử dụng búi thép, giấy nhám, miếng cọ nhám hoặc chất tẩy rửa có tính mài mòn. Tránh acetone, dung môi mạnh và hóa chất không tương thích với lớp sơn. Không để muối biển, hóa chất hồ bơi, phân chim hoặc dầu mỡ bám lâu trên bề mặt.'
+                      : '02. IMPORTANT NOTES: Do not use steel wool, sandpaper, abrasive pads, acetone, strong solvents, or chemicals incompatible with the coating. Remove sea salt, pool chemicals, bird droppings, and grease promptly.'}
                   </li>
                   <li>
                     {isVi
-                      ? 'Không dùng máy xịt áp lực cao hoặc chất tẩy rửa có tính mài mòn mạnh.'
-                      : 'Never use high-pressure power washers or harsh solvent-based abrasives.'}
+                      ? 'Kiểm tra lớp sơn định kỳ: Nếu phát hiện vết xước sâu, bong tróc hoặc kim loại nền bị lộ, hãy liên hệ nhà cung cấp để được hướng dẫn sửa chữa phù hợp, đặc biệt với thép vì phần kim loại lộ ra có thể bị ăn mòn.'
+                      : 'Inspect the coating regularly. If deep scratches, peeling, or exposed base metal appear, contact the supplier for suitable repair guidance, especially for steel because exposed metal can corrode.'}
                   </li>
                 </ul>
               </div>
