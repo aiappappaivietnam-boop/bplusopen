@@ -18,7 +18,6 @@ import {
   Clock,
   Navigation
 } from 'lucide-react';
-import heroImg from '../assets/images/how_to_buy_hero_1789045548664.jpg';
 import { InlineEditableImage } from '../components/InlineEditableImage';
 
 interface HowToBuyPageProps {
@@ -138,7 +137,7 @@ export const HowToBuyPage: React.FC<HowToBuyPageProps> = ({
             record="collection"
             recordId="how-to-buy"
             field="heroImage"
-            value={heroImg}
+            value="/how-to-buy/how-to-buy-hero.png"
             alt={isVi ? 'Không gian ngoài trời' : 'Outdoor terrace'}
             className="h-full w-full object-cover"
           />
@@ -210,7 +209,7 @@ export const HowToBuyPage: React.FC<HowToBuyPageProps> = ({
         <div className="w-16 h-0.5 bg-[#C8A870] mx-auto mb-6" />
         <p className="text-sm sm:text-base text-[#4A453E] font-light leading-relaxed max-w-3xl mx-auto">
           {isVi
-            ? 'Gỗ Ipe Bolivia 100% chứng nhận FSC® có mật độ sợi dày gấp 3 lần gỗ Teak và độ cứng Janka đạt 3.680 lbf. Vì từng bộ bàn ghế mang trọng lượng nguyên khối và đòi hỏi sự chăm chút tinh xảo trong việc phối vải Sunbrella® cùng dịch vụ lắp đặt tận hiên nhà, chúng tôi hợp tác chặt chẽ cùng các nhà bán lẻ uy tín nhất để mang đến cho bạn trải nghiệm mua sắm hoàn mỹ từ bản vẽ đến không gian sống thực tế.'
+            ? 'B+Open phát triển nội thất ngoài trời với trọng tâm là thiết kế ứng dụng, công năng và độ bền trong điều kiện sử dụng thực tế. Danh mục sản phẩm kết hợp thép sơn tĩnh điện, gỗ teak tự nhiên và các vật liệu chuyên dụng, mang đến nhiều lựa chọn cho những nhu cầu sử dụng khác nhau. Thông qua mạng lưới đối tác lựa chọn, B+Open hướng đến việc đưa các sản phẩm phù hợp đến gần hơn với khách hàng và từng dự án.'
             : 'Sustainably harvested from 100% FSC®-certified heartwood forests in Bolivia, genuine Ipe timber possesses three times the density of teak and a legendary 3,680 lbf Janka hardness rating. Because our substantial pieces demand expert handling, personalized Sunbrella® fabric curation, and white-glove residential placement, we partner with premier regional retailers who share our passion for generational craftsmanship.'}
         </p>
       </section>
