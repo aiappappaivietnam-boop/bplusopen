@@ -709,44 +709,44 @@ export const CareGuidePage: React.FC<CareGuidePageProps> = ({ onNavigate }) => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="p-4 bg-white border border-[#EAE3D2] rounded-xs space-y-2">
                   <div className="font-bold text-[#1C1A17] text-sm">
-                    {isVi ? 'Bộ Phục Hồi Ipe Aftercare Kit' : 'Ipe Aftercare Kit'}
+                    {isVi ? 'DUNG DỊCH LÀM SẠCH GỖ TEAK' : 'Ipe Aftercare Kit'}
                   </div>
                   <p className="text-xs text-[#5A524A]">
                     {isVi
-                      ? 'Bao gồm dung dịch làm sạch Ipe Cleaner, dung dịch làm sáng Brightener, dầu dưỡng Penofin Verde và miếng chà chuyên dụng.'
+                      ? 'Hỗ trợ loại bỏ bụi bẩn, vết ố và tạp chất trên bề mặt gỗ. Lựa chọn sản phẩm chuyên dụng phù hợp với tình trạng và lớp hoàn thiện của Teak.'
                       : 'Complete set with Cleaner, Brightener, Penofin Verde Oil, and specialty non-metallic abrasive scrub pads.'}
                   </p>
                 </div>
 
                 <div className="p-4 bg-white border border-[#EAE3D2] rounded-xs space-y-2">
                   <div className="font-bold text-[#1C1A17] text-sm">
-                    {isVi ? 'Dầu Dưỡng Penofin® Verde Rosewood' : 'Penofin® Verde Rosewood Oil'}
+                    {isVi ? 'SẢN PHẨM BẢO DƯỠNG MÀU TEAK' : 'Penofin® Verde Rosewood Oil'}
                   </div>
                   <p className="text-xs text-[#5A524A]">
                     {isVi
-                      ? 'Dầu dưỡng chiết xuất gỗ cẩm lai thân thiện với môi trường, lọc tia UV 99%, duy trì màu hổ phách chocolate đậm đà.'
+                      ? 'Dành cho người muốn duy trì sắc nâu ấm của gỗ. Việc sử dụng phụ thuộc vào lớp hoàn thiện và hướng dẫn của sản phẩm; không bắt buộc nếu muốn để gỗ chuyển màu bạc xám tự nhiên.'
                       : 'Brazilian Rosewood oil formula with 99% UV protection, zero VOC, highlighting deep grain tones.'}
                   </p>
                 </div>
 
                 <div className="p-4 bg-white border border-[#EAE3D2] rounded-xs space-y-2">
                   <div className="font-bold text-[#1C1A17] text-sm">
-                    {isVi ? 'Dung Dịch Làm Sạch Penofin Pro-Tech' : 'Penofin Pro-Tech Cleaner'}
+                    {isVi ? 'DUNG DỊCH VỆ SINH KIM LOẠI SƠN TĨNH ĐIỆN' : 'Penofin Pro-Tech Cleaner'}
                   </div>
                   <p className="text-xs text-[#5A524A]">
                     {isVi
-                      ? 'Tẩy sạch lớp dầu cũ bị ố, nấm mốc và cặn bẩn bám dính trên bề mặt gỗ ngoài trời.'
+                      ? 'Làm sạch bụi bẩn và các vết bám trên bề mặt nhôm hoặc thép sơn tĩnh điện. Ưu tiên chất làm sạch dịu nhẹ, không mài mòn và tương thích với lớp sơn.'
                       : 'Restores weathered timber, stripping dirt and environmental film without bleaching or stripping grain.'}
                   </p>
                 </div>
 
                 <div className="p-4 bg-white border border-[#EAE3D2] rounded-xs space-y-2">
                   <div className="font-bold text-[#1C1A17] text-sm">
-                    {isVi ? 'Bạt Phủ Bảo Vệ Tùy Chỉnh' : 'Tailored Furniture Covers'}
+                    {isVi ? 'DUNG DỊCH LÀM SẠCH VẢI OUTDOOR' : 'Tailored Furniture Covers'}
                   </div>
                   <p className="text-xs text-[#5A524A]">
                     {isVi
-                      ? 'Vải bạt chống nước thoáng khí, có dây rút cố định cho các mùa mưa tuyết kéo dài.'
+                      ? 'Hỗ trợ xử lý vết bẩn trên vải bọc ngoài trời, giúp duy trì vẻ sạch đẹp và cảm giác sử dụng. Cần chọn sản phẩm phù hợp với thành phần sợi và hướng dẫn chăm sóc của mã vải.'
                       : 'Breathable, water-resistant heavy-duty outdoor fabric covers designed to fit each B+Open seating and dining set.'}
                   </p>
                 </div>
