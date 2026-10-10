@@ -386,7 +386,7 @@ export const MaterialsPage: React.FC<MaterialsPageProps> = ({ onNavigate }) => {
               </h3>
               <p className="text-xs sm:text-sm text-[#2C2A29] leading-relaxed font-normal">
                 {isVi
-                  ? 'Acrylic là loại sợi tổng hợp có độ bền và khả năng duy trì màu sắc tốt, mang lại sự mềm mại và thoải mái cho các sản phẩm upholstery ngoài trời.'
+                  ? 'Acrylic là loại sợi tổng hợp có độ bền và khả năng duy trì màu sắc tốt, phù hợp với những ứng dụng cần sự mềm mại và thoải mái ngoài trời. Sợi có khả năng chống phai màu nhờ công nghệ nhuộm solution-dyed, trong đó màu được tích hợp sâu vào cấu trúc sợi ngay từ đầu.'
                   : 'Acrylic is a durable, colorfast synthetic fiber that brings soft comfort to outdoor upholstery.'}
               </p>
               <div className="pt-1">
@@ -402,8 +402,8 @@ export const MaterialsPage: React.FC<MaterialsPageProps> = ({ onNavigate }) => {
             {/* Right: Solution-dyed acrylic upholstery detail */}
             <div className="relative overflow-hidden shadow-xs border border-[#E8E4DD] rounded-xs aspect-[4/3] order-1 md:order-2">
               <img
-                src="/materials/upholstery-chair.png"
-                alt="Outdoor chair with solution-dyed acrylic upholstery"
+                src="/materials/upholstery-texture.png"
+                alt="Solution-dyed acrylic upholstery texture"
                 className="w-full h-full object-cover"
               />
             </div>
