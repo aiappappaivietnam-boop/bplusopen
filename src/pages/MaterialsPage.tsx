@@ -344,8 +344,8 @@ export const MaterialsPage: React.FC<MaterialsPageProps> = ({ onNavigate }) => {
             {/* Left: Photo of woven wicker texture with sculpted Ipe arm cap */}
             <div className="relative overflow-hidden shadow-xs border border-[#E8E4DD] rounded-xs aspect-[4/3]">
               <img
-                src="/materials/solara-sofa.png"
-                alt="Woven Solara Fiber sofa"
+                src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1200&q=85"
+                alt="Woven Solara Fiber with sculpted Ipe wood arm cap and plush cushion"
                 className="w-full h-full object-cover"
               />
             </div>
